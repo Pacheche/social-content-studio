@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "canvas": {
+    "width": 1080,
+    "height": 1350
+  },
+  "export": {
+    "width": 2160,
+    "height": 2700
+  },
+  "files": [
+    "slide-01.png",
+    "slide-02.png",
+    "slide-03.png"
+  ],
+  "auxiliary_pngs": []
+}

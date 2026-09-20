@@ -1,0 +1,4 @@
+interface:
+  display_name: "Social Content Studio"
+  short_description: "Contenido para redes con criterio editorial y visual"
+  default_prompt: "Usá $social-content-studio para convertir esta idea en contenido para mi marca, con copy claro, dirección visual propia y exportados revisados."
