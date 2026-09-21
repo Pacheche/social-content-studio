@@ -4,6 +4,18 @@ Una skill abierta para convertir ideas, briefs y referencias en contenido de red
 
 Funciona con Codex, Claude Code y otros agentes compatibles con el formato `SKILL.md`
 
+> English: an open agent skill for turning ideas, briefs, and references into social content with strategy, copy, art direction, multiformat production, and real export QA
+
+## En 30 segundos
+
+Le pasás al agente una idea o un brief, aunque esté desordenado. La skill resuelve el mensaje antes de diseñar, asigna una función visual a cada escena, produce el formato pedido y revisa los archivos finales en lugar de confiar solo en el render
+
+```text
+Brief → estrategia y copy → dirección visual → editables y exportados → QA técnico + revisión visual
+```
+
+El resultado puede ser un carrusel, un post, una historia, un estado, un reel o una corrección puntual. El formato y la herramienta se eligen según el encargo; no fuerza una estética ni un renderer único
+
 ## Qué resuelve
 
 - Posts y carruseles estáticos
@@ -32,6 +44,14 @@ La mayoría de los flujos de contenido se detiene en el copy, en una plantilla o
 | Corrige síntomas una y otra vez | Convierte feedback repetido en controles verificables del proceso |
 
 El resultado no depende de una estética predeterminada. La skill organiza decisiones y controles para que el agente produzca una solución propia para cada marca y mensaje
+
+## Requisitos
+
+- Un agente que cargue skills mediante `SKILL.md`, como Codex o Claude Code
+- Para el auditor técnico opcional: Python 3 y Pillow
+- Los activos y reglas reales de la marca cuando el pedido los necesite
+
+No requiere una cuenta de red social, un servicio externo, un renderer específico ni una plantilla cerrada para empezar a trabajar
 
 ## Instalación
 
@@ -88,6 +108,18 @@ No hace falta completar un formulario perfecto. Si está disponible, conviene in
 
 La skill puede ordenar un brief desprolijo, pero no debe inventar datos, identidad ni promesas materiales
 
+## Personalizarla para una marca
+
+La skill conserva el método y cada proyecto aporta su propia identidad. Usá [`examples/brand-profile.example.md`](examples/brand-profile.example.md) como punto de partida para documentar:
+
+- Logos y activos oficiales
+- Colores, fuentes y sistema visual
+- Voz, audiencia, oferta y CTA real
+- Restricciones comerciales, legales o de tono
+- Formatos prioritarios y referencias aprobadas
+
+Guardá ese perfil junto al proyecto de la marca, no dentro de la skill compartida. Así una actualización pública nunca expone información de clientes ni contamina el estilo de otra marca
+
 ## Flujo de trabajo
 
 1. **Contexto y alcance**: lee instrucciones, activos y restricciones del proyecto
@@ -118,6 +150,16 @@ Un ejemplo de contrato está en [`examples/export-contract.example.json`](exampl
 
 El auditor no decide si una pieza está bien diseñada. La revisión visual sigue siendo obligatoria
 
+## Uso manual del auditor
+
+Si ya tenés exportados y solo querés comprobar el contrato técnico, creá un archivo a partir de [`examples/export-contract.example.json`](examples/export-contract.example.json), definí el lienzo y la resolución final esperada, y ejecutá:
+
+```bash
+python scripts/audit_exports.py ./exports --contract ./export-contract.json --report ./qa-tecnica.json
+```
+
+El reporte deja la revisión visual como `pending` a propósito: un PNG puede tener las medidas correctas y aun así contener texto cortado, un logo con fondo o una captura de error
+
 ## Estructura
 
 ```text
@@ -130,6 +172,14 @@ social-content-studio/
 ```
 
 Las referencias se cargan de forma progresiva según el entregable para evitar contexto innecesario
+
+## Extender la skill
+
+- Para incorporar una red nueva, documentá su formato, zona segura y criterio de adaptación en la referencia de producción correspondiente
+- Para sumar una verificación repetible, agregá un script con tests que comprueben un resultado observable
+- Para cambiar el proceso, actualizá primero los casos de evaluación y evitá convertir una preferencia de un cliente en una regla para todos
+
+La mejor extensión no agrega pasos por costumbre: elimina un riesgo concreto o mejora una decisión repetida
 
 ## Principios de seguridad y privacidad
 
