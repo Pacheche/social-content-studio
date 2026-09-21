@@ -1,0 +1,64 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Cómo usar Social Content Studio",
+    "quality_profile": "showcase",
+    "legend": { "mode": "hidden" },
+    "output": "docs/diagrams/como-usar-social-content-studio-workflow.html"
+  },
+  "lanes": [
+    { "id": "proceso", "label": "Uso correcto" }
+  ],
+  "phases": [
+    { "id": "recibir", "label": "1 · Recibir", "fromCol": 0, "toCol": 0 },
+    { "id": "resolver", "label": "2 · Resolver", "fromCol": 1, "toCol": 1, "variant": "emphasis" },
+    { "id": "producir", "label": "3 · Producir", "fromCol": 2, "toCol": 2, "variant": "dashed" },
+    { "id": "revisar", "label": "4 · Revisar", "fromCol": 3, "toCol": 3, "variant": "security" }
+  ],
+  "mainPath": ["brief", "gateA", "produccion", "entrega"],
+  "semanticChecks": {
+    "allowedRoots": ["brief"],
+    "allowedTerminals": ["entrega"],
+    "requiredPaths": [
+      { "from": "brief", "to": "entrega" }
+    ]
+  },
+  "nodes": [
+    { "id": "brief", "lane": "proceso", "col": 0, "type": "external", "label": "Brief + marca", "sublabel": "objetivo, activos y límites", "width": 160 },
+    { "id": "gateA", "lane": "proceso", "col": 1, "type": "backend", "label": "Gate A · contenido", "sublabel": "audiencia, evidencia, copy y CTA", "tag": "no diseñar antes", "width": 172 },
+    { "id": "produccion", "lane": "proceso", "col": 2, "type": "messagebus", "label": "Diseñar + producir", "sublabel": "ancla visual y formato correcto", "width": 166 },
+    { "id": "entrega", "lane": "proceso", "col": 3, "type": "security", "label": "Gate B · entregar", "sublabel": "archivo real, móvil y secuencia", "tag": "solo si cumple", "width": 165 }
+  ],
+  "edges": [
+    { "id": "brief-gateA", "from": "brief", "to": "gateA", "label": "contexto + evidencia", "role": "main", "variant": "emphasis" },
+    { "id": "gateA-produccion", "from": "gateA", "to": "produccion", "label": "copy resuelto", "role": "main", "variant": "emphasis" },
+    { "id": "produccion-entrega", "from": "produccion", "to": "entrega", "label": "exportado real", "role": "main", "variant": "default" }
+  ],
+  "cards": [
+    {
+      "dot": "amber",
+      "title": "Si falta evidencia",
+      "items": [
+        "Resolver, eliminar o reformular el claim",
+        "No presentar un ejemplo como resultado real"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Si el arte falla",
+      "items": [
+        "Corregir solo lo afectado",
+        "Revisar otra vez todas las piezas afectadas"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Límite operativo",
+      "items": [
+        "La skill no publica ni agenda sola",
+        "Publicar requiere autorización explícita"
+      ]
+    }
+  ]
+}

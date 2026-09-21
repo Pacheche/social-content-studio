@@ -129,6 +129,12 @@ Guardá ese perfil junto al proyecto de la marca, no dentro de la skill comparti
 5. **Gate B, QA**: revisa el archivo final, no solo el código fuente o el log del render
 6. **Adaptación y aprendizaje**: ajusta por red y convierte feedback repetido en controles verificables
 
+## Diagrama del método
+
+![Diagrama del uso correcto de Social Content Studio](docs/diagrams/como-usar-social-content-studio-workflow.png)
+
+El [diagrama interactivo](docs/diagrams/como-usar-social-content-studio-workflow.html) muestra el recorrido completo y sus tres controles: evidencia antes de diseñar, revisión real del arte y autorización explícita para publicar. Para abrirlo fuera de GitHub, descargá el HTML autónomo y abrilo en cualquier navegador moderno
+
 ## Auditor técnico de PNG
 
 `scripts/audit_exports.py` comprueba:
