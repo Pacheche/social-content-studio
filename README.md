@@ -131,9 +131,9 @@ Guardá ese perfil junto al proyecto de la marca, no dentro de la skill comparti
 
 ## Diagrama del método
 
-![Diagrama del uso correcto de Social Content Studio](docs/diagrams/como-usar-social-content-studio-workflow.png)
+![Diagrama del método de Social Content Studio](docs/diagrams/metodo-social-content-studio.png)
 
-El [diagrama interactivo](docs/diagrams/como-usar-social-content-studio-workflow.html) muestra el recorrido completo y sus tres controles: evidencia antes de diseñar, revisión real del arte y autorización explícita para publicar. Para abrirlo fuera de GitHub, descargá el HTML autónomo y abrilo en cualquier navegador moderno
+El flujo resuelve el mensaje antes de diseñar y revisa los archivos reales antes de entregarlos
 
 ## Auditor técnico de PNG
 
