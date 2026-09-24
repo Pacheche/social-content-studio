@@ -45,6 +45,16 @@ La mayoría de los flujos de contenido se detiene en el copy, en una plantilla o
 
 El resultado no depende de una estética predeterminada. La skill organiza decisiones y controles para que el agente produzca una solución propia para cada marca y mensaje
 
+## Novedades de la versión 1.1.0
+
+- Selección de skills y referencias según el problema real de la pieza, con criterios de adopción y pruebas acotadas
+- Montaje audiovisual con tiempos de origen/salida, caché de transcripción, overlays y captions revisados en cada corte
+- Rutas opcionales de edición y motion; el método sigue funcionando sin un proveedor obligatorio
+- Imágenes con identidad y composición controladas, logo oficial separado y efectos visuales con una función concreta
+- Más casos de evaluación para comprobar decisiones, además de los tests del auditor PNG
+
+Los detalles están en [selección de recursos](references/seleccion-de-recursos.md) y [video y movimiento](references/video.md). La compatibilidad de una herramienta nueva debe probarse con el material y entorno del proyecto
+
 ## Requisitos
 
 - Un agente que cargue skills mediante `SKILL.md`, como Codex o Claude Code

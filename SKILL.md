@@ -2,7 +2,7 @@
 name: social-content-studio
 description: "Planificar, escribir, diseñar, producir, adaptar o corregir publicaciones de redes para cualquier marca: posts, carruseles, historias/estados y reels. Usar con ideas sueltas, briefs, referencias o piezas existentes que deben convertirse en contenido claro, visualmente cuidado y verificable. Incluye revisión editorial, dirección de arte, fuentes editables y QA del exportado. No se activa para desarrollo web general ni publica automáticamente."
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Social Content Studio
@@ -48,6 +48,8 @@ Producir y revisar internamente la portada y la escena más difícil antes de ex
 Mantener editables separados de finales. Adaptar contenido, composición, CTA y zona segura a cada destino; estirar el feed no crea una historia. La herramienta sigue al entregable y a la elección del usuario.
 
 Las guías de producción funcionan como base autónoma. Reutilizar el renderizador probado del proyecto cuando exista. Para video, verificar las capacidades y contratos de la herramienta autorizada antes de elegir el flujo. Ninguna dependencia se considera instalada por aparecer en esta skill.
+
+Cuando haya varias skills, herramientas o recursos nuevos, consultar [selección de recursos](references/seleccion-de-recursos.md). Elegir por el problema de la pieza y dejar una decisión concreta: qué criterio se adopta, dónde se aplica y cómo se comprueba. Cargar solo las instrucciones de las capacidades elegidas.
 
 ## Gate B: revisar el archivo real
 

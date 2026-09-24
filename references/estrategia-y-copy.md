@@ -13,6 +13,8 @@ Partir del trabajo del lector: resolver una duda, reconocer un problema, compara
 
 No seleccionar alcance por defecto cuando se busca compradores. No fabricar controversia, urgencia, pérdidas monetarias ni experiencias personales. Una pieza educativa no necesita vender en cada slide.
 
+Para servicios complejos, mostrar una operación concreta: qué entra, qué hace el sistema y qué recibe la persona. Diferenciar capacidad disponible, ejemplo ilustrativo y evolución posible. Una primera etapa solo se presenta como oferta si existe y tiene alcance confirmado; precios, plazos y casos de terceros no son evidencia de la marca.
+
 ## Guion que sostiene la promesa
 
 - Hook específico y comprensible sin el caption. La promesa se cumple en el desarrollo

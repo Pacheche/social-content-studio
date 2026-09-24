@@ -30,6 +30,8 @@ Puede vivir en un archivo existente. Para una serie nueva, un JSON/Markdown cons
 - Canvas lógico, píxeles exportados, tipo de archivo, safe zones y duración/FPS si aplica
 - Criterios de aceptación y lista de salidas esperadas
 
+Cuando haya montaje: inventario de fuentes, hashes de transcripción, lista de cortes con tiempos de origen/salida, slots de overlays, estilos de captions, audio y estrategia acordada. Cuando se evalúe rendimiento: hipótesis, métrica, período y variable a cambiar. Usar solo los campos pertinentes al encargo.
+
 No llenar campos por burocracia. Un post tipográfico de una frase puede usar un contrato muy breve; datos o motion requieren detalle donde hay fragilidad.
 
 ## Contrato técnico para el auditor de PNG

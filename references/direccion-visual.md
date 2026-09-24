@@ -31,7 +31,7 @@ Alternar gramáticas entre slides cuando el relato lo pida. No fusionar todos lo
 - Referencia inicial, no cuota: a 1080 de ancho suelen funcionar títulos 64-100 px, cuerpo 34-44 px y ejemplos 30-36 px. Nombre de fuente, longitud y contenido pueden exigir otra escala
 - Reducir redundancia, reorganizar o dividir antes de comprimir la fuente. No ocultar overflow para esconder errores
 - Alinear ópticamente logo/glifos y revisar transparencia real, incluso en SVG
-- Ejemplos con menor contraste o etiqueta "Ejemplo ilustrativo", conservando lectura. No meter toda la información en letra atenuada
+- Si el ejemplo ficticio puede confundirse con un caso, interfaz o dato real, incluir una etiqueta explícita como "Ejemplo ilustrativo". Menor contraste o comillas no sustituyen esa aclaración; conservar lectura y no atenuar toda la información
 - Texturas, recortes, iluminación y capas aportan materialidad al objeto. Variar su función, posición y escala; evitar el parche rectangular con bordes no intencionales
 - Líneas de continuidad entre slides pueden guiar; cada imagen debe funcionar aislada. El mosaico del perfil depende de orden/crop y nunca justifica cortar información esencial
 
@@ -50,3 +50,7 @@ En gráficos comprobar escala, unidades, signo, orden, período, etiquetas y fue
 Conservar logos oficiales. Para producto/UI/casos, usar evidencia autorizada o ejemplos declarados. Generación de imágenes sirve para escenas y metáforas; el texto largo, cifras y logos se componen después cuando requieren fidelidad. Revisar anatomía, artefactos, contexto y coherencia de luz.
 
 Elegir una guía visual principal; pedir una segunda crítica solo para un problema concreto. De frontend se adoptan jerarquía y composición, no su framework, fuentes favoritas, hover o layout web por defecto. La marca prevalece sobre recomendaciones estéticas generales.
+
+Para generar o mejorar una imagen, separar invariantes (identidad, producto, proporción y composición que deban conservarse) de cambios permitidos (luz, fondo, encuadre o nitidez). Especificar zona libre para el copy. Componer después logo oficial, cifras y texto exacto en el editor; verificar dimensiones binarias, ya que pedir "4K" en un prompt no las garantiza. Un retoque estético no convierte una escena generada en evidencia documental.
+
+Si una biblioteca aporta orbs, brillos, metal o efectos de voz, decidir primero qué estado o mecanismo explican. Leer [selección de recursos](seleccion-de-recursos.md) antes de incorporarla: el acabado acompaña al mensaje y debe sobrevivir al formato de salida.
