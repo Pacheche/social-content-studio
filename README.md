@@ -45,7 +45,17 @@ La mayoría de los flujos de contenido se detiene en el copy, en una plantilla o
 
 El resultado no depende de una estética predeterminada. La skill organiza decisiones y controles para que el agente produzca una solución propia para cada marca y mensaje
 
-## Novedades de la versión 1.1.0
+## Novedades de la versión 1.2.0
+
+- Ruta específica de Remotion para composiciones React, variantes parametrizadas, datos animados y subtítulos
+- Carga progresiva de sus skills según la tarea: creación, escenas, Studio, exportación o captions
+- Verificación de runtime y licencia por proyecto, preview separada del MP4 final y QA sobre el archivo real
+- Remotion y HyperFrames como alternativas; Video Use complementa el montaje cuando hace falta, sin encadenar motores por defecto
+- El flujo estático HTML/CSS a PNG conserva sus herramientas y controles
+
+La integración documenta el procedimiento; no equivale a un piloto audiovisual validado. Ver [Remotion en creación de contenido](references/remotion.md)
+
+### Cambios anteriores de la versión 1.1.0
 
 - Selección de skills y referencias según el problema real de la pieza, con criterios de adopción y pruebas acotadas
 - Montaje audiovisual con tiempos de origen/salida, caché de transcripción, overlays y captions revisados en cada corte

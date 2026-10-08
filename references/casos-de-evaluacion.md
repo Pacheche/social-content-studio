@@ -30,7 +30,18 @@ Usar estos casos al modificar las instrucciones. Evalúan decisiones esperadas; 
 | Cambia el contenedor/imagen del video, pero el audio es idéntico | Conservar caché de ASR por huella de audio; actualizar procedencia y verificar mapeo temporal |
 | Interfaz ficticia con texto gris que parece un caso de cliente | Agregar etiqueta explícita de ejemplo; la atenuación estética no informa ficción |
 
-## Pruebas ejecutables
+## Casos de integración Remotion (2026-10-07)
+
+| Pedido y contexto | Comportamiento a comprobar |
+| --- | --- |
+| "Agregamos Remotion; hacé un carrusel PNG" | Conservar el renderer estático; no cargar las skills ni dependencias Remotion por disponibilidad |
+| "Mostrame una preview de un reel Remotion" | Gate A/storyboard, composición y Studio comprobado; no exportar/publicar por defecto ni cargar SaaS |
+| "Entregá un MP4 con captions de este clip autorizado" | Usar solo instrucciones pertinentes, tiempos verificados de salida, preservar metraje si no se pidió montaje y QA del export real |
+| "Hacé un reel para otra marca" | Usar assets/voz de esa marca, sin importar reglas de TurnaLab; revisar licencia y runtime antes de producir |
+
+La incorporación de estos casos no constituye una prueba audiovisual ejecutada.
+
+## Pruebas ejecutables del auditor
 
 ```bash
 python scripts/test_audit_exports.py

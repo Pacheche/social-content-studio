@@ -2,7 +2,7 @@
 name: social-content-studio
 description: "Planificar, escribir, diseñar, producir, adaptar o corregir publicaciones de redes para cualquier marca: posts, carruseles, historias/estados y reels. Usar con ideas sueltas, briefs, referencias o piezas existentes que deben convertirse en contenido claro, visualmente cuidado y verificable. Incluye revisión editorial, dirección de arte, fuentes editables y QA del exportado. No se activa para desarrollo web general ni publica automáticamente."
 metadata:
-  version: "1.1.0"
+  version: "1.2.0"
 ---
 
 # Social Content Studio
@@ -43,6 +43,7 @@ Producir y revisar internamente la portada y la escena más difícil antes de ex
 | --- | --- |
 | Post, carrusel, flyer digital, historias o estados estáticos | [Producción estática](references/produccion-estatica.md) |
 | Reel, clips, motion graphic, captions o presentación animada | [Video y movimiento](references/video.md) |
+| Video con composición React, variantes parametrizadas o Remotion elegido por el usuario | [Ruta Remotion](references/remotion.md), después del encuadre audiovisual |
 | Solo auditoría/corrección de archivos finales | [Revisión y entrega](references/revision-y-entrega.md) y la referencia del formato |
 
 Mantener editables separados de finales. Adaptar contenido, composición, CTA y zona segura a cada destino; estirar el feed no crea una historia. La herramienta sigue al entregable y a la elección del usuario.
