@@ -2,7 +2,7 @@
 name: social-content-studio
 description: "Planificar, escribir, diseñar, producir, adaptar o corregir publicaciones de redes para cualquier marca: posts, carruseles, historias/estados y reels. Usar con ideas sueltas, briefs, referencias o piezas existentes que deben convertirse en contenido claro, visualmente cuidado y verificable. Incluye revisión editorial, dirección de arte, fuentes editables y QA del exportado. No se activa para desarrollo web general ni publica automáticamente."
 metadata:
-  version: "1.2.0"
+  version: "1.3.0"
 ---
 
 # Social Content Studio
@@ -27,6 +27,8 @@ Producir copy literal por slide/escena, caption complementario y las dependencia
 
 Aplicar la revisión antislop de la referencia. Preservar la voz; no adivinar si el autor usó IA. Titular y apoyo deben aportar información distinta.
 
+Para copy, captions, comentarios o adaptación entre redes, leer [voz y ganchos](references/voz-y-ganchos.md): banco de evidencia de la marca, mecanismos de gancho, plantilla extraída de piezas que funcionaron, densidad de patrones y límites de texto por red. Si el usuario aporta métricas o pide decidir qué repetir, leer [medición y aprendizaje](references/medicion-y-aprendizaje.md) y llevar la hipótesis al brief.
+
 Respetar el modo de aprobación del usuario/proyecto. Si pidió evaluar primero, presentar el guion y detener la producción. Si ya autorizó analizar y producir, resolver Gate A internamente y seguir; no exigir dos turnos por una receta externa. Una decisión de identidad o un dato esencial pendiente sí requiere respuesta.
 
 ## Dirección de arte y contrato
@@ -44,6 +46,7 @@ Producir y revisar internamente la portada y la escena más difícil antes de ex
 | Post, carrusel, flyer digital, historias o estados estáticos | [Producción estática](references/produccion-estatica.md) |
 | Reel, clips, motion graphic, captions o presentación animada | [Video y movimiento](references/video.md) |
 | Video con composición React, variantes parametrizadas o Remotion elegido por el usuario | [Ruta Remotion](references/remotion.md), después del encuadre audiovisual |
+| Motion con estilo definido, storyboard por lecturas o revisión por fotogramas | [Estilos y revisión de movimiento](references/estilos-y-revision-de-movimiento.md), con el motor elegido |
 | Solo auditoría/corrección de archivos finales | [Revisión y entrega](references/revision-y-entrega.md) y la referencia del formato |
 
 Mantener editables separados de finales. Adaptar contenido, composición, CTA y zona segura a cada destino; estirar el feed no crea una historia. La herramienta sigue al entregable y a la elección del usuario.

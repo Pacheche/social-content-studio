@@ -12,6 +12,7 @@ Revisar activos y documentación antes de preguntar. El perfil debe distinguir c
 - Sitio/contactos/CTA verificados para la pieza, sin inventar números, precios o promociones
 - Red, tipo de post, vía de publicación, tamaños y restricciones comprobadas
 - Modo de revisión acordado y qué está autorizado producir
+- Banco de evidencia (casos, cifras con procedencia, posturas, vocabulario del lector) según [voz y ganchos](voz-y-ganchos.md)
 
 Si faltan logos, usar una propuesta claramente provisional sin fabricar un símbolo. Si faltan colores o fuentes y el pedido incluye diseñar identidad, proponer una dirección como propuesta, no como manual aprobado. Si solo pide un post, aprovechar referencias disponibles y explicitar los supuestos.
 

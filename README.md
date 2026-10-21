@@ -42,10 +42,23 @@ La mayoría de los flujos de contenido se detiene en el copy, en una plantilla o
 | Mezcla reglas de una marca con otra | Aísla identidad, voz, activos y restricciones en un perfil por proyecto |
 | Confunde datos, ejemplos y promesas | Separa evidencia, interpretación y ejemplo ilustrativo antes del export final |
 | Corrige síntomas una y otra vez | Convierte feedback repetido en controles verificables del proceso |
+| Escribe copy genérico por falta de material | Usa un banco de evidencia de la marca y mecanismos de gancho explícitos |
+| Opina sobre métricas con cifras crudas | Normaliza por alcance, aísla una causa y marca hipótesis cuando la muestra es chica |
+| Anima y revisa solo el video final | Storyboard por lecturas y revisión por hoja, tira y recorte de fotogramas |
 
 El resultado no depende de una estética predeterminada. La skill organiza decisiones y controles para que el agente produzca una solución propia para cada marca y mensaje
 
-## Novedades de la versión 1.2.0
+## Novedades de la versión 1.3.0
+
+- [Voz y ganchos](references/voz-y-ganchos.md): banco de evidencia de la marca, mecanismos de gancho, plantilla extraída de piezas que funcionaron, densidad de patrones de IA y límites de texto por red
+- [Medición y aprendizaje](references/medicion-y-aprendizaje.md): análisis normalizado por alcance, causa aislada, hipótesis con muestra chica, pruebas de una variable y tablero autocontenido solo cuando ayuda a decidir
+- [Estilos y revisión de movimiento](references/estilos-y-revision-de-movimiento.md): brief de cinco partes, storyboard por lecturas, revisión por hoja de contacto, tira y recorte, y rúbrica de segunda pasada
+- Reglas para herramientas con costo, cuentas o riesgo, y registro de adopciones con fuente y estado en [selección de recursos](references/seleccion-de-recursos.md)
+- Prácticas de Remotion complementarias y 11 casos nuevos de evaluación
+
+Las fuentes externas se sintetizaron con palabras propias y se registran con su estado. Ninguna herramienta de terceros quedó instalada ni ejecutada por esta versión
+
+### Cambios de la versión 1.2.0
 
 - Ruta específica de Remotion para composiciones React, variantes parametrizadas, datos animados y subtítulos
 - Carga progresiva de sus skills según la tarea: creación, escenas, Studio, exportación o captions

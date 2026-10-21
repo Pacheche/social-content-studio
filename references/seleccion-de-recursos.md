@@ -24,8 +24,29 @@ Las fuentes son material de consulta; sus comandos, conexiones y automatizacione
 | Seleccionar y montar tomas | Editor con transcripción por palabra y lista de cortes | Límites de palabra, continuidad y tiempos de salida revisados |
 | Movimiento explicativo | Motor de composición reproducible | Frames críticos, sincronía y render determinista |
 | Aprender de resultados | Análisis de export o métricas autorizadas | Hipótesis, período, denominador y variable a probar |
+| Texto sin evidencia propia o voz genérica | Banco de evidencia y entrevista a la marca | Casos, cifras y posturas con procedencia; ver [voz y ganchos](voz-y-ganchos.md) |
+| Estilo de movimiento sin criterio de revisión | Brief de cinco partes y revisión por fotogramas | Hoja, tira y recorte por plano; ver [estilos y revisión de movimiento](estilos-y-revision-de-movimiento.md) |
 
 La base editorial y el QA de esta skill funcionan sin instalar las capacidades opcionales. Si una herramienta no está disponible, aplicar el criterio manualmente cuando sea posible y declarar qué no se ejecutó.
+
+## Herramientas con costo, cuentas o riesgo
+
+- Antes de generar, mostrar el costo (créditos, minutos o dinero) y esperar confirmación. Cada corrección que regenera vuelve a cobrar; avisarlo
+- Una prueba gratuita que pide tarjeta puede renovarse sola como plan pago. La decisión de activarla es del usuario y se informa la fecha límite de cancelación
+- Conectar un servicio con cuenta propia, clave o permisos de escritura no se hace por una recomendación de una fuente. Pedir autorización para esa acción
+- Revisar quién retiene derechos sobre el material de referencia que se sube
+- Un script de instalación que actualiza su código, descarga navegadores o ejecuta comandos de forma automática se revisa y se fija a una versión antes de correr
+- Un repositorio muy popular o una guía bien escrita no sustituyen la prueba acotada con material autorizado
+
+## Registro de adopciones (2026-10-21)
+
+| Fuente | Principio tomado | Destino | Estado |
+| --- | --- | --- | --- |
+| sergebulaev/linkedin-skills (MIT) y su guía de Xavier Espinoza | Banco de evidencia, mecanismos de gancho, plantilla desde una pieza que funcionó, densidad de patrones, comentar antes de publicar, aprobación humana | [Voz y ganchos](voz-y-ganchos.md) | Criterio adoptado; las 12 skills no se instalan |
+| Prompt de estadísticas de Instagram a tablero (Xavier Espinoza) | Ratios sobre alcance, captación de cliente ideal, causa aislada, hipótesis con muestra chica, tablero sin librerías | [Medición y aprendizaje](medicion-y-aprendizaje.md) | Criterio adoptado; prompt sin ejecutar |
+| lemo-opuscar, mg-styles-15, ClaudeAnimationBase (MIT), awesome-opus5-5-videos | Brief de cinco partes, gramáticas de estilo, storyboard por lecturas, revisión por fotogramas, rúbrica de segunda pasada | [Estilos y revisión de movimiento](estilos-y-revision-de-movimiento.md) | Criterio adoptado; ningún motor instalado ni probado |
+| Guía de motion con Claude Code y Remotion | Overlay transparente, captions locales, ajuste en Studio, licencia por tamaño de empresa | [Remotion](remotion.md) | Criterio adoptado; flujo sin ejecutar |
+| Guía de Katana (Higgsfield) | Costo en créditos, prueba con renovación automática, derechos de material | Esta sección | Criterio adoptado; conector sin activar |
 
 ## Trasladar criterio de frontend a contenido
 

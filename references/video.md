@@ -15,6 +15,7 @@ Rutas orientativas: captions para metraje sin alterar; edición para cortes/reor
 | Seleccionar tomas, quitar retomas y montar voz real | Video Use u otro editor con ASR por palabra y EDL | Material autorizado, proveedor/costo de transcripción resueltos y estrategia de montaje acordada |
 | Componer escenas HTML/CSS o overlays | HyperFrames | Runtime compatible y timeline determinista comprobados |
 | Componer con React, parametrizar variantes o animar datos/captions | Remotion | Ventaja concreta para la pieza o elección del usuario; leer [ruta Remotion](remotion.md) |
+| Editar y generar tomas dentro de un chat mediante un conector de pago | Conector de edición con generación (por ejemplo Higgsfield Katana) | Material con derechos, costo en créditos visto y aceptado antes de cada generación, y prueba gratuita con renovación automática decidida por el usuario; ver [selección de recursos](seleccion-de-recursos.md) |
 | Agregar subtítulos sin editar el metraje | Herramienta de captions | Conservar imagen, duración, orden y audio originales |
 | Motion o diagrama sencillo | Motor ya disponible | Elegir el camino más simple que reproduzca el resultado |
 
@@ -23,6 +24,8 @@ Son alternativas, no una cadena obligatoria. Video Use puede organizar cortes y 
 Documentación de los motores opcionales: [Video Use](https://github.com/browser-use/video-use), [HyperFrames](https://github.com/heygen-com/hyperframes), [Remotion](https://www.remotion.dev/docs/). Verificar versiones y dependencias al usarlos; no instalar los tres por defecto.
 
 ## Storyboard y dirección
+
+Para movimiento con un estilo concreto, usar el brief de cinco partes, el storyboard por lecturas, la revisión por hoja de contacto, tira y recorte, y la rúbrica de segunda pasada de [estilos y revisión de movimiento](estilos-y-revision-de-movimiento.md).
 
 Si se elige Remotion, aplicar [ruta Remotion](remotion.md): selección de skills por tarea, runtime del proyecto, Studio, export según alcance y Gate B del archivo real. No cargar esa referencia ni dependencias React para piezas estáticas.
 

@@ -43,6 +43,16 @@ No cargar las doce para una pieza. La documentación oficial describe su alcance
 9. Gate B sobre el archivo real: reproducción con audio, todos los cortes y frames críticos, inicio/cierre, legibilidad móvil, zonas seguras, captions/overlays, logos y valores. Verificar dimensiones, duración, FPS/codec, mezcla y media. Registrar archivo/hash, timestamps, hallazgos y límites. Los checks técnicos no prueban calidad visual ni revisión auditiva.
 10. Entregar editables, preview/final conforme al pedido, copy y QA. Publicar sigue requiriendo autorización independiente.
 
+## Prácticas complementarias
+
+- Partir de un proyecto en blanco por pieza o serie, agregar las skills oficiales dentro de ese proyecto y verificar cuáles carga realmente el agente en uso
+- Pedir un cambio por vez y ajustar valores arrastrando en Studio cuando el entorno lo permita; esos ajustes se guardan en el código. Si algo no se deja seleccionar, cargar la skill de interactividad
+- Overlay para un editor externo: exportar con canal alfa en un códec compatible (por ejemplo ProRes 4444) y verificar transparencia y último fotograma sobre el fondo real
+- Captions por palabra: transcripción local cuando el audio no pueda salir de la máquina; separar fuente y salida de tiempos
+- Remotion no reemplaza un editor de clips: sus puntos fuertes son títulos animados, gráficos, subtítulos y overlays
+- Licencia: la gratuidad depende del tipo y tamaño de la organización; confirmar la elegibilidad en la página oficial antes de uso comercial y no asumirla
+- Estilos y revisión por fotogramas: [estilos y revisión de movimiento](estilos-y-revision-de-movimiento.md)
+
 ## Casos
 
 - Reel educativo: escenas React con diagrama que explica una operación, voz autorizada y captions.
