@@ -2,7 +2,7 @@
 name: motion-video-studio
 description: Use when the user wants a video made from code for social media or a website (reels, product launch films, ads, explainers, UI animations, kinetic typography, data stories, logo reveals, animated captions or overlays, 3D shots) with Remotion, HyperFrames, a seek(t) HTML/canvas renderer or three.js. Covers story, spec, motion craft, sound design, campaign variants (hooks, formats, CTAs), render and frame-by-frame review. Not for cutting existing footage (use footage-edit-studio) or static posts (use social-content-studio).
 metadata:
-  version: "2.0.0"
+  version: "2.1.0"
 ---
 
 # Motion Video Studio
@@ -24,7 +24,7 @@ Paths are relative to this skill's folder. Load references on demand.
 | Music, sound effects, voice, loudness | `references/sound.md` |
 | Checks, review, render settings, platform specs, variants | `references/review-and-delivery.md` |
 
-Writing copy, captions or a post to go with the video: if `social-content-studio` is installed, use its strategy and voice references. Cutting existing footage or long videos into clips: use `footage-edit-studio`.
+Writing copy, captions or a post to go with the video: if `social-content-studio` is installed, use its strategy and voice references. Cutting existing footage or long videos into clips: use `footage-edit-studio`. Generated images, clips, voice-over or music to use as layers: `generative-media-studio`. An animated GIF or sticker from a render: the GIF and sticker recipes in `social-content-studio`'s formats reference.
 
 ## Workflow
 

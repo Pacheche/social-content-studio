@@ -1,15 +1,15 @@
 ---
 name: social-content-studio
-description: "Use when planning, writing, designing, producing, adapting or fixing static social posts for any brand: single posts, carousels, stories or statuses, captions, hooks and brand voice. Works from loose ideas, briefs, references or existing pieces and turns them into clear, visually careful, verifiable content. Covers editorial review, art direction, editable sources, export QA and measurement of results. Not for general web development, and it never publishes automatically. For video, reels or motion, use the sibling skills."
+description: "Use when planning, writing, designing, producing, adapting or fixing static and text content for any brand: single posts, carousels, stories or statuses, YouTube thumbnails and covers, memes, GIFs and stickers, LinkedIn document carousels, slides and decks, threads, long posts, LinkedIn articles, newsletters and blog posts, captions, hooks and brand voice. Works from loose ideas, briefs, references or existing pieces and turns them into clear, visually careful, verifiable content. Covers editorial review, art direction, editable sources, export QA and measurement of results. Not for general web development, and it never publishes automatically. For video, reels or motion, use the sibling skills."
 metadata:
-  version: "2.0.0"
+  version: "2.1.0"
 ---
 
 # Social Content Studio
 
 Turn an idea into a piece the audience understands, with a reason to save, share or reply and, when it applies, a real path to the offer. The method is portable, brand independent and needs no specific external service.
 
-For reels, motion graphics or code-made video, use the `motion-video-studio` skill. For editing existing footage or cutting clips, use `footage-edit-studio`.
+For reels, motion graphics or code-made video, use the `motion-video-studio` skill. For editing existing footage, podcasts or cutting clips, use `footage-edit-studio`. For AI-generated images, video, voice or music, use `generative-media-studio`. When unsure which skill applies, or for a campaign across formats, use `content-studio`.
 
 ## Scope and context
 
@@ -43,7 +43,7 @@ Produce and review the cover and the hardest scene internally before extending t
 
 ## Static production
 
-Read [static production](references/static-production.md) for posts, carousels, digital flyers, and static stories or statuses. For a pure audit or fix of final files, go straight to [review and delivery](references/review-and-delivery.md).
+Read [static production](references/static-production.md) for posts, carousels, digital flyers, and static stories or statuses. For thumbnails, covers, memes, GIFs, stickers, LinkedIn documents, slides and the spec table of every network, read [other visual formats](references/formats.md). For threads, long posts, articles, newsletters and blog posts, read [text formats](references/text-formats.md). For a pure audit or fix of final files, go straight to [review and delivery](references/review-and-delivery.md).
 
 Keep editable files separate from finals. Adapt content, composition, CTA and safe zone to each destination. Stretching the feed does not create a story. The tool follows the deliverable and the user's choice.
 

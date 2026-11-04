@@ -1,8 +1,8 @@
 ---
 name: footage-edit-studio
-description: Use when the user has existing footage to edit for social media or YouTube (interviews, podcasts, vlogs, tutorials, talking heads, screen recordings, event clips) and wants a rough cut, silences and filler words removed, retakes cleaned, jump cuts smoothed, b-roll placed, captions, music and ducking, loudness fixed, vertical 9:16 reframing, or a long video cut into short clips. Works with FFmpeg and local transcription; optional DaVinci Resolve. Not for animations made from code (use motion-video-studio).
+description: Use when the user has existing footage to edit for social media or YouTube (interviews, podcasts, vlogs, tutorials, talking heads, screen recordings, product demos, live streams and their recordings, video and audio podcasts) and wants a rough cut, silences and filler words removed, retakes cleaned, jump cuts smoothed, b-roll placed, captions, music and ducking, loudness fixed, vertical 9:16 reframing, or a long video cut into short clips. Works with FFmpeg and local transcription; optional DaVinci Resolve. Not for animations made from code (use motion-video-studio).
 metadata:
-  version: "2.0.0"
+  version: "2.1.0"
 ---
 
 # Footage Edit Studio
@@ -23,9 +23,10 @@ Paths are relative to this skill's folder. Load references on demand.
 | Captions | `references/captions.md` |
 | Voice, music, ducking, sound effects, loudness | `references/audio-mix.md` |
 | FFmpeg commands that work, and the traps | `references/ffmpeg-recipes.md` |
+| Podcasts and audiograms, screen recordings and product demos, live streams and clips from the recording | `references/podcasts-and-recordings.md` |
 | Platform specs, safe zones, export, final QA, handoff to an editor | `references/delivery.md` |
 
-Animated titles, lower thirds or overlays built in code: `motion-video-studio`. Post copy and captions for the post itself: `social-content-studio`.
+Animated titles, lower thirds or overlays built in code: `motion-video-studio`. Post copy and captions for the post itself: `social-content-studio`. Generated b-roll, voice-over, dubbing, music or audio cleanup with AI models: `generative-media-studio`.
 
 ## Workflow
 
