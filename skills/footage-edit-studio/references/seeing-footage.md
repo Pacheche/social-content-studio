@@ -44,7 +44,7 @@ Re-transcribe just those spots with about 1.2 s of context on each side, to expo
 
 ## Shots, beats, speech
 
-- **Hard cuts:** FFmpeg `scdet` (a one-frame spike detector, robust to fast pans): threshold 10 finds nearly all cuts with few false ones; 12 is stricter.
+- **Hard cuts:** FFmpeg `scdet` (a one-frame spike detector that fast pans do not fool): threshold 10 finds nearly all cuts with few false ones; 12 is stricter.
 - **Camera motion:** classify shots as static, pan or moving from low-resolution frame differences; moving shots make poor b-roll entry points.
 - **Beats** in music: onset envelope, tempo by autocorrelation in 60-200 BPM, and only beats confirmed by a real onset within about 70 ms. Treat low-confidence grids as absent.
 - **Speech versus music** sections, and acoustic events (laughter, applause) from a sound classifier, as highlight hints.
