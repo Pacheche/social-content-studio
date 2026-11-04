@@ -6,8 +6,10 @@ import tempfile
 from pathlib import Path
 import unittest
 
-from PIL import Image
-from audit_exports import audit_exports
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from PIL import Image  # noqa: E402
+from audit_exports import audit_exports  # noqa: E402
 
 
 class ExportAuditTests(unittest.TestCase):

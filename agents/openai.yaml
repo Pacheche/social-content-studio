@@ -1,4 +1,4 @@
 interface:
   display_name: "Social Content Studio"
-  short_description: "Contenido para redes con criterio editorial y visual"
-  default_prompt: "Usá $social-content-studio para convertir esta idea en contenido para mi marca, con copy claro, dirección visual propia y exportados revisados."
+  short_description: "Social posts, code-made videos and edited clips, reviewed on the real file"
+  default_prompt: "Use $social-content-studio, $motion-video-studio or $footage-edit-studio to turn this into content for my brand, with real assets and reviewed exports."

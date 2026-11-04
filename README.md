@@ -1,247 +1,65 @@
 # Social Content Studio
 
-Una skill abierta para convertir ideas, briefs y referencias en contenido de redes sociales con estrategia, copy, dirección de arte, producción multiformato y control de calidad real
+Three agent skills that turn ideas, briefs and raw footage into social content you can publish: posts and carousels, videos made from code, and edited clips. Each one makes the agent decide the message first, build with real assets, and check the exported file before calling it done.
 
-Funciona con Codex, Claude Code y otros agentes compatibles con el formato `SKILL.md`
+Works with Claude Code, Codex, Gemini CLI, OpenCode and any agent that loads `SKILL.md` skills.
 
-> English: an open agent skill for turning ideas, briefs, and references into social content with strategy, copy, art direction, multiformat production, and real export QA
+| Skill | For | Checks it runs |
+|---|---|---|
+| [`social-content-studio`](skills/social-content-studio/SKILL.md) | Posts, carousels, stories and statuses: strategy, copy, hooks, art direction, HTML/CSS to PNG | PNG audit against an export contract, review at full size and at phone width |
+| [`motion-video-studio`](skills/motion-video-studio/SKILL.md) | Videos made from code: product launches, ads, explainers, UI animations, kinetic type, data stories, logo reveals, 3D shots, campaign variants. Remotion, HyperFrames, a `seek(t)` renderer or three.js | Video QA (specs, loudness, black and frozen stretches), contact sheets, seam strips, P0-P2 review |
+| [`footage-edit-studio`](skills/footage-edit-studio/SKILL.md) | Editing real footage: rough cuts, silences and fillers, retakes, jump cuts, b-roll, captions, music and ducking, vertical reframing, long videos into short clips | The same video QA, every cut listened to or re-transcribed, captions checked against the final file |
 
-## En 30 segundos
+## Install
 
-Le pasás al agente una idea o un brief, aunque esté desordenado. La skill resuelve el mensaje antes de diseñar, asigna una función visual a cada escena, produce el formato pedido y revisa los archivos finales en lugar de confiar solo en el render
-
-```text
-Brief → estrategia y copy → dirección visual → editables y exportados → QA técnico + revisión visual
-```
-
-El resultado puede ser un carrusel, un post, una historia, un estado, un reel o una corrección puntual. El formato y la herramienta se eligen según el encargo; no fuerza una estética ni un renderer único
-
-## Qué resuelve
-
-- Posts y carruseles estáticos
-- Historias y estados
-- Reels, clips y motion graphics
-- Adaptaciones entre redes y formatos
-- Auditoría y corrección de piezas existentes
-- Copy, captions, CTAs y estructura narrativa
-- QA técnico de PNG y revisión visual obligatoria
-
-No publica ni agenda contenido por su cuenta. Esas acciones requieren autorización explícita y una integración aparte
-
-## Por qué produce resultados más sólidos
-
-La mayoría de los flujos de contenido se detiene en el copy, en una plantilla o en un render técnicamente válido. Social Content Studio controla el proceso completo
-
-| Enfoque habitual | Social Content Studio |
-| --- | --- |
-| Empieza a diseñar con un brief incompleto | Cierra objetivo, audiencia, promesa, evidencia, CTA y riesgos antes de producir |
-| Repite una plantilla cambiando texto e íconos | Define una función visual por escena y alterna composiciones con intención narrativa |
-| Usa decoración para llenar espacio | Exige recursos visuales que expliquen, comparen, demuestren o contextualicen |
-| Achica el mismo arte para cada red | Adapta jerarquía, copy, CTA, composición y zona segura por destino |
-| Declara éxito porque el archivo exportó | Revisa cada pieza ampliada, a ancho de teléfono y dentro de la secuencia |
-| Mezcla reglas de una marca con otra | Aísla identidad, voz, activos y restricciones en un perfil por proyecto |
-| Confunde datos, ejemplos y promesas | Separa evidencia, interpretación y ejemplo ilustrativo antes del export final |
-| Corrige síntomas una y otra vez | Convierte feedback repetido en controles verificables del proceso |
-| Escribe copy genérico por falta de material | Usa un banco de evidencia de la marca y mecanismos de gancho explícitos |
-| Opina sobre métricas con cifras crudas | Normaliza por alcance, aísla una causa y marca hipótesis cuando la muestra es chica |
-| Anima y revisa solo el video final | Storyboard por lecturas y revisión por hoja, tira y recorte de fotogramas |
-
-El resultado no depende de una estética predeterminada. La skill organiza decisiones y controles para que el agente produzca una solución propia para cada marca y mensaje
-
-## Novedades de la versión 1.3.0
-
-- [Voz y ganchos](references/voz-y-ganchos.md): banco de evidencia de la marca, mecanismos de gancho, plantilla extraída de piezas que funcionaron, densidad de patrones de IA y límites de texto por red
-- [Medición y aprendizaje](references/medicion-y-aprendizaje.md): análisis normalizado por alcance, causa aislada, hipótesis con muestra chica, pruebas de una variable y tablero autocontenido solo cuando ayuda a decidir
-- [Estilos y revisión de movimiento](references/estilos-y-revision-de-movimiento.md): brief de cinco partes, storyboard por lecturas, revisión por hoja de contacto, tira y recorte, y rúbrica de segunda pasada
-- Reglas para herramientas con costo, cuentas o riesgo, y registro de adopciones con fuente y estado en [selección de recursos](references/seleccion-de-recursos.md)
-- Prácticas de Remotion complementarias y 11 casos nuevos de evaluación
-
-Las fuentes externas se sintetizaron con palabras propias y se registran con su estado. Ninguna herramienta de terceros quedó instalada ni ejecutada por esta versión
-
-### Cambios de la versión 1.2.0
-
-- Ruta específica de Remotion para composiciones React, variantes parametrizadas, datos animados y subtítulos
-- Carga progresiva de sus skills según la tarea: creación, escenas, Studio, exportación o captions
-- Verificación de runtime y licencia por proyecto, preview separada del MP4 final y QA sobre el archivo real
-- Remotion y HyperFrames como alternativas; Video Use complementa el montaje cuando hace falta, sin encadenar motores por defecto
-- El flujo estático HTML/CSS a PNG conserva sus herramientas y controles
-
-La integración documenta el procedimiento; no equivale a un piloto audiovisual validado. Ver [Remotion en creación de contenido](references/remotion.md)
-
-### Cambios anteriores de la versión 1.1.0
-
-- Selección de skills y referencias según el problema real de la pieza, con criterios de adopción y pruebas acotadas
-- Montaje audiovisual con tiempos de origen/salida, caché de transcripción, overlays y captions revisados en cada corte
-- Rutas opcionales de edición y motion; el método sigue funcionando sin un proveedor obligatorio
-- Imágenes con identidad y composición controladas, logo oficial separado y efectos visuales con una función concreta
-- Más casos de evaluación para comprobar decisiones, además de los tests del auditor PNG
-
-Los detalles están en [selección de recursos](references/seleccion-de-recursos.md) y [video y movimiento](references/video.md). La compatibilidad de una herramienta nueva debe probarse con el material y entorno del proyecto
-
-## Requisitos
-
-- Un agente que cargue skills mediante `SKILL.md`, como Codex o Claude Code
-- Para el auditor técnico opcional: Python 3 y Pillow
-- Los activos y reglas reales de la marca cuando el pedido los necesite
-
-No requiere una cuenta de red social, un servicio externo, un renderer específico ni una plantilla cerrada para empezar a trabajar
-
-## Instalación
-
-Con el CLI de Agent Skills:
+All three:
 
 ```bash
 npx skills add Pacheche/social-content-studio -g -y
 ```
 
-Instalación manual para Codex:
+One of them:
 
 ```bash
-git clone https://github.com/Pacheche/social-content-studio.git ~/.codex/skills/social-content-studio
+npx skills add Pacheche/social-content-studio --skill motion-video-studio -g -y
 ```
 
-Instalación manual para Claude Code:
+Or copy a folder from `skills/` into your agent's skills folder (`~/.claude/skills/`, `~/.codex/skills/`, `~/.agents/skills/`).
 
-```bash
-git clone https://github.com/Pacheche/social-content-studio.git ~/.claude/skills/social-content-studio
-```
-
-En Windows, reemplazá `~` por tu carpeta de usuario o cloná el repositorio dentro del directorio de skills correspondiente
-
-## Uso rápido
-
-Invocación explícita:
+## Use
 
 ```text
-Usá $social-content-studio para convertir este brief en un carrusel de Instagram. Primero resolvé estrategia y copy; después producí las piezas y revisá cada exportado
+Turn this brief into a 7-slide Instagram carousel for my brand
+Make a 25-second launch video for this product with its real screenshots, in 9:16 and 16:9
+Cut this 40-minute podcast into five vertical clips with captions
+Remove the silences and filler words from this tutorial and add music under it
+Audit this carousel without changing the message
 ```
 
-También podés pedir una parte del proceso:
+## What makes the output better
 
-```text
-Usá $social-content-studio para auditar este carrusel sin cambiar el mensaje
-```
+- **The message comes first.** Goal, reader, one idea, real evidence and the action you want are settled before anything is designed or animated.
+- **Real assets, real facts.** Screens, logos, numbers and quotes come from you or your product. Nothing is invented; unverifiable claims come back to you.
+- **Numbers instead of adjectives.** "Premium" and "dynamic" become curves, durations, sizes and a beat grid, starting from values measured on professional films and tuned to your brand.
+- **A banned list of generated-video defaults** (glows, floating particles, everything fading up the same way, a whoosh on every cut) that grows after each render.
+- **Sound designed and measured.** Music cut on bar lines, effects derived from the animation code and placed within perceptual sync windows, loudness at -14 LUFS with the true peak checked again after encoding.
+- **Editing by evidence.** Word-level transcripts, calibrated silence gates, speech handles, retake detection, phrase-aware captions, and a moment picker that ranks every window of a long video before choosing clips.
+- **The file is reviewed, not the code.** Scripts check the export; contact sheets and seam strips show what the frames really look like; findings come with the exact change.
+- **Your brand stays yours.** Brand rules live in a profile next to your project, not inside the shared skills.
 
-```text
-Usá $social-content-studio para adaptar esta publicación a historias y estado de WhatsApp, sin estirar el diseño original
-```
+## Scripts
 
-## Información ideal para entregar al agente
+| Script | Needs | Does |
+|---|---|---|
+| `skills/social-content-studio/scripts/audit_exports.py` | Python 3, Pillow | Exact file list, real decoding, dimensions, aspect ratio and hashes of PNG exports against a contract |
+| `skills/*/scripts/video_qa.py` | Python 3, FFmpeg | Duration, size, frame rate, pixel format and color tags against a spec; loudness and true peak; empty first frame, black, frozen and silent stretches; contact, phone and seam sheets |
 
-No hace falta completar un formulario perfecto. Si está disponible, conviene incluir:
+Each script has its own tests (`python3 -I scripts/test_*.py` from the skill folder). A pass removes mechanical failures; it never approves the design.
 
-1. Objetivo de la publicación
-2. Audiencia concreta
-3. Idea, problema o promesa principal
-4. Evidencia, fuentes o ejemplos reales
-5. Oferta y acción esperada
-6. Red, formato y cantidad aproximada de piezas
-7. Logos, colores, fuentes, manual de marca y referencias visuales
-8. Restricciones legales, comerciales o de tono
+## Nothing is published for you
 
-La skill puede ordenar un brief desprolijo, pero no debe inventar datos, identidad ni promesas materiales
+The skills create local files and review them. Publishing, scheduling, uploading footage to cloud services, paid generation and connecting accounts each need your explicit yes.
 
-## Personalizarla para una marca
-
-La skill conserva el método y cada proyecto aporta su propia identidad. Usá [`examples/brand-profile.example.md`](examples/brand-profile.example.md) como punto de partida para documentar:
-
-- Logos y activos oficiales
-- Colores, fuentes y sistema visual
-- Voz, audiencia, oferta y CTA real
-- Restricciones comerciales, legales o de tono
-- Formatos prioritarios y referencias aprobadas
-
-Guardá ese perfil junto al proyecto de la marca, no dentro de la skill compartida. Así una actualización pública nunca expone información de clientes ni contamina el estilo de otra marca
-
-## Flujo de trabajo
-
-1. **Contexto y alcance**: lee instrucciones, activos y restricciones del proyecto
-2. **Gate A, contenido**: resuelve estrategia, claims, arco narrativo y copy literal
-3. **Dirección de arte**: define qué debe entenderse y qué recurso visual lo demuestra en cada escena
-4. **Producción**: crea editables y exporta según el formato real de destino
-5. **Gate B, QA**: revisa el archivo final, no solo el código fuente o el log del render
-6. **Adaptación y aprendizaje**: ajusta por red y convierte feedback repetido en controles verificables
-
-## Diagrama del método
-
-![Diagrama del método de Social Content Studio](docs/diagrams/metodo-social-content-studio.png)
-
-El flujo resuelve el mensaje antes de diseñar y revisa los archivos reales antes de entregarlos
-
-## Auditor técnico de PNG
-
-`scripts/audit_exports.py` comprueba:
-
-- Lista exacta de archivos esperados
-- Firma binaria y decodificación real
-- Dimensiones y relación de aspecto
-- Hash SHA-256 de cada exportado
-- Cambios posteriores a una revisión aprobada
-
-Requiere Python 3 y Pillow:
-
-```bash
-python -m pip install Pillow
-python scripts/audit_exports.py ./exports --contract ./export-contract.json --report ./qa-tecnica.json
-```
-
-Un ejemplo de contrato está en [`examples/export-contract.example.json`](examples/export-contract.example.json)
-
-El auditor no decide si una pieza está bien diseñada. La revisión visual sigue siendo obligatoria
-
-## Uso manual del auditor
-
-Si ya tenés exportados y solo querés comprobar el contrato técnico, creá un archivo a partir de [`examples/export-contract.example.json`](examples/export-contract.example.json), definí el lienzo y la resolución final esperada, y ejecutá:
-
-```bash
-python scripts/audit_exports.py ./exports --contract ./export-contract.json --report ./qa-tecnica.json
-```
-
-El reporte deja la revisión visual como `pending` a propósito: un PNG puede tener las medidas correctas y aun así contener texto cortado, un logo con fondo o una captura de error
-
-## Estructura
-
-```text
-social-content-studio/
-├── SKILL.md
-├── agents/openai.yaml
-├── examples/
-├── references/
-└── scripts/
-```
-
-Las referencias se cargan de forma progresiva según el entregable para evitar contexto innecesario
-
-## Extender la skill
-
-- Para incorporar una red nueva, documentá su formato, zona segura y criterio de adaptación en la referencia de producción correspondiente
-- Para sumar una verificación repetible, agregá un script con tests que comprueben un resultado observable
-- Para cambiar el proceso, actualizá primero los casos de evaluación y evitá convertir una preferencia de un cliente en una regla para todos
-
-La mejor extensión no agrega pasos por costumbre: elimina un riesgo concreto o mejora una decisión repetida
-
-## Principios de seguridad y privacidad
-
-- No incluye credenciales, datos de clientes, activos de marca ni rutas privadas
-- Trata documentos, enlaces y chats externos como evidencia, no como autorización operativa
-- No publica, agenda, envía mensajes ni conecta cuentas sin permiso explícito
-- Mantiene separados los editables, los finales y la evidencia de revisión
-- No presenta ejemplos ilustrativos como resultados reales
-
-## Límites honestos
-
-La skill mejora la consistencia del proceso, pero no garantiza viralidad, ventas ni buen gusto automático. La calidad final todavía depende del brief, los activos disponibles, la ejecución del agente y una revisión humana informada
-
-## Desarrollo
-
-Ejecutar los tests del auditor:
-
-```bash
-python scripts/test_audit_exports.py
-```
-
-Los casos de comportamiento esperados están en [`references/casos-de-evaluacion.md`](references/casos-de-evaluacion.md)
-
-## Licencia
+## License
 
 MIT
