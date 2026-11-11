@@ -2,12 +2,17 @@
 """Mechanical QA for a rendered video: specs, loudness, black/frozen/silent stretches, review sheets.
 
 Usage:
-  python3 video_qa.py film.mp4 [--spec spec.json] [--sheets out/qa] [--json]
+  python3 video_qa.py film.mp4 [--spec spec.json] [--sheets out/qa] [--json] [--expect-identity SIZE:MTIME_NS]
 
 spec.json (all keys optional):
   {"duration": 15.0, "width": 1080, "height": 1920, "fps": 30,
    "lufs": -14, "lufs_tolerance": 1.0, "true_peak_max": -1.0,
-   "max_freeze": 3.0, "silent_ok": false}
+   "max_freeze": 3.0, "silent_ok": false,
+   "dropout_db": -80, "dropout_min": 0.02, "dropout_max": 0.2,
+   "dropout_context": 0.1, "flash_threshold": 0.05}
+Dropouts are bounded silences with non-silent context on both sides.
+Flash threshold is the luma jump against both neighbours as a fraction of 255;
+analysis uses 8-bit luma. Long silent stretches retain their separate check.
 
 Exit codes: 0 all checks passed, 1 findings, 2 the file could not be read or FFmpeg is missing.
 Needs ffmpeg and ffprobe on the PATH. Standard library only.
@@ -24,7 +29,9 @@ import sys
 from pathlib import Path
 
 DEFAULTS = {"lufs": -14.0, "lufs_tolerance": 1.0, "true_peak_max": -1.0, "max_freeze": 3.0,
-            "duration_tolerance": 0.05, "silent_ok": False}
+            "duration_tolerance": 0.05, "silent_ok": False,
+            "dropout_db": -80, "dropout_min": 0.02, "dropout_max": 0.2,
+            "dropout_context": 0.1, "flash_threshold": 0.05}
 
 
 def run(cmd: list[str]) -> subprocess.CompletedProcess:
@@ -75,7 +82,8 @@ def parse_cuts(stderr: str) -> list[float]:
     return sorted({round(float(x), 3) for x in re.findall(r"lavfi\.scd\.time[:=]\s*([\d.]+)", stderr)})
 
 
-def analyze(path: str, has_audio: bool) -> dict:
+def analyze(path: str, has_audio: bool, spec: dict | None = None) -> dict:
+    s = {**DEFAULTS, **(spec or {})}
     out = {}
     if has_audio:
         res = run(["ffmpeg", "-hide_banner", "-nostats", "-i", path, "-af", "ebur128=peak=true", "-f", "null", "-"])
@@ -83,6 +91,30 @@ def analyze(path: str, has_audio: bool) -> dict:
         res = run(["ffmpeg", "-hide_banner", "-nostats", "-i", path, "-af", "silencedetect=noise=-50dB:d=0.5",
                    "-f", "null", "-"])
         out["silences"] = parse_intervals(res.stderr, "silence_start", "silence_end")
+        res = run(["ffmpeg", "-hide_banner", "-nostats", "-i", path, "-af",
+                   f"silencedetect=noise={s['dropout_db']}dB:d={s['dropout_min']}", "-vn", "-f", "null", "-"])
+        if res.returncode:
+            raise RuntimeError(res.stderr.strip() or "dropout analysis failed")
+        intervals = parse_intervals(res.stderr, "silence_start", "silence_end")
+        duration = probe(path)["duration"]
+        context = s["dropout_context"]
+        out["dropouts"] = [(a, b) for n, (a, b) in enumerate(intervals)
+                           if s["dropout_min"] <= b - a <= s["dropout_max"]
+                           and a - (intervals[n - 1][1] if n else 0) >= context
+                           and (intervals[n + 1][0] if n + 1 < len(intervals) else duration) - b >= context]
+    res = run(["ffmpeg", "-hide_banner", "-nostats", "-i", path, "-vf",
+               "format=yuv444p,signalstats,metadata=mode=print:key=lavfi.signalstats.YAVG",
+               "-an", "-f", "null", "-"])
+    if res.returncode:
+        raise RuntimeError(res.stderr.strip() or "flash analysis failed")
+    frames = [(float(t), float(y)) for t, y in re.findall(
+        r"pts_time:([\d.eE+-]+)[^\n]*\n[^\n]*lavfi\.signalstats\.YAVG=([\d.eE+-]+)", res.stderr)]
+    threshold = s["flash_threshold"] * 255
+    out["flashes"] = [frames[n][0] for n in range(1, len(frames) - 1)
+                      if (frames[n][1] - frames[n - 1][1]) * (frames[n][1] - frames[n + 1][1]) > 0
+                      and abs(frames[n][1] - frames[n - 1][1]) >= threshold
+                      and abs(frames[n][1] - frames[n + 1][1]) >= threshold
+                      and abs(frames[n - 1][1] - frames[n + 1][1]) < threshold]
     res = run(["ffmpeg", "-hide_banner", "-nostats", "-i", path, "-vf",
                "blackdetect=d=0.1:pix_th=0.10,freezedetect=n=0.003:d=1,scdet=threshold=12", "-an", "-f", "null", "-"])
     out["black"] = parse_intervals(res.stderr, "black_start", "black_end")
@@ -111,6 +143,7 @@ def evaluate(info: dict, an: dict, spec: dict) -> list[dict]:
     add("color tags", info["color_space"] in ("bt709", None) and info["color_primaries"] in ("bt709", None),
         f"space={info['color_space']} primaries={info['color_primaries']} (tag BT.709 explicitly)")
 
+    add("flash frames", not an.get("flashes"), f"single-frame luma jumps: {an.get('flashes', [])[:10]}")
     black = an.get("black", [])
     add("first frame", not any(b[0] <= 0.04 for b in black),
         "starts black or near-empty" if any(b[0] <= 0.04 for b in black) else "has content")
@@ -135,6 +168,7 @@ def evaluate(info: dict, an: dict, spec: dict) -> list[dict]:
             add("true peak", tp <= s["true_peak_max"], f"{tp} dBTP (max {s['true_peak_max']})")
         if "lra" in loud:
             add("loudness range", 3 <= loud["lra"] <= 12, f"{loud['lra']} LU (an arc usually sits at 5-9)")
+        add("audio dropouts", not an.get("dropouts"), f"short bounded silences: {an.get('dropouts', [])[:5]}")
         holes = [x for x in an.get("silences", []) if x[0] > 0.1 and x[1] == x[1] and x[1] < info["duration"] - 0.1]
         add("silent holes", not holes, f"{len(holes)} silences >= 0.5 s inside the film: {holes[:5]}")
     return f
@@ -168,6 +202,7 @@ def main(argv=None) -> int:
     ap.add_argument("--spec", help="spec JSON with expected values")
     ap.add_argument("--sheets", help="folder for contact, phone and seam sheets")
     ap.add_argument("--json", action="store_true")
+    ap.add_argument("--expect-identity", help="expected input size:mtime_ns recorded before editing")
     args = ap.parse_args(argv)
 
     if not (shutil.which("ffmpeg") and shutil.which("ffprobe")):
@@ -179,8 +214,17 @@ def main(argv=None) -> int:
         print(f"NOT CHECKED: {args.video}: {e}", file=sys.stderr)
         return 2
     spec = json.loads(Path(args.spec).read_text(encoding="utf-8")) if args.spec else {}
-    an = analyze(args.video, info["acodec"] is not None)
+    try:
+        an = analyze(args.video, info["acodec"] is not None, spec)
+    except RuntimeError as e:
+        print(f"NOT CHECKED: {args.video}: {e}", file=sys.stderr)
+        return 2
     findings = evaluate(info, an, spec)
+    if args.expect_identity:
+        stat = Path(args.video).stat()
+        identity = f"{stat.st_size}:{stat.st_mtime_ns}"
+        findings.append({"check": "source identity", "ok": identity == args.expect_identity,
+                         "detail": f"{identity} (expected {args.expect_identity})"})
     made = sheets(args.video, info, an.get("cuts", []), args.sheets) if args.sheets else []
 
     failed = [x for x in findings if not x["ok"]]

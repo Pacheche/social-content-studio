@@ -28,6 +28,21 @@ For complex services, show a concrete operation: what goes in, what the system d
 
 Propose up to two distinct hooks when it settles an editorial doubt. Do not produce two complete carousels by default. Slide count depends on value and legibility, within confirmed channel limits.
 
+## Carousel shapes
+
+Choose the shape from the brief, not from a variety quota, and notice when all of a brand's carousels turn out to be the same one.
+
+| Shape | Slides | Skeleton |
+|---|---|---|
+| Value stack | 4-14 | Slide 1 promises an exact number; deliver exactly that count |
+| Problem to proof (case study) | 6-10 | Hook with the result, context, challenge, how it was solved, result with a receipt or screenshot, CTA. Needs a real, permitted result |
+| Hack list | 6-10 | Counter-intuitive, named techniques |
+| Contrarian | 4-8 | Challenge a convention; a fairness pivot on slide N-1 |
+| Demo walkthrough | 5-11 | A wide overview first, then zoomed detail |
+| Announcement or method | as needed | What changed or the steps, then the action |
+
+Add the insight beat between the development and the CTA, the idea that connects the points; quick scripts forget it. Do not repeat the same sentence structure on consecutive slides. Keep continuity visible: a slide counter (X/Y), a swipe cue and a graphic that crosses the seam between slides.
+
 ## Facts and examples
 
 Record each claim: literal text, source, date, scope and status. A statistic needs denominator, unit, period and a correct comparison. A product capability needs a catalog, demo or available confirmation.
@@ -42,7 +57,7 @@ Apply this anti-slop review:
 
 1. Identify the point and the voice's own signals before editing
 2. Remove phrases interchangeable between businesses, empty openings and adjectives that stand in for evidence
-3. Check repeated binary contrasts, colon reveals, dramatic fragments, uniform cadence and pseudo-profound closings
+3. Check repeated binary contrasts, triads of negation ("no fluff, no jargon, no complexity"), colon reveals, dramatic fragments, uniform cadence, aphorisms with no fact behind them and pseudo-profound closings
 4. Keep authentic detail, humor, uncertainty and opinions. Do not homogenize everything
 5. Edit the minimum, read the whole and also review chart labels, microcopy and caption
 
@@ -53,6 +68,8 @@ Punctuation, emojis, capitalization and tone come from the brand profile. No edi
 ## Interaction, reuse and measurement
 
 A CTA must describe an available action. If it promises a guide by comment, verify real delivery and an owner. If it does not exist yet, change the CTA or prepare the resource within the authorized scope. A poll image is not a working sticker: separate the asset from the native setup step.
+
+Announcing a release: turn commits and changelog lines into what the customer can do. "You can now [action]" or "[Pain point] no longer [bad result]" is one option, not a mandate. Scale the output to the change: a major release gets a film, a carousel and a thread; a medium one a clip and a post; a minor one a line in a periodic recap.
 
 Adapt one idea by function: carousel for navigable explanation; story for interaction and replies; reel to demonstrate over time (see the `motion-video-studio` skill); LinkedIn for professional context. Do not change only the size.
 

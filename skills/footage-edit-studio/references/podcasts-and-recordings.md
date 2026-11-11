@@ -21,6 +21,8 @@ Specs observed on 2026-11-04 from third-party summaries; verify host and platfor
 - **Desktop apps:** OBS, controlled through obs-websocket (built into OBS 28 and later, port 4455) to start and stop recording and switch scenes; `ffmpeg -f gdigrab` on Windows. Screen Studio and similar apps add auto-zoom on macOS; open alternatives exist.
 - **QA:** no jittery cursor, zooms never crop the active element, no personal data, tokens, emails or other tabs visible (use seeded data and a blur pass), audio levels measured, captions readable on a phone.
 
+For dashboard recordings, use KPI text at least 72 px at capture size and reload before each take to retrigger section animations.
+
 ## Live streams
 
 - **Scenes:** starting soon, main (camera and screen), screen only, be right back, ending. Overlays (lower thirds, alerts, chat) as transparent 1920x1080 HTML browser sources, which an agent can write and test.

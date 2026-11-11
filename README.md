@@ -28,6 +28,23 @@ npx skills add Pacheche/social-content-studio --skill motion-video-studio -g -y
 
 Or copy a folder from `skills/` into your agent's skills folder (`~/.claude/skills/`, `~/.codex/skills/`, `~/.agents/skills/`).
 
+### Dependencies
+
+Each skill installs its own tools the first time the agent uses it: `scripts/setup_deps.py` finds what is missing and installs it with winget, Chocolatey or Scoop on Windows, Homebrew on macOS, apt, dnf, pacman or zypper on Linux, and pip for Python packages. You only need Python 3.9 or newer. To set everything up yourself right after installing:
+
+```bash
+python ~/.claude/skills/motion-video-studio/scripts/setup_deps.py --all
+```
+
+| Skill | Installs on first use | On demand (`--with <name>`) |
+|---|---|---|
+| `social-content-studio` | Pillow, Playwright with Chromium, Poppler | FFmpeg, gifski |
+| `motion-video-studio` | FFmpeg, Node.js 22+ | Playwright, OpenCV, Blender, gifski |
+| `footage-edit-studio` | FFmpeg, faster-whisper | Node.js, OpenCV, Demucs |
+| `generative-media-studio` | FFmpeg | rembg, Demucs, faster-whisper |
+
+`--check` only reports, `--dry-run` prints the commands without running them. Downloads over 1 GB (Demucs with PyTorch) are asked first. On Linux the system packages need `sudo`.
+
 ## Use
 
 ```text
@@ -58,7 +75,8 @@ Audit this carousel without changing the message
 |---|---|---|
 | `skills/social-content-studio/scripts/audit_exports.py` | Python 3, Pillow | Exact file list, real decoding, dimensions, aspect ratio and hashes of PNG exports against a contract |
 | `skills/generative-media-studio/scripts/media_ledger.py` | Python 3 | Logs every generated asset (tool, model, prompt, cost, licence, consent), totals spend, enforces a budget, flags missing licences or changed files |
-| `skills/*/scripts/video_qa.py` | Python 3, FFmpeg | Duration, size, frame rate, pixel format and color tags against a spec; loudness and true peak; empty first frame, black, frozen and silent stretches; contact, phone and seam sheets |
+| `skills/*/scripts/video_qa.py` | Python 3, FFmpeg | Duration, size, frame rate, pixel format and color tags against a spec; loudness and true peak; empty first frame, black, frozen and silent stretches, short audio dropouts and flash frames; contact, phone and seam sheets |
+| `skills/*/scripts/setup_deps.py` | Python 3 | Checks and installs each skill's tools with the system package manager and pip |
 
 Each script has its own tests (`python3 -I scripts/test_*.py` from the skill folder). A pass removes mechanical failures; it never approves the design.
 

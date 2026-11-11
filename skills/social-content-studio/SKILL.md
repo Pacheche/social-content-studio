@@ -2,7 +2,7 @@
 name: social-content-studio
 description: "Use when planning, writing, designing, producing, adapting or fixing static and text content for any brand: single posts, carousels, stories or statuses, YouTube thumbnails and covers, memes, GIFs and stickers, LinkedIn document carousels, slides and decks, threads, long posts, LinkedIn articles, newsletters and blog posts, captions, hooks and brand voice. Works from loose ideas, briefs, references or existing pieces and turns them into clear, visually careful, verifiable content. Covers editorial review, art direction, editable sources, export QA and measurement of results. Not for general web development, and it never publishes automatically. For video, reels or motion, use the sibling skills."
 metadata:
-  version: "2.1.0"
+  version: "2.2.0"
 ---
 
 # Social Content Studio
@@ -10,6 +10,10 @@ metadata:
 Turn an idea into a piece the audience understands, with a reason to save, share or reply and, when it applies, a real path to the offer. The method is portable, brand independent and needs no specific external service.
 
 For reels, motion graphics or code-made video, use the `motion-video-studio` skill. For editing existing footage, podcasts or cutting clips, use `footage-edit-studio`. For AI-generated images, video, voice or music, use `generative-media-studio`. When unsure which skill applies, or for a campaign across formats, use `content-studio`.
+
+## Setup
+
+On first use, run `python <skill>/scripts/setup_deps.py` (`python3` on macOS and Linux). It installs what this skill needs and is missing (Pillow, Playwright with headless Chromium, and Poppler for PDF checks) with the system package manager (winget, Chocolatey or Scoop; Homebrew; apt, dnf, pacman or zypper) and pip, then reports what is present. Optional tools install only when a task needs them, with `--with <name>`: FFmpeg, gifski. Ask before a download over 1 GB. Run it again with `--check` when a tool fails. If Python itself is missing, install it first (`winget install Python.Python.3.12`, `brew install python`, or the distribution's `python3` package). The script's report is the evidence of what is installed; a tool named in this skill is not.
 
 ## Scope and context
 

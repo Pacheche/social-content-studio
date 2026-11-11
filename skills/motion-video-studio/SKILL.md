@@ -2,7 +2,7 @@
 name: motion-video-studio
 description: Use when the user wants a video made from code for social media or a website (reels, product launch films, ads, explainers, UI animations, kinetic typography, data stories, logo reveals, animated captions or overlays, 3D shots) with Remotion, HyperFrames, a seek(t) HTML/canvas renderer or three.js. Covers story, spec, motion craft, sound design, campaign variants (hooks, formats, CTAs), render and frame-by-frame review. Not for cutting existing footage (use footage-edit-studio) or static posts (use social-content-studio).
 metadata:
-  version: "2.1.0"
+  version: "2.2.0"
 ---
 
 # Motion Video Studio
@@ -10,6 +10,10 @@ metadata:
 A code-made video is a programmable animation: every frame is computed from time, so copy, color, timing and format can change without regenerating anything. That is the advantage. Use it, and do not waste it on a film that looks like every other generated video.
 
 Good motion is not effects. It is one idea, a clear order of things to understand, timing that leaves time to read, sound that lands on what moves, and a review of the real frames. You build all of it yourself: write the code, render, look, fix. Ask the user only for what the material cannot tell you.
+
+## Setup
+
+On first use, run `python <skill>/scripts/setup_deps.py` (`python3` on macOS and Linux). It installs what this skill needs and is missing (FFmpeg and Node.js 22 or newer (Remotion and HyperFrames run through npx)) with the system package manager (winget, Chocolatey or Scoop; Homebrew; apt, dnf, pacman or zypper) and pip, then reports what is present. Optional tools install only when a task needs them, with `--with <name>`: Playwright, OpenCV, Blender (~400 MB), gifski. Ask before a download over 1 GB. Run it again with `--check` when a tool fails. If Python itself is missing, install it first (`winget install Python.Python.3.12`, `brew install python`, or the distribution's `python3` package). The script's report is the evidence of what is installed; a tool named in this skill is not.
 
 ## How to use this skill
 
@@ -20,6 +24,7 @@ Paths are relative to this skill's folder. Load references on demand.
 | Story, spec, banned defaults, beat grid | `references/story-and-spec.md` |
 | What works for each video type, and which tool | `references/playbook-by-type.md` |
 | Easing, durations, choreography, text, transitions, cursor, captions, vertical | `references/motion-craft.md` |
+| A named visual style as numbers (swiss, keynote, whiteboard, captions), motion brief shape | `references/style-grammars.md` |
 | Determinism and the engine you picked | `references/engines.md`, plus `references/remotion.md` or `references/hyperframes.md` |
 | Music, sound effects, voice, loudness | `references/sound.md` |
 | Checks, review, render settings, platform specs, variants | `references/review-and-delivery.md` |

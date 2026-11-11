@@ -31,6 +31,17 @@ If a column needed for a calculation is missing, ask for it before calculating. 
 
 Each claim carries the number that supports it. Quote verbatim when talking about a comment. If a section lacks enough data, write that.
 
+## Diagnosing a video drop-off
+
+Work down the funnel and fix the first weak stage. These cut-offs are starting heuristics from marketing sources; compare them with the account's own history before trusting them.
+
+| Stage | Weak sign | Fix |
+|---|---|---|
+| 3-second hold | below about 30% | The visual hook and the on-screen text hook |
+| Hold at 15 s | below about 20% | The bridge from seconds 3 to 15 |
+| Good retention, low click-through (below about 1%) | | The payoff, the offer and the CTA |
+| Good click-through, low conversion | | Match between the video's promise and the landing page |
+
 ## Test one variable
 
 A test changes a single identifiable thing (opening scene, question, demonstration, format) over equivalent windows. Record hypothesis, metric, period, denominator, sample size and review date. When several things change at once, no causality is attributed.

@@ -33,6 +33,15 @@ A hook is a mechanism, not a stock phrase. Choose it according to the piece's go
 
 Avoid: invented urgency, reveals without content, hooks the body does not deliver and formulas repeated piece after piece. Two hooks with different mechanisms are enough when there is an editorial doubt.
 
+Checkable cover and hook rules for carousels and covers:
+
+- Critical content in the first 6 words or so; no exclamation mark, greeting or disclaimer ("this is just my experience").
+- Promise a specific benefit and deliver the first useful thing early, not behind intro slides. Rewrite a topic title as a concrete benefit only if the piece delivers it ("Automation mistakes" becomes "Three checks to avoid duplicated orders").
+- Hook families as a vocabulary: curiosity, contrast, proof, fear, aspiration. Fear and clickbait are trust risks; use them knowingly.
+- A 3-second read of the cover is a heuristic, not a measurement, and says nothing about how a platform scores slides.
+
+For video, build the first 3 seconds from three parts that do not repeat each other: a visual hook (unexpected motion or a state change), a spoken hook line, and an on-screen text that reframes the spoken line instead of echoing it. Seconds 3 to 15 are a bridge that carries the curiosity into the actual pitch; when you swap the hook, rewrite the bridge to match.
+
 ## Learn from a piece that worked
 
 For a reference, someone else's or your own, that performed: identify the hook mechanism, the body structure and the type of closing, and write a template with blanks for your own topic. Copy the structure, not the phrase or the anecdote. If you cannot isolate what worked, say so. Do not attribute performance to a single cause with a small sample.
@@ -49,6 +58,8 @@ The isolated character is no longer the signal. Density matters. When reviewing:
 
 Derive the voice from real approved texts, counting absences too (what it never does: exclamation marks, emoji, first person, self-praise, summary-style closings). Record the evidence next to each trait and note contradictions between pieces instead of averaging them.
 
+To calibrate a voice that has no approved texts yet, ask five things once: what it sounds like, which words it despises, the reading level, how dense it is, and whose voice inspires it.
+
 ## Adapt the text to the network
 
 Verify with a dated source before relying on them: total and visible characters before the cut, maximum number of slides, link handling and how the platform treats links. Values observed in 2026-08 (verify they still hold): Instagram cuts at about 125 visible caption characters; Facebook, about 477 on desktop; LinkedIn, about 140 on mobile, and a paragraph break inside that span can cut earlier. So the first LinkedIn paragraph holds the complete idea.
@@ -60,6 +71,10 @@ Verify with a dated source before relying on them: total and visible characters 
 ## Comment before posting
 
 On a new account or one with an unvalidated voice, starting with comments on posts by the ideal audience is a low-risk way to test the tone. Each draft waits for human approval. Nothing is posted or answered automatically. A comment contributes a concrete idea, not praise.
+
+## Optional tool: linkedin-skills
+
+`sergebulaev/linkedin-skills` (MIT) is a set of 12 skills: post writer, repurposer, humanizer with an audit mode, comment drafter, hook extractor, 7-day planner, interviewer and others. A sensible order is story interview, one week of comments, first post, then the humanizer pass. Four of the skills read LinkedIn through Apify (respect the platform's terms); optional publishing and image integrations need their own accounts. Nothing is posted without approval. Its advice on links in the first comment is one option among contradictory sources.
 
 ## One-week plan
 

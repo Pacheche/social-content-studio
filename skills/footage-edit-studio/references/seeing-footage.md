@@ -2,6 +2,8 @@
 
 The agent edits what it can measure and look at. Build that evidence first, keep it next to the project, and reuse it.
 
+When shooting for an SDR delivery, request SDR or Normal capture mode to avoid an extra HDR conversion.
+
 ## Probe every file
 
 ```bash
@@ -42,6 +44,19 @@ Re-transcribe just those spots with about 1.2 s of context on each side, to expo
 - Describe what each shot shows in one line and keep that table. Do not edit a clip you have not looked at.
 - Single frames at exact times for decisions (`-ss T -frames:v 1`), side-by-side comparisons for color matching.
 
+### Lighting and grade decisions
+
+Measure the subject separately from the background; use these as inspection triggers, then compare representative frames. Luma ratios use linear light; Lab uses signed a/b coordinates.
+
+| Measurement | Decision trigger |
+|---|---|
+| Bright/dark subject-half luma | Below 1.35: frontal; above 2.5: side light |
+| Top/bottom luma | Below 0.85: light from below; above 1.35: overhead |
+| Shadow 10-90% transition / subject width | At most 0.16: hard; at least 0.32: soft |
+| L* second percentile | Above 12: lifted blacks |
+| L* standard deviation / 100 | Below 0.16: low contrast; above 0.28: high |
+| Near-neutral pixels, chroma below 20 | Shadow b* below -5 and highlight b* above 8: teal-orange split |
+
 ## Shots, beats, speech
 
 - **Hard cuts:** FFmpeg `scdet` (a one-frame spike detector that fast pans do not fool): threshold 10 finds nearly all cuts with few false ones; 12 is stricter.
@@ -49,3 +64,16 @@ Re-transcribe just those spots with about 1.2 s of context on each side, to expo
 - **Beats** in music: onset envelope, tempo by autocorrelation in 60-200 BPM, and only beats confirmed by a real onset within about 70 ms. Treat low-confidence grids as absent.
 - **Speech versus music** sections, and acoustic events (laughter, applause) from a sound classifier, as highlight hints.
 - **Faces and saliency** at about 1 frame per second, for reframing and to keep captions off faces.
+
+## Inspect an ambiguous boundary
+
+Build one timeline card for the local window: evenly spaced thumbnails, a 16 kHz mono RMS envelope, word/phrase timestamps, and below-gate silence spans. Align every layer to the same source-time axis. Extract the visual and audio layers, then annotate the measured boundaries:
+
+```bash
+ffmpeg -ss 10 -i in.mp4 -t 4 -vf "fps=2,scale=320:-2,tile=8x1" -frames:v 1 strip.png
+ffmpeg -ss 10 -i in.mp4 -t 4 -vn -ac 1 -ar 16000 -c:a pcm_s16le window.wav
+ffmpeg -i window.wav -filter_complex "showwavespic=s=2560x240:split_channels=0" -frames:v 1 envelope.png
+ffmpeg -i strip.png -i envelope.png -filter_complex "vstack=inputs=2" -frames:v 1 timeline.png
+```
+
+The waveform is the visual guide; calculate windowed RMS from the PCM for gate decisions. Add the window start to local timestamps.

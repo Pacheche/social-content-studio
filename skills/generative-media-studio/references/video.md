@@ -10,6 +10,8 @@ Snapshot of 2026-11-04. Almost every price comes from secondary sources and they
 
 Indicative prices per second (October 2026): Veo 3.1 Lite $0.05-0.08, Fast $0.10-0.12, Full $0.40 with audio; Kling 3.0 $0.08-0.17; Seedance 2.0 $0.11-0.36 at 720p depending on seller; Wan 3.0 $0.05-0.20; Runway Gen-4.5 $0.12, Gen-4 Turbo $0.05.
 
+Higgsfield offers another access route; verify its live model limits and credit rules in `access.md` before spending. Assemble longer sequences in an editing skill.
+
 ## Decision table
 
 | Need | Cheap | Best | Local or open | Free |
@@ -29,6 +31,10 @@ Indicative prices per second (October 2026): Veo 3.1 Lite $0.05-0.08, Fast $0.10
 Models with native audio (Veo 3.1, Kling 3/4, Seedance, LTX-2) can make 5-15 s talking shots straight from the prompt, often enough for a social clip without an avatar product.
 
 ## Prompting
+
+For product clips, fix the objective, format, duration, audience and single message first. Supply an authorized product reference and separate fixed traits from those open to stylization. Specify framing, light, camera movement, background, text and exclusions; keep one visual idea per clip. Review brand fidelity, phone legibility, claims, artifacts and rights.
+
+Optional paid stock-footage reranking: TwelveLabs needs an account and uploads footage.
 
 Skeleton: `[shot size and lens] [subject with fixed identifying traits] [one action] [setting and light] [camera move] [style and grade] [audio: dialogue in quotes with the speaker, effects, ambience]`.
 

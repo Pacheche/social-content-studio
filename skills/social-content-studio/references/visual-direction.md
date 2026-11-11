@@ -35,6 +35,12 @@ Alternate grammars between slides when the story calls for it. Do not merge all 
 - Textures, cutouts, lighting and layers give materiality to the object. Vary their function, position and scale. Avoid the rectangular patch with unintended edges
 - Continuity lines between slides can guide. Each image must work on its own. The profile mosaic depends on order/crop and never justifies cutting essential information
 
+Two tells of "generated" survive a good layout, so use them as diagnostics, not quotas. A smooth gradient with no grain reads unfinished: a last-layer SVG `feTurbulence` noise as a data URI at about 5% opacity with `mix-blend-mode: overlay` needs no extra file. Everything aligned to one column reads as a template: deliberate editorial asymmetry, consistent across a series, reads as a decision.
+
+Measure contrast against the worst real point, not the nominal background. An accent that passes on the dark base can fail in the corner where a gradient or glow lightens it. Compute the WCAG ratio at the lightest zone once and record the minimum text size for that color in the brand tokens. After applying any technique that depends on a minimum (anchor size, ratio, text width), measure the result against the minimum; "looks bigger than before" is not evidence.
+
+Optional brand-system devices: a second, semantic accent used only for tension or what is missing (one element per slide at most), and a monospace family reserved for data (figures, timestamps, field names) so a mock interface reads as software.
+
 No quotas of hexagons, hero numbers, photos, gradients, depth or occupied area. Do not ban resources just because one execution went wrong.
 
 ## Data and diagrams
@@ -47,7 +53,7 @@ In charts, check scale, units, sign, order, period, labels and source. A lone fi
 
 ## Assets and tools
 
-Keep official logos. For product/UI/cases, use authorized evidence or declared examples. Image generation serves scenes and metaphors. Long text, figures and logos are composed afterward when they need fidelity. Check anatomy, artifacts, context and light coherence.
+Keep official logos. Fetch real brand marks from an official-logo catalogue such as svgl, simple-icons or gilbarbara/logos instead of redrawing or approximating them, then check the mark on the final background and its transparency. For product/UI/cases, use authorized evidence or declared examples. Image generation serves scenes and metaphors. Long text, figures and logos are composed afterward when they need fidelity. Check anatomy, artifacts, context and light coherence.
 
 Choose one main visual guide. Ask for a second critique only for a concrete problem. From frontend, adopt hierarchy and composition, not its framework, favorite fonts, hover or default web layout. The brand prevails over general aesthetic recommendations.
 

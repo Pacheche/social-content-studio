@@ -2,12 +2,16 @@
 name: content-studio
 description: "Use for any content creation request when it is not obvious which skill applies, or when one idea must become several formats: posts, carousels, stories, thumbnails, memes, GIFs, LinkedIn documents, slides, threads, long posts, newsletters, reels, launch videos, explainers, animations, edited footage, clips, podcasts, screen recordings, live streams, AI images, AI video, voice, music. Routes each part to social-content-studio, motion-video-studio, footage-edit-studio or generative-media-studio, and plans a campaign across formats from one story."
 metadata:
-  version: "2.1.0"
+  version: "2.2.0"
 ---
 
 # Content Studio
 
 One package for every kind of content. This skill decides which skill does what, in which order, and keeps one story, one brand and one set of facts across all the pieces.
+
+## Setup
+
+This skill needs no tools. Each skill it routes to runs its own `scripts/setup_deps.py` on first use. To prepare the whole package at once, run `python <skill>/scripts/setup_deps.py --all` (`python3` on macOS and Linux); ask before it downloads optional tools over 1 GB.
 
 ## Route the request
 
@@ -33,7 +37,7 @@ For a campaign or a launch, plan the set before producing any piece:
 
 1. **One story.** Goal, reader, one idea, the real facts and the action wanted, settled once (`social-content-studio`, Gate A). Every piece takes its claims from the same facts file.
 2. **One brand profile.** Colors, fonts, logo files, voice, banned defaults, in one file next to the project, used by every skill.
-3. **A format plan.** Which pieces, for which platform, in which order, and what each one does: for example a 25 s launch film (hook on the result), its 9:16 and 1:1 versions, a 7-slide carousel that explains the how, a thread with the story behind it, five clips from the founder's recorded demo, a thumbnail, a newsletter section. Each piece is adapted to its platform, not stretched or cropped from another.
+3. **A format plan.** Which pieces, for which platform, in which order, and what each one does: for example a 25 s launch film (hook on the result), its 9:16 and 1:1 versions, a 7-slide carousel that explains the how, a thread with the story behind it, five clips from the founder's recorded demo, a thumbnail, a newsletter section. Each piece is adapted to its platform, not stretched or cropped from another. Give each stage an input, an output, an owner and a quality gate, keep a human gate for claims about results, and start the next cycle from observed results (`social-content-studio`, `references/measurement.md`), not generic trends. Do not build a chain of agents because a source lists one.
 4. **Shared assets first.** Generate or prepare what several pieces reuse (product shots, the voice-over, the music bed, the key frame) once, log them, and approve them before building the pieces.
 5. **Produce, then review each piece with its own skill's checks.**
 6. **Deliver the set:** files per platform, copy and captions per piece, credits, AI labels where they apply, and a publishing order. Publishing and scheduling need the user's explicit yes.

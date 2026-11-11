@@ -72,6 +72,7 @@ Place a sample at `cue − its measured peak offset`, so the transient lands on 
 Starting values; verify each by measurement and a spectrogram.
 
 - **Whoosh:** pink noise through 2-3 band-passes (ratio 1 : 1.6 : 2.5, Q 1-3) sweeping from 300-600 Hz up to 1.5-5 kHz and back to 400-800 Hz; accelerating rise, decay about twice as fast; peak at 50-70%. UI swipe 0.1-0.25 s, quick 0.25-0.5 s, product fly-by about 1.1 s. Make separate short, medium and long versions; time-stretching smears.
+- **Hook riser and marker sounds:** end a riser exactly on the last syllable of the hook. Trim a marker sound (a pen stroke, a highlighter) to the duration of the stroke it accompanies. Set the gain per effect: a soft marker can vanish at the level where a punchy hit sits well.
 - **Riser:** 3-4 elements at most, one motion leading (filter for noise, pitch for tonal); most of the change in the last third; 1-4 s; ends 30-250 ms before the hit, then near silence.
 - **Impact:** a transient (2-10 ms noise burst above 1-2 kHz), a body (sine falling from 100-180 Hz to 45-70 Hz), a sub (30-60 Hz falling over 200-400 ms) and a reverb tail; pull back to near silence before it.
 - **UI click:** 10-80 ms, noise through a narrow band-pass around 5 kHz, 1 ms attack, about 20 ms decay, high-pass at 120 Hz, no leading silence.
@@ -85,6 +86,10 @@ Starting values; verify each by measurement and a spectrogram.
 - Loudness range 5-9 LU for a film with an arc. The loudest moment is the drop or hero at 30-60% of the runtime, not the logo and not the last 15%; the logo sits 8-20 dB under the film's peak.
 - Opening: sound from frame 0 (first sound within about 0.1-0.5 s), no fade over the first bar, the first 5 ms at or under -40 dBFS (no click on sample 0).
 - Ending: the last 3 s at body level, a short fade (median about 0.3 s), the last 50 ms under -45 dBFS RMS and the last 10 ms under -60 dBFS. No silent holes over 40 ms except deliberate silence.
+
+## Optional tool: earshot
+
+`earshot` (MIT) gives an agent ears: tag audio, compare it with a description, summarize a video minute by minute, generate sound effects from code (`sfx`, `kit`, no sample licences) and measure loudness (`measure`: LUFS, true peak). It runs on CPU; its model is about 1.1 GB from Hugging Face. Its optional `llm` tool uploads audio to Gemini, so keep it off without explicit consent. The `sfx`, `kit` and `measure` commands need no model; run them in a separate Python venv.
 
 ## Measure with FFmpeg
 
@@ -105,6 +110,7 @@ ffmpeg -i film.mp4 -af silencedetect=noise=-50dB:d=0.04 -f null -
 
 - Integrated within ±0.5 LU of the target; true peak at or under -1 dBTP on the final file.
 - No click at the head, the tail or any splice; no chopped decays (fade-outs under 30 ms on a sounding tail), no music chopped mid-note.
+- Cut alignment: as a starting check, at least about 30% of visual cuts land within 100 ms of a beat or sound onset; a lower share on a music-driven film means the picture and the track are working separately.
 - Every cue covered, every class sounded consistently, no machine-gun (the same sample four or more times with no variation).
 - Judge in context against the music and on small speakers, never solo only. After each change, re-render and re-run every check, and compare with the previous results so nothing that passed now fails.
 - When several fixes conflict (a louder body and a softer 2-6 kHz), one editor merges them.

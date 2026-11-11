@@ -46,6 +46,6 @@ Dialogue leads. Music and effects support it and never fight it. Every level bel
 ## Check
 
 - `scripts/video_qa.py` on the export: integrated loudness, true peak, silences inside the film.
-- Audio dropouts: very quiet stretches (under about -80 dBFS for 20 ms to 1 s) surrounded by sound are dropped samples or bad cuts.
+- Audio dropouts: very quiet stretches (under about -80 dBFS for 20 to 200 ms) surrounded by sound are dropped samples or bad cuts; longer gaps are pauses, checked as silences.
 - Muted or dead tracks: cross-correlate a quick render's audio against the source; a correlation far below about 0.9 means a track is missing.
 - Listen to every join, or re-transcribe around each one; say what you could not listen to.

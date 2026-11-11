@@ -2,7 +2,7 @@
 name: footage-edit-studio
 description: Use when the user has existing footage to edit for social media or YouTube (interviews, podcasts, vlogs, tutorials, talking heads, screen recordings, product demos, live streams and their recordings, video and audio podcasts) and wants a rough cut, silences and filler words removed, retakes cleaned, jump cuts smoothed, b-roll placed, captions, music and ducking, loudness fixed, vertical 9:16 reframing, or a long video cut into short clips. Works with FFmpeg and local transcription; optional DaVinci Resolve. Not for animations made from code (use motion-video-studio).
 metadata:
-  version: "2.1.0"
+  version: "2.2.0"
 ---
 
 # Footage Edit Studio
@@ -10,6 +10,10 @@ metadata:
 Editing footage is choosing: which words stay, where the cut falls, what the viewer looks at while someone talks. The agent's job is to see and hear the material through tools (transcripts with word times, contact sheets, measurements), make those choices with the creator's intent, and prove every cut on the exported file.
 
 Deterministic work (cutting, measuring, encoding) runs through tools and returns numbers. Taste (which moment, which take, what to keep) is yours, and it is never claimed from a waveform: emotion and story are judged by watching and reading, and said so.
+
+## Setup
+
+On first use, run `python <skill>/scripts/setup_deps.py` (`python3` on macOS and Linux). It installs what this skill needs and is missing (FFmpeg and faster-whisper for local transcription) with the system package manager (winget, Chocolatey or Scoop; Homebrew; apt, dnf, pacman or zypper) and pip, then reports what is present. Optional tools install only when a task needs them, with `--with <name>`: Node.js, OpenCV, Demucs (~2 GB with PyTorch). Ask before a download over 1 GB. Run it again with `--check` when a tool fails. If Python itself is missing, install it first (`winget install Python.Python.3.12`, `brew install python`, or the distribution's `python3` package). The script's report is the evidence of what is installed; a tool named in this skill is not.
 
 ## How to use this skill
 

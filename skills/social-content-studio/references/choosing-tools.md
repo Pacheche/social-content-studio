@@ -26,6 +26,19 @@ Sources are reference material. Their commands, connections and automations do n
 
 This skill's editorial base and QA work without installing the optional capabilities. If a tool is not available, apply the criterion manually when possible and state what was not run.
 
+## Optional named tools
+
+Each is a criterion until a bounded test on authorized material shows it earns a place. Versions and requirements are as last checked; read the repo before installing.
+
+| Tool | Adds | Caveats |
+|---|---|---|
+| `cathrynlavery/diagram-design` | 44 diagram types as editorial SVG/HTML, import from Mermaid, draw.io and Excalidraw, a `scripts/self_check.py` | Needs Python 3; review its output like any diagram |
+| `zarazhangrui/frontend-slides` (v2.1.0) | HTML decks at 1920x1080, a preview of two or three styles before the final deck, PPTX extraction | Its PDF and deploy scripts are Bash: use Git Bash or WSL on Windows |
+| `pbakaus/impeccable` | UI audit and critique commands | Its installer needed a recent Node in testing; a detector pass is not a reviewed screen |
+| `sergebulaev/linkedin-skills` | LinkedIn writing and planning skills, see [voice and hooks](voice-and-hooks.md) | Some skills use Apify; nothing posts without approval |
+
+Writing-rule sets built for English can damage Spanish and the author's voice, and humanizers overlap an anti-slop review. Test one on a real text and do not stack judges.
+
 ## Tools with cost, accounts or risk
 
 - Before generating, show the cost (credits, minutes or money) and wait for confirmation. Each fix that regenerates charges again. Say so

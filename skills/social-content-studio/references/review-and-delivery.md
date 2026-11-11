@@ -37,6 +37,8 @@ The technical auditor always returns a pending visual status. If there is no cap
 | All slides look the same | Change grammar/scale/material with a narrative function |
 | Logo with background | Inspect the asset on the final background. Do not trust the SVG/PNG |
 | Crop on publish | Confirm ratio and exact export against the real route |
+| A technique with a minimum was applied without checking it | Measure the result against the threshold (anchor size, contrast ratio, text width) after applying it |
+| Empty frame with a normal file size | A mis-computed `clipPath` or SVG geometry outside the viewport renders blank without errors; size checks miss it, opening the render does. Prefer simple shapes placed directly |
 | False QA because render succeeded | Individual evidence and hashes. Review semantics separately |
 
 ## Closing

@@ -2,7 +2,7 @@
 name: generative-media-studio
 description: "Use when content needs media generated or edited by AI models: images (photoreal, illustration, product shots, text graphics, logos and vectors, consistent characters), image editing (instruction edits, inpainting, background removal, upscaling, relighting), video clips (text or image to video, multi-shot sequences, restyle, extend, upscale, frame interpolation), talking avatars and lip-sync, dubbing, voice-over and voice cloning, music, sound effects, stem separation, audio cleanup, transcription, or two-voice podcasts. Works through any route (vendor APIs, aggregators (fal, Replicate, OpenRouter), Hugging Face Inference Providers and Spaces, ComfyUI, or local open models), with cost control, licence and consent checks, and provenance. Pairs with social-content-studio, motion-video-studio and footage-edit-studio."
 metadata:
-  version: "2.1.0"
+  version: "2.2.0"
 ---
 
 # Generative Media Studio
@@ -10,6 +10,10 @@ metadata:
 Models make the asset; you make the decisions. A generated image or clip is only as good as the brief, the references and the review behind it, and it carries costs, licences and duties a photo from the user does not. This skill gets the right model for the job through whatever route is available, keeps spending visible, and ships nothing unchecked.
 
 The model landscape changes every month. The references hold a dated snapshot (2026-11-04) to start from: before any paid call, read the provider's live model list and price page, and prefer what is current over what is written here.
+
+## Setup
+
+On first use, run `python <skill>/scripts/setup_deps.py` (`python3` on macOS and Linux). It installs what this skill needs and is missing (FFmpeg) with the system package manager (winget, Chocolatey or Scoop; Homebrew; apt, dnf, pacman or zypper) and pip, then reports what is present. Optional tools install only when a task needs them, with `--with <name>`: rembg, Demucs (~2 GB with PyTorch), faster-whisper. Ask before a download over 1 GB. Run it again with `--check` when a tool fails. If Python itself is missing, install it first (`winget install Python.Python.3.12`, `brew install python`, or the distribution's `python3` package). The script's report is the evidence of what is installed; a tool named in this skill is not.
 
 ## How to use this skill
 

@@ -51,7 +51,7 @@ Before coding a scene, write its timeline table: element, role, start, duration,
 - **Relationships:** together (same moment), sequence (only for cause and effect, the second starting just before the first ends), overlap (stagger), carry (animate the parent, children ride).
 - Secondary motion syncs to the moment that matters: sparks and lines land in the last 20% of the lead's move, the most important one first, others about 40 ms behind.
 - One entrance per container: never animate a parent's entrance and stagger its children too.
-- One hero move per shot; secondary moves travel 50-70% as far and start 100-200 ms later.
+- One hero move per shot; secondary moves travel 50-70% as far and start 100-200 ms later. Ambient background motion stays under about 5% of the hero's travel, a slow sine on global progress.
 - Separate container motion from text motion: the box starts expanding, the new label appears once there is room, the old label leaves before the next transition. This prevents the overlapping type that makes generated UI films look unfinished.
 - Animate different edges separately for indicators: the leading edge moves first, the trailing edge follows on a slightly different spring, the shape stretches and settles.
 
@@ -69,6 +69,8 @@ Before coding a scene, write its timeline table: element, role, start, duration,
 - **Punchlines** between scenes: nothing else on screen but the words (and the brand mark); at most 6 words and 2 lines; one word or group per beat. Each word blurs in from about 16 px, rises about 36 px and lands in 0.3 s on a strong ease-out; exit is a quick blur (0.18 s, up to 12 px, lift 16 px). Size 120-160 px at 1080p, weight 600, line height 1.08. Every word keeps its slot (animate opacity, do not unmount), so a centered line never re-centers while it builds.
 - Text never sits under a cursor, chip or texture, never crosses other text in a move, and never re-centers while building. Loading states keep their width.
 - Large display text: tracking -0.02 to -0.04em, line height about 1.05.
+- Avoid a plain opacity fade as the only entrance for type: pair it with displacement, a clip mask, a blur or a scale pop, or cut straight in.
+- A caption, cursor label or callout chip finishes its entrance at least 0.4 s (12 frames at 30 fps) before the click or state change it describes, so it is read before the eye moves to the result.
 - Vary the entrance within a film: per-word blur (6 px to 0 in 0.13 s, 0.067 s apart), grey to ink per word, a whole-line blur, per-letter for names, a slot-machine word roll.
 
 ## Rhythm
@@ -78,6 +80,7 @@ Before coding a scene, write its timeline table: element, role, start, duration,
 - A hold of 0.3-0.75 s before a payoff works as a dramatic comma.
 - With a beat grid, something happens on every beat, but only the lead moves. A bar where nothing happens reads slow: give it beat-synced life or cut it. "Something every beat" is pacing, not permission for everything to move.
 - Any single treatment goes stale after about 6 s.
+- Cuts at equal intervals read as a metronome. Mix bursts of 0.4-0.8 s with holds of 1.8-3 s. A 75th-percentile shot length at least 1.6 times the 25th is a starting check, not a law.
 
 ## Beat grid
 
@@ -108,8 +111,17 @@ Transitions with a cause, with starting values:
 | Clip wipe | `clip-path: inset(0 100% 0 0)` to `inset(0 0 0 0)` |
 | Camera on one world canvas | all scenes on one big canvas; heavy spring; zoom in log space |
 | Hard cut on the beat | match background and accent across the cut |
+| Ordered-dither reveal | a 4x4 Bayer threshold matrix swept in one direction as a mask, progress 0 to 1; a lo-fi hardware look, only when the brand is retro |
 
 A small blur (2-10 px) hides a crossfade seam. Never enter from `scale(0)`: start at 0.9-0.97 with opacity 0.
+
+## Animating product UI
+
+Starting values for interface moves inside a film: a modal arrives from scale 0.96, a dropdown 0.97, a tooltip 0.98; small elements travel 4-12 px; swaps and slides carry a 2-3 px blur; a playful badge pop can use `cubic-bezier(0.34, 1.36, 0.64, 1)`.
+
+- A label that changes and keeps letters ("Copy code" to "Copied", "Save" to "Saved"): diff the strings, keep the shared prefix and suffix still, and cross-blur only the differing middle (about 180 ms, 2 px) in one grid cell while the width eases over about 240 ms.
+- A number that changes ("1,290" to "1,295"): only the changed digits move, with distance and blur set in em so they scale with the type, staggered about 40 ms. Unchanged digits stay still.
+- A disclosure panel can open by animating `grid-template-rows` from 0fr to 1fr, and a ring chart can morph by interpolating its segment angles. Use both only when the real product does it.
 
 ## Fast motion and blur
 
@@ -121,6 +133,8 @@ A small blur (2-10 px) hides a crossfade seam. Never enter from `scale(0)`: star
 - An OS-style arrow glides on a slight arc and arrives exactly on the cue. It starts up to 0.46 s earlier (duration = min(0.46, 0.82 × gap)), easing `cubic-bezier(0.42, 0, 0.12, 1)`, arc bulge min(70 px, 9% of the distance).
 - A click squashes to 0.8 over 0.16 s, holds at 0.86 while pressed, then the target reacts on that frame, with its sound on the same frame.
 - Size it for video: about 3.5x a desktop arrow, 4-7% of the frame.
+- Take target positions from the DOM, not by eye: mark targets with `data-target`, read `getBoundingClientRect()` on the rendered components and print the boxes on a debug still. Cursor keyframes use those numbers.
+- Pass the cursor through its waypoints with a Catmull-Rom spline (the tangent at each point is half the slope between its neighbours), forcing zero velocity at waypoints where it should rest, so it lingers without overshoot. The same path can drive a look-at vector (-1 to 1) that turns a spotlight, tooltip or 3D card toward the pointer.
 - Click text fields on their far side so typed text is never covered. The product's own cursor, if it automates something, looks different from the user's.
 
 ## Captions inside a motion film
@@ -129,6 +143,7 @@ A small blur (2-10 px) hides a crossfade seam. Never enter from `scale(0)`: star
 - A group opens at or just before its first word and closes at or after its last; never at exactly 0 s (start 0.1-0.3 s).
 - Fit the text to a width (landscape about 1600 px, portrait about 900 px, base 78 px, minimum 42 px); center it in a full-width box instead of `left: 50%` plus a translate.
 - On footage, choose the blend by the brightness behind the text: dark (under 60 of 255) `screen`, mid `overlay`, bright opaque text; subtitles over a bright area get a 30-40% scrim sized to the text, never a full-width bar.
+- A caption group belongs to one visual section and ends on its boundary; bleeding even 0.2 s into the next shot looks amateur, so test every section change. Over a stacked layout, captions sit on the seam; in a full-screen section they drop so they do not cover the visual.
 - Captions are an overlay, never a reserved band you push the composition up for.
 
 ## Vertical 9:16 at 1080x1920
@@ -138,6 +153,8 @@ A small blur (2-10 px) hides a crossfade seam. Never enter from `scale(0)`: star
 - Shots 1-2 s, a new beat every 2-4 s, the payoff before the swipe.
 - Landscape is recomposed, never squeezed: the vertical version may stack components that sit side by side in 16:9.
 
+Other formats, as starting values (share of frame height from the top): 16:9 action 7-74%, subtitles 79-92%; 1:1 action 7-70%, subtitles 75-90%; 4:5 action 7-68%, subtitles 72-88%. Subtitle groups of about 7 words (38 characters) in 16:9 and 5 words (24-26 characters) in 1:1 and 4:5.
+
 ## Compression facts
 
 - Full-screen linear gradients on dark backgrounds band under H.264: use a radial or a solid.
@@ -145,7 +162,7 @@ A small blur (2-10 px) hides a crossfade seam. Never enter from `scale(0)`: star
 
 ## What not to animate
 
-Idle loops on things that persist (pulse, shimmer, glow orbs), scroll-reveal on every section, hover-like lifts, things that would be instant in the real product (show the result), decorative re-animation of data, `scale(0)` pop-ins. Avoid strobing, hard bright flashes and full-frame parallax: they cause discomfort, and platforms flag photosensitive content.
+Idle loops on things that persist (pulse, shimmer, glow orbs), camera bobbing or drift that follows nothing, scroll-reveal on every section, hover-like lifts, things that would be instant in the real product (show the result), decorative re-animation of data, `scale(0)` pop-ins. Avoid strobing, hard bright flashes and full-frame parallax: they cause discomfort, and platforms flag photosensitive content.
 
 ## Edit notes from the user
 

@@ -5,6 +5,7 @@ Use when the film benefits from React components, typed props, data, captions or
 ## Setup
 
 - New project: `npx create-video@latest --yes --blank --no-tailwind <dir>`. In a non-empty folder, scaffold into a subfolder; never delete `.env` or `.git`.
+- To install the skills inside the project: `npx create-video --yes --blank my-video`, `npm install`, `npx remotion skills add`, `npm run dev` (Studio opens on localhost:3000). Dragging in Studio writes back to the code. The entry skill is `remotion-best-practices`; the list also includes `maps`, `interactivity`, `upgrade` and `saas`. Remotion is not a CapCut-style editor: its strength is animated titles, charts, subtitles and overlays.
 - Add packages with `npx remotion add <pkg>`. Every `remotion` and `@remotion/*` package must be the exact same version (`npx remotion versions`). `npx remotion upgrade` also updates project-local skills.
 - Use Remotion's bundled browser and FFmpeg (`npx remotion ffmpeg`, `npx remotion ffprobe`). Do not set a custom browser unless asked.
 - Check the licence for the user's organization before commercial use.

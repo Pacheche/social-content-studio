@@ -52,6 +52,13 @@ Plan in bars, not seconds, when there is music; for a silent film pick 120 BPM a
 - The first two seconds are the densest; the payoff comes before the viewer would swipe.
 - No evidence from controlled studies backs an exact hook length; treat "first 1-3 s" as practice, not law.
 
+## Voice-over films
+
+- Before any recording, estimate speech at about 2.5 words per second: roughly 0.1 s plus 0.04 s per letter for each word, plus 0.17 s per comma and 0.38 s per sentence end. Replace the estimate with the measured audio as soon as it exists.
+- Word budgets as a start: 30-45 s takes 5-6 blocks and 80-110 words; 60-90 s takes 7-9 blocks and 160-220 words; 2-3 min takes 12-18 blocks and 300-450 words. A block lasts 3-10 s, ideally 5-7.
+- The picture shows what the voice says at that moment, because nobody reads one thing while hearing another. Outside captions, keep about 4 words or fewer on screen, and never large text that repeats the voice or the captions: it is the same information a third time. For each spoken section ask how to make the idea visual instead of writing it big.
+- Talking-head reel: animation on top and the speaker below as the default layout, full screen only for sections that earn it.
+
 ## Spec header
 
 Every film gets this block, filled, in `SPEC.md`:
@@ -89,7 +96,9 @@ If a word in the brief has no number yet, it is still a default.
 - Exact on-screen text, in order, in one file. No extra slogans.
 - A facts file is the only source of numbers, names and claims. "40 min to 2 min" never becomes "20x faster".
 - Demo data matches the product's landing page, so the film and the site agree.
-- Brand and partner names appear with their real logos.
+- Brand and partner names appear with their real logos. Fetch them from an official-logo catalogue such as svgl, simple-icons or gilbarbara/logos, strip fixed width and height so they scale, and log the source and licence; never redraw or approximate a mark. Check trademark terms for the use.
+- When the live product and its documentation disagree, the live UI wins; log the differences in the project folder.
+- Before rendering any captured or mocked UI, scrub it: real names, avatars, emails, workspace slugs, staging URLs, tokens, and the browser's timezone and language if they reveal the developer's machine. Use branded dummy data instead.
 - "In the style of X" means the grammar of a style, never its assets; the result must be original.
 
 ## Banned defaults for video

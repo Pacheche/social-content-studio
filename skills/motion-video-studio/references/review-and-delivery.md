@@ -21,6 +21,9 @@ Run `python3 <skill folder>/scripts/video_qa.py film.mp4 --spec spec.json --shee
 
 Exit 0 means every check passed, 1 means findings, 2 means the file could not be read. A passing run does not approve the story, the motion or the design; it only removes the mechanical failures. If FFmpeg is missing, say which checks did not run.
 
+Also search the source before rendering, with a script or a plain grep: `interpolate()` calls without clamping, `Math.sin` position loops on idle elements, leftover `TODO` or placeholder strings, and script lines with more than about 7 words or with filler such as "revolutionary", "seamless", "effortless" or "unleash".
+For many stills from one Remotion project, bundle once with `bundle()` from `@remotion/bundler` and call `renderStill()` for each frame against that `serveUrl`; bundling per frame is what makes contact sheets slow.
+
 ## Look at the frames
 
 - **Contact sheet** for the global shape: does each shot read alone, does the subject have size and separation from the background? Regular intervals miss transitions, so also use:
@@ -71,7 +74,7 @@ Close every round with `REVIEW.md` in the film folder: the creative calls, the s
 | Web alternative | VP9 WebM |
 | Overlay for an editor | ProRes 4444 with alpha (`.mov`), or WebM VP9 with `yuva420p` for browsers |
 | Poster | a JPEG of the headline frame, never frame 0 if frame 0 is empty |
-| Loop check | a sheet of the last 8 and first 8 frames played twice |
+| Loop check | a sheet of the last 8 and first 8 frames played twice; as a numeric probe, fewer than 0.1% of pixels differ by more than 3 levels between the first and last frame, and none by more than about 24 |
 
 After encoding: `ffprobe` duration equals the composition's duration, frame 0's background decodes to the brand color within ±2, the last frame matches the first for loops, and the audio is measured again on the final file.
 
@@ -88,6 +91,8 @@ One approved story can serve many placements. Build a matrix instead of separate
 - hooks: open on the problem, on the result, or on a surprising feature;
 - formats: 9:16, 1:1, 16:9, each with its own layout rules from the same scene data (recomposed, never cropped);
 - CTAs: the ones the user approved.
+
+Judge a hero video on video-level numbers (3-second hold, 15-second hold, average percent watched, click-through on the end card), each tagged with a `video_id`, not on sitewide signups, which are too noisy to move in a test. The thresholds in `social-content-studio`'s measurement reference are starting heuristics to compare against the account's own history.
 
 Keep copy, assets and timings in data; the engine decides how they appear. Validate the inputs before any expensive render: every asset present, fonts load, each CTA fits its component, every claim approved. Cache what does not change (logos, fonts, audio, backgrounds) and re-render only what changed. Store a manifest with the source assets, campaign data, template version and render settings for each export, so a revision never ships with outdated assets. Get one reference film genuinely good before adding formats and hooks: automating a mediocre film only makes more mediocre films.
 

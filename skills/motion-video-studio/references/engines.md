@@ -17,6 +17,8 @@ All three paths work the same way underneath: a real browser opens the compositi
 - **HyperFrames** (HTML + GSAP, Apache 2.0): the brand already lives in HTML/CSS (for example the static pipeline of `social-content-studio`), website capture, transparent overlays, no React or `node_modules`, a built-in checker. It breaks quietly when its contract is broken. Rules in `hyperframes.md`.
 - **Plain `seek(t)` renderer** (one HTML file, canvas, SVG or DOM): UI-morph films, kinetic type, abstract and generative pieces, anything where you want full control with no framework.
 - **three.js**: 3D inside any of the above.
+- **Static design that must animate**: a Figma frame or screenshot rebuilt as an exact HTML replica that acts out what it shows, captured deterministically with Playwright's fake clock and encoded with FFmpeg. The `design-to-motion` skill follows this method (MIT, Markdown only). For a website, animate only the visual sections and keep text as real HTML; for a showcase, export MP4 or GIF. It does not suit product interaction motion such as hover, menus or toasts.
+- **cinetic** (an agent skill for short launch films, landing loops and logo stings with Remotion or HyperFrames, MIT): a large technique list plus a linter and audits. Its own numbers put a film at roughly 95 minutes and 600k tokens, about three times the same job without it, so use it as a technique list for one short film, not as a default. Its docs target macOS and Linux; on Windows use WSL.
 - **Blender**: hero-quality 3D, pre-rendered as a clip.
 - **Manim**: math and algorithm explainers.
 
@@ -50,6 +52,10 @@ Rendering at 240 fps takes about 10 minutes per 50 s on a laptop; run it in the 
 - `will-change` on a camera-scaled layer blurs text.
 - Heavy CSS (large blurs, `backdrop-filter`, many shadows) is the main render cost. Supply images near delivery size.
 
+## HEVC footage in browser engines
+
+Chrome often cannot preview H.265 outside Apple platforms, so a clip can show black or frozen while editing. Probe local footage with `ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of csv=p=0 clip.mp4`; for `hevc`, make an H.264 proxy for preview (`ffmpeg -i in.mp4 -c:v libx264 -crf 18 -pix_fmt yuv420p proxy.mp4`) and keep the original for the final render if the engine decodes it.
+
 ## Color range trap
 
 Many browser-to-FFmpeg pipelines produce limited-range BT.601 frames without tags. Treating them as full range lifts `#0a0a0a` to about `#171717`. Convert once and tag the output:
@@ -73,7 +79,7 @@ Then decode frame 0 and check the background is within ±2 of the brand value. F
 
 - Worth it for product and object hero shots, logo extrusion, device mockups, abstract looping backgrounds, explainers needing real lighting and camera moves. Not worth it for text and chart reels, talking heads, or variants with changing copy.
 - Safest integration: pre-render the Blender shot (PNG sequence, or ProRes 4444 for alpha) and place it as a layer in Remotion or HyperFrames, so copy and CTA stay parametrized. The alternative is exporting glTF and animating it in three.js from `t`.
-- Blender MCP (`mcp-for-blender`) lets an agent build and edit scenes and look at the viewport, which is its best feature. Risks: it runs arbitrary Python with no sandbox and its local socket has no authentication. Save work first, enable its safe mode, keep telemetry off if the user prefers, and treat generated 3D models as dense meshes that need cleanup. Asset sources: Poly Haven is CC0; Sketchfab and others vary, so check each licence. Model generators upload content and cost money: ask first.
+- Blender MCP (`mcp-for-blender`) lets an agent build and edit scenes and look at the viewport, which is its best feature. Risks: it runs arbitrary Python with no sandbox and its local socket has no authentication. Save work first, enable its safe mode, keep telemetry off if the user prefers, and treat generated 3D models as dense meshes that need cleanup. Asset sources: Poly Haven is CC0; Sketchfab and others vary, so check each licence. Model generators upload content and cost money: ask first. `CLI-Anything` (HKUDS) wraps software that exposes code, an API or scripting (Blender, GIMP, Audacity, Inkscape) as an agent-usable CLI; try it on a throwaway project, only with a concrete need and after checking its licence. It does not make closed software scriptable.
 
 ## Lottie
 

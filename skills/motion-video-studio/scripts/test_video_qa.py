@@ -67,6 +67,48 @@ class EndToEnd(unittest.TestCase):
             self.assertIn(code, (0, 1))
             self.assertTrue((Path(d) / "qa" / "contact-sheet.jpg").exists())
 
+    def make_signal_clip(self, folder, video, audio=None):
+        clip = str(Path(folder) / "signal.mkv")
+        cmd = ["ffmpeg", "-y", "-v", "error", "-f", "lavfi", "-i", video]
+        if audio:
+            cmd += ["-f", "lavfi", "-i", audio]
+        cmd += ["-c:v", "ffv1"]
+        if audio:
+            cmd += ["-c:a", "pcm_s16le", "-shortest"]
+        subprocess.run(cmd + [clip], check=True)
+        return clip
+
+    def test_audio_dropout(self):
+        with tempfile.TemporaryDirectory() as d:
+            clip = self.make_signal_clip(d, "testsrc2=s=64x64:r=10:d=2",
+                "aevalsrc=if(between(t\\,0.8\\,0.9)\\,0\\,0.3*sin(2*PI*440*t)):s=48000:d=2")
+            an = video_qa.analyze(clip, True)
+            self.assertEqual(len(an["dropouts"]), 1, an)
+            self.assertAlmostEqual(an["dropouts"][0][0], 0.8, places=2)
+            self.assertEqual(an["silences"], [])
+            findings = video_qa.evaluate(video_qa.probe(clip), an, {})
+            self.assertFalse(next(x["ok"] for x in findings if x["check"] == "audio dropouts"))
+
+    def test_continuous_audio(self):
+        with tempfile.TemporaryDirectory() as d:
+            clip = self.make_signal_clip(d, "testsrc2=s=64x64:r=10:d=2", "sine=f=440:d=2")
+            self.assertEqual(video_qa.analyze(clip, True)["dropouts"], [])
+
+    def test_flash_frame(self):
+        with tempfile.TemporaryDirectory() as d:
+            clip = self.make_signal_clip(d,
+                "color=gray:s=64x64:r=10:d=2,drawbox=color=white:t=fill:enable='eq(n,10)'")
+            an = video_qa.analyze(clip, False)
+            self.assertEqual(an["flashes"], [1.0])
+            findings = video_qa.evaluate(video_qa.probe(clip), an, {})
+            self.assertFalse(next(x["ok"] for x in findings if x["check"] == "flash frames"))
+
+    def test_scene_change_is_not_flash(self):
+        with tempfile.TemporaryDirectory() as d:
+            clip = self.make_signal_clip(d,
+                "color=gray:s=64x64:r=10:d=2,drawbox=color=white:t=fill:enable='gte(n,10)'")
+            self.assertEqual(video_qa.analyze(clip, False)["flashes"], [])
+
     def test_unreadable_file(self):
         with tempfile.TemporaryDirectory() as d:
             bad = Path(d) / "bad.mp4"

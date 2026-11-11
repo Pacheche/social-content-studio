@@ -19,11 +19,11 @@ Limits change often and third-party sources disagree; check the platform's curre
 
 ## Final QA
 
-Run `python3 <skill folder>/scripts/video_qa.py final.mp4 --spec spec.json --sheets qa/` (on Windows `py`; needs FFmpeg). It checks size, frame rate, duration against the spec, pixel format, color tags, an empty first frame, black and frozen stretches, loudness, true peak and silences, and writes a contact sheet, a phone-size sheet and seam strips around detected cuts. Exit 0 means every check passed. It does not judge the edit.
+Run `python3 <skill folder>/scripts/video_qa.py final.mp4 --spec spec.json --sheets qa/` (on Windows `py`; needs FFmpeg). It checks size, frame rate, duration against the spec, pixel format, color tags, an empty first frame, black and frozen stretches, loudness, true peak, long silences, short audio dropouts and single-frame flashes, and writes a contact sheet, a phone-size sheet and seam strips around detected cuts. Exit 0 means every check passed. It does not judge the edit.
 
 Then check what the script cannot:
 
-- The original files are unchanged (same size and modification time as at the start).
+- The original files are unchanged (same size and modification time as at the start). Record `SIZE:MTIME_NS` before editing; `--expect-identity SIZE:MTIME_NS` checks the file passed to the QA CLI, so verify each source separately from the export.
 - Audio and video durations match (drift at most about 0.5 s); sync holds at the start and at the end.
 - Every cut, listened to or re-transcribed: no clipped word, no click, no meaning changed.
 - Both sides of every cut in the exported file, not only in the source.
@@ -33,6 +33,8 @@ Then check what the script cannot:
 - A test frame with the platform interface drawn over it.
 
 Write the QA log with timestamps, evidence, findings and fixes. If something could not be checked (no speakers, no player), say so and leave it open.
+
+Before delivery, extract every numerical claim from captions, lower thirds and cards, including currencies, percentages and abbreviated metrics. Compare with the verbatim transcript and approved brief; any mismatch blocks delivery. Check the end-card reading hold from `cutting.md`.
 
 ## Hand-off and versions
 

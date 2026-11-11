@@ -14,6 +14,14 @@ ffmpeg -ss 12.5 -i in.mp4 -frames:v 1 frame.png
 ffmpeg -i in.mp4 -vf "scdet=threshold=10" -an -f null - 2>&1 | grep scd.time
 ```
 
+### Sample VFR before stream copy
+
+Probe frame timestamp deltas in five 6-second windows spread over the duration, including the start and end. For each window, replace START below; compare deltas with the intended frame period. Irregular deltas or differing stream rates require CFR normalization; matching samples alone do not prove CFR.
+
+```bash
+ffprobe -v error -select_streams v:0 -read_intervals "START%+6" -show_entries frame=best_effort_timestamp_time -of csv=p=0 in.mp4
+```
+
 ## Cut
 
 - **Stream copy** (`-c copy`) is lossless but cuts land on keyframes. Use it only for a single segment with no fades, when the nearest keyframe is within about 0.5 s of the wanted start.
@@ -27,6 +35,8 @@ ffmpeg -ss 41.0 -i in.mp4 -ss 1.0 -t 12.3 -c:v libx264 -crf 18 -preset medium -c
 - Variable frame rate or open-GOP HEVC across segments: re-encode instead of stream copy. Convert VFR to constant first: `-vf fps=30 -fps_mode cfr`.
 - Join segments that share codec, size, frame rate, time base and audio format with the concat demuxer; otherwise normalize them first. Never assume a concat avoids re-encoding.
 - Snap cuts to a beat only when beat confidence is high, within about 0.12 s.
+
+For MP4 output, use `-use_editlist 1` so the muxer writes edit-list timing (`elst`) for encoder delay. Verify the first audible syllable and A/V sync in the exported file. This does not make arbitrary stream-copy cuts frame accurate.
 
 ## Remove silences
 
@@ -84,6 +94,19 @@ ffmpeg -i final.mp4 -af ebur128=peak=true -f null - 2>&1 | tail -12
 
 - Log footage: apply the camera maker's conversion LUT (`lut3d=file.cube`) before any creative grade.
 
+### Bounded neutral auto grade
+
+Without an approved creative grade, sample ten evenly spaced frames. Read YAVG, YMIN, YMAX and SATAVG; normalize by the native code maximum `(2**bit_depth - 1)` from the input pixel format. Across sampled YAVG values, compute mean and standard deviation, then `spread = 4 * std`. Target mean 0.48, spread 0.72 and saturation 0.25. Below spread 0.65, interpolate contrast from 1.08 at 0.50 to 1.03 at 0.65; otherwise use 1.03. Below mean 0.42, interpolate gamma from 1.10 at 0.30 to 1.02 at 0.42; above 0.60 use 0.97, otherwise 1. Set saturation to 1.04 below 0.18, 0.96 above 0.38, otherwise 0.98. Clamp contrast to 0.94-1.08, gamma to 0.94-1.10 and saturation to 0.94-1.06. Inspect skin and clipping before accepting.
+
+```bash
+# Set fps to 10 / clip_duration to sample about ten frames.
+ffmpeg -i in.mp4 -vf "fps=1,signalstats,metadata=mode=print" -frames:v 10 -an -f null -
+# Replace these example coefficients with the bounded measurements.
+ffmpeg -i in.mp4 -vf "eq=contrast=1.03:gamma=1.02:saturation=0.98" -c:a copy graded.mp4
+```
+
+For complex SDR filtergraphs, tag after conversion with `scale=out_color_matrix=bt709:out_range=tv,setparams=color_primaries=bt709:color_trc=bt709:colorspace=bt709:range=tv`; tagging alone does not convert HDR. Extend the last video frame with `tpad=stop_mode=clone:stop_duration=0.1` so the video ends at least 0.1 s after the audio; verify durations and preserve the final syllable.
+
 ## Sync
 
 - Offset between two recordings: cross-correlate their audio (coarse at 20 ms, then fine at 1 ms) over a couple of minutes; accept the offset only with a clear correlation peak.
@@ -92,7 +115,7 @@ ffmpeg -i final.mp4 -af ebur128=peak=true -f null - 2>&1 | tail -12
 ## Final export
 
 ```bash
-ffmpeg -i edit.mp4 -c:v libx264 -profile:v high -pix_fmt yuv420p -crf 20 -preset medium -maxrate 10M -bufsize 20M -x264-params colorprim=bt709:transfer=bt709:colormatrix=bt709 -c:a aac -b:a 192k -ar 48000 -movflags +faststart -map_metadata -1 final.mp4
+ffmpeg -i edit.mp4 -c:v libx264 -profile:v high -pix_fmt yuv420p -crf 20 -preset medium -maxrate 10M -bufsize 20M -x264-params colorprim=bt709:transfer=bt709:colormatrix=bt709 -c:a aac -b:a 192k -ar 48000 -movflags +faststart final.mp4
 ```
 
-`-map_metadata -1` strips location and device metadata; ask before keeping it.
+Keep provenance metadata and tool watermarks. Remove only specifically identified private location or device fields when authorized; preserve the original with its content credentials.

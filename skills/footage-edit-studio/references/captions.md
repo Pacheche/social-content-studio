@@ -8,6 +8,12 @@ Most people watch muted. Captions are part of the edit, timed from the final cut
 - Word timings from the transcript of the final edit (or mapped from the source with the edit list). Never time captions by hand.
 - Check them against a fresh transcript of the exported file: no missing word and no drift over 0.5 s.
 
+For Arabic, Persian and Urdu, use a shaping renderer with HarfBuzz and bidirectional text support, such as libass or Pillow with libraqm. Set paragraph direction and use directional marks where needed; check mixed-script output with a fluent reader.
+
+Without ASR word times, decode mono audio at 8 kHz, measure short-window energy and place estimated word boundaries at cumulative-energy quantiles weighted by word length. Constrain them to the phrase interval and check against playback; silence cannot provide word alignment.
+
+For libass at `PlayResY=288`, convert the chosen safe-area position to script units with `MarginV = bottom_inset_fraction * 288`; keep the package's platform clearances and face checks rather than imposing a second margin.
+
 ## Segmentation
 
 | Style | Words or characters | Timing |
@@ -33,9 +39,12 @@ Most people watch muted. Captions are part of the edit, timed from the final cut
 
 - Keep captions inside the platform's safe area (see `delivery.md`): on TikTok the bottom 22% and right 14% are covered; on Reels the bottom 20% and right 12%; on Shorts the bottom 18% and right 12%. Treat a 15% bottom margin as a minimum, not a safe value; on Reels and Shorts, captions around 55-65% of the height or centered are safer.
 - Check face boxes on sampled frames and move the captions if they overlap a face. A hook overlay goes where it covers the least face, between about 6% and 80% of the height, never on the caption band.
+- Keep one caption position throughout a shot when possible; change it at a cut or when a new graphic requires it.
 - Two stacked speakers: captions on the seam between them.
 - Captions are the top layer: apply them last in the filter chain so no overlay covers them.
 
 ## Deliver
 
 Burned-in captions for social, plus an `.srt` (and `.vtt` for the web) for platforms that accept caption files and for accessibility. First cue may start at 0 for files; burned captions start with the first word.
+
+For an optional spring pop, use `scale = clamp(1 - exp(-6*p)*cos(2.5*pi*p), 0.05, 1.35)`, `p = min(1, t/0.18)`; settle at 1 after 180 ms and scale color and alpha together with bilinear sampling on a fixed canvas.

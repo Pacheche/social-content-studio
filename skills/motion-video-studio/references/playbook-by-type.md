@@ -31,6 +31,14 @@ Other useful pieces, only when the film needs them: Motion Canvas (code-first an
 - Structure: hook, tension, reveal, proof (one verb per scene), payoff on the drop, claim, end card with CTA (see `story-and-spec.md`).
 - Show the workspace, isolate the action at 1.6-2x (text at least 26 px after the push), return the result to its place. No camera move over a frozen screenshot pretending to be an action.
 - 15-35 s for social; 9:16, 1:1 and 16:9 versions recomposed, not cropped.
+- Launch film: say what it is within 3 s ("[Product] is a [category] for [audience]" or "[Product] turns [input] into [output]"), then 3-5 capability beats with one concrete verb each, then the product name with one direct action (URL, repo or install command).
+- Release update film: product name and version by 3 s, one beat per change shown as a real UI moment, then an end card.
+
+### Native conversation ad (iMessage, Notes, chat UI)
+
+- 8-14 bubbles, 0.6-1.2 s between sends. Typing animates at 12-15 characters per second with about 30% random jitter, from a seeded generator.
+- The typing indicator is silent; sounds only on send and on receive, from CC0 or licensed recordings.
+- In FFmpeg, mix with `amix=inputs=2:normalize=0` followed by `alimiter` so overlapping sounds do not pump the level.
 
 ### UI-morph film
 
