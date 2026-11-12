@@ -63,6 +63,8 @@ DEPS: dict[str, Dep] = {d.name: d for d in [
         size="~20 MB"),
     Dep("faster-whisper", "local transcription with word times", module="faster_whisper", pip="faster-whisper",
         size="~100 MB, plus the model on first use"),
+    Dep("yt-dlp", "download a public reference video to study its cuts, type and rhythm (python -m yt_dlp)",
+        module="yt_dlp", pip="yt-dlp", size="~10 MB"),
     Dep("gifski", "high quality GIFs from frames", bins=["gifski"],
         managers={"winget": ["ImageOptim.gifski"], "choco": ["gifski"], "scoop": ["gifski"], "brew": ["gifski"], "pacman": ["gifski"]}, size="~5 MB"),
     Dep("demucs", "separate voice, music and effects", module="demucs", pip="demucs", size="~2 GB with PyTorch"),
@@ -78,8 +80,8 @@ DEPS: dict[str, Dep] = {d.name: d for d in [
 SKILLS: dict[str, dict[str, list[str]]] = {
     "content-studio": {"required": [], "optional": []},
     "social-content-studio": {"required": ["pillow", "playwright", "poppler"], "optional": ["ffmpeg", "gifski"]},
-    "motion-video-studio": {"required": ["ffmpeg", "node"], "optional": ["playwright", "opencv", "blender", "gifski"]},
-    "footage-edit-studio": {"required": ["ffmpeg", "faster-whisper"], "optional": ["node", "demucs", "opencv"]},
+    "motion-video-studio": {"required": ["ffmpeg", "node"], "optional": ["playwright", "opencv", "blender", "gifski", "yt-dlp"]},
+    "footage-edit-studio": {"required": ["ffmpeg", "faster-whisper"], "optional": ["node", "demucs", "opencv", "yt-dlp"]},
     "generative-media-studio": {"required": ["ffmpeg"], "optional": ["rembg", "demucs", "faster-whisper"]},
 }
 

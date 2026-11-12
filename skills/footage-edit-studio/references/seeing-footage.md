@@ -21,7 +21,8 @@ Check and record:
 
 ## Transcribe
 
-- Word-level timestamps, from a local model when the footage is private: whisper.cpp, faster-whisper, WhisperX (forced alignment for tighter word times), Parakeet. Cloud ASR only with the user's yes.
+- Word-level timestamps, from a local model when the footage is private: whisper.cpp, faster-whisper, WhisperX (forced alignment for tighter word times), Parakeet. On Apple Silicon, mlx-whisper runs much faster than the CPU builds. Cloud ASR only with the user's yes.
+- Names, brands and technical terms are where ASR errs most. Pass them as a prompt or hotword list and check them by eye in the captions.
 - Set the language explicitly. English-only models translate other languages; auto-detection fails on short or mixed clips.
 - Avoid loop hallucinations: turn off conditioning on previous text (faster-whisper `condition_on_previous_text=False`, whisper.cpp `-mc 0`), use voice activity detection, and drop words invented in trailing silence.
 - Transcribe each original source once and cache it by a hash of the audio plus the model and options. A new container or a picture change with identical audio does not need a new transcript; a change of voice, model or settings does.

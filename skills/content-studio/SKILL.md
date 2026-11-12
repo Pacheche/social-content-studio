@@ -2,7 +2,7 @@
 name: content-studio
 description: "Use for any content creation request when it is not obvious which skill applies, or when one idea must become several formats: posts, carousels, stories, thumbnails, memes, GIFs, LinkedIn documents, slides, threads, long posts, newsletters, reels, launch videos, explainers, animations, edited footage, clips, podcasts, screen recordings, live streams, AI images, AI video, voice, music. Routes each part to social-content-studio, motion-video-studio, footage-edit-studio or generative-media-studio, and plans a campaign across formats from one story."
 metadata:
-  version: "2.2.0"
+  version: "2.3.0"
 ---
 
 # Content Studio

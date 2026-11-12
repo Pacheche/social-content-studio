@@ -39,8 +39,8 @@ python ~/.claude/skills/motion-video-studio/scripts/setup_deps.py --all
 | Skill | Installs on first use | On demand (`--with <name>`) |
 |---|---|---|
 | `social-content-studio` | Pillow, Playwright with Chromium, Poppler | FFmpeg, gifski |
-| `motion-video-studio` | FFmpeg, Node.js 22+ | Playwright, OpenCV, Blender, gifski |
-| `footage-edit-studio` | FFmpeg, faster-whisper | Node.js, OpenCV, Demucs |
+| `motion-video-studio` | FFmpeg, Node.js 22+ | Playwright, OpenCV, Blender, gifski, yt-dlp |
+| `footage-edit-studio` | FFmpeg, faster-whisper | Node.js, OpenCV, Demucs, yt-dlp |
 | `generative-media-studio` | FFmpeg | rembg, Demucs, faster-whisper |
 
 `--check` only reports, `--dry-run` prints the commands without running them. Downloads over 1 GB (Demucs with PyTorch) are asked first. On Linux the system packages need `sudo`.

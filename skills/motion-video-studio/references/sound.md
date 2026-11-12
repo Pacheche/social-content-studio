@@ -15,6 +15,7 @@ The numbers below come from measured professional launch films (a small, hand-pi
 
 - The user's own music first. Otherwise licensed or royalty-free tracks searched by feel and tempo, not by subject. Instrumental, 4/4, about 110-130 BPM (median of the films measured: 123), with a soft intro, a groove, a breakdown at 40-80% and a drop for the hero moment. Avoid vocals, overused stock tracks, trailer braams on product films.
 - Effects: real recordings with clear licences (CC0, CC BY with credit, or a library licence that allows the use). NC, ND, SA and unverified sources are out. Log each source and licence in `CREDITS.md`, with paste-ready credit text for the post description when CC BY requires it. Some sites block scripted downloads; then ask the user.
+- Where to find real effects: the Openverse API (`https://api.openverse.org/v1/audio/?q=whoosh&license=cc0`), over five million sounds gathered from Freesound and others, no key needed but rate-limited. Search in English by the sound itself (whoosh, impact, mouse click, page turn) and filter only by licence: adding words like "sound effects" returns nothing. Check each result's licence field, not the search filter. Mixkit has free effects under its own licence (use in videos, no credit, no redistributing the files); read it before using them. Keep what you download in one `sounds/` folder per user so the next film reuses it.
 - Code-synthesized sounds are fine for UI-like or synth-brand films, but beeps, sine pings and plain noise sweeps are cheap tells. Prefer real recordings for "premium".
 - Voice: the user's own recording first. TTS options: ElevenLabs (paid API), Kokoro (small, open-weight, runs locally), CosyVoice (multilingual, open, local GPU). Write the script first. Ask before any paid or cloud call; keys come from the environment. A synthetic voice of a real person needs that person's consent.
 
@@ -91,6 +92,8 @@ Starting values; verify each by measurement and a spectrogram.
 
 `earshot` (MIT) gives an agent ears: tag audio, compare it with a description, summarize a video minute by minute, generate sound effects from code (`sfx`, `kit`, no sample licences) and measure loudness (`measure`: LUFS, true peak). It runs on CPU; its model is about 1.1 GB from Hugging Face. Its optional `llm` tool uploads audio to Gemini, so keep it off without explicit consent. The `sfx`, `kit` and `measure` commands need no model; run them in a separate Python venv.
 
+It also has `critique`, which compares a finished film with a set of professional launch films and lists fixes by second, and `forge`, which generates a whoosh, click or impact and refines it by listening. Treat its grade as one more measurement, not a verdict. It needs Python 3.10 or newer. Connect it as an MCP server from its folder: `claude mcp add earshot --scope user -- <venv python> -m earshot mcp`, then restart the agent so the tools appear.
+
 ## Measure with FFmpeg
 
 ```bash
@@ -105,6 +108,10 @@ ffmpeg -i film.mp4 -af silencedetect=noise=-50dB:d=0.04 -f null -
 ```
 
 `scripts/video_qa.py` runs the loudness and silence checks for you. Open the spectrogram image; a number you did not look at is not a review.
+
+## Deliver the effects separately
+
+With the mixed film, hand over the effects alone as a WAV stem on the same timeline, so an editor can rebalance it, and a short placement list (time, cue id, file, level, licence). End it with the five or so seconds a person should listen to first: the hero hit, the logo, any effect over a voice and any spot a check flagged. Measuring is not hearing; ask the user to listen there before publishing.
 
 ## Audio QA
 

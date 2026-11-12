@@ -19,6 +19,7 @@ All three paths work the same way underneath: a real browser opens the compositi
 - **three.js**: 3D inside any of the above.
 - **Static design that must animate**: a Figma frame or screenshot rebuilt as an exact HTML replica that acts out what it shows, captured deterministically with Playwright's fake clock and encoded with FFmpeg. The `design-to-motion` skill follows this method (MIT, Markdown only). For a website, animate only the visual sections and keep text as real HTML; for a showcase, export MP4 or GIF. It does not suit product interaction motion such as hover, menus or toasts.
 - **cinetic** (an agent skill for short launch films, landing loops and logo stings with Remotion or HyperFrames, MIT): a large technique list plus a linter and audits. Its own numbers put a film at roughly 95 minutes and 600k tokens, about three times the same job without it, so use it as a technique list for one short film, not as a default. Its docs target macOS and Linux; on Windows use WSL.
+- **Companion skills** that pair with any engine when installed: LottieFiles `motion-design-skill` (timing, easing, choreography; MIT), GreenSock `gsap-skills` (official GSAP usage; MIT) and `hyperframes-motion-reel-skill` (reels cut to the music at 60 fps; MIT). Read their code before installing; the determinism contract above still wins.
 - **Blender**: hero-quality 3D, pre-rendered as a clip.
 - **Manim**: math and algorithm explainers.
 

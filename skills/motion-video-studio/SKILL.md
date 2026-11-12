@@ -2,7 +2,7 @@
 name: motion-video-studio
 description: Use when the user wants a video made from code for social media or a website (reels, product launch films, ads, explainers, UI animations, kinetic typography, data stories, logo reveals, animated captions or overlays, 3D shots) with Remotion, HyperFrames, a seek(t) HTML/canvas renderer or three.js. Covers story, spec, motion craft, sound design, campaign variants (hooks, formats, CTAs), render and frame-by-frame review. Not for cutting existing footage (use footage-edit-studio) or static posts (use social-content-studio).
 metadata:
-  version: "2.2.0"
+  version: "2.3.0"
 ---
 
 # Motion Video Studio
@@ -21,7 +21,7 @@ Paths are relative to this skill's folder. Load references on demand.
 
 | Step | Read |
 |---|---|
-| Story, spec, banned defaults, beat grid | `references/story-and-spec.md` |
+| Story, spec, banned defaults, beat grid, studying a reference video | `references/story-and-spec.md` |
 | What works for each video type, and which tool | `references/playbook-by-type.md` |
 | Easing, durations, choreography, text, transitions, cursor, captions, vertical | `references/motion-craft.md` |
 | A named visual style as numbers (swiss, keynote, whiteboard, captions), motion brief shape | `references/style-grammars.md` |

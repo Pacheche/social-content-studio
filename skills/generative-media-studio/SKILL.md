@@ -2,7 +2,7 @@
 name: generative-media-studio
 description: "Use when content needs media generated or edited by AI models: images (photoreal, illustration, product shots, text graphics, logos and vectors, consistent characters), image editing (instruction edits, inpainting, background removal, upscaling, relighting), video clips (text or image to video, multi-shot sequences, restyle, extend, upscale, frame interpolation), talking avatars and lip-sync, dubbing, voice-over and voice cloning, music, sound effects, stem separation, audio cleanup, transcription, or two-voice podcasts. Works through any route (vendor APIs, aggregators (fal, Replicate, OpenRouter), Hugging Face Inference Providers and Spaces, ComfyUI, or local open models), with cost control, licence and consent checks, and provenance. Pairs with social-content-studio, motion-video-studio and footage-edit-studio."
 metadata:
-  version: "2.2.0"
+  version: "2.3.0"
 ---
 
 # Generative Media Studio

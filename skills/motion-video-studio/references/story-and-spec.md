@@ -23,6 +23,17 @@ For a film over about 15 seconds, write three storylines that are three differen
 
 If all three storylines are plain cuts between slides, the forms were not tried.
 
+## Study a reference
+
+When the user names a film or reel they want to match, study it before writing the storylines. Download a public video with `python -m yt_dlp -o ref.mp4 <url>` (optional dependency `yt-dlp`), then pull one frame every half second and the cut times:
+
+```bash
+ffmpeg -i ref.mp4 -vf fps=2,scale=480:-1,tile=6x5 ref-sheet-%02d.png
+ffmpeg -i ref.mp4 -vf "select='gt(scene,0.3)',showinfo" -f null - 2>&1 | grep -o "pts_time:[0-9.]*"
+```
+
+Write down what you can measure: shots per 10 s, the median shot length, how long text holds, the type sizes and how text enters, the camera moves and where the cuts land against the music. Turn that into numbers for the spec. Take the technique, never the content: do not reuse its footage, music, copy or characters, and do not re-upload it.
+
 ## Structures by length
 
 Plan in bars, not seconds, when there is music; for a silent film pick 120 BPM anyway (beat 0.5 s, bar 2 s). Film length is a whole number of bars; scene boundaries land on bars.

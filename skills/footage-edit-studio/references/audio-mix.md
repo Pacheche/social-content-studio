@@ -28,7 +28,7 @@ Dialogue leads. Music and effects support it and never fight it. Every level bel
 
 - On visual events only (a cut to a graphic, a pop for a number, a whoosh for a fast card), peaking on the visual frame, at least 2.5 s apart, 10-24 dB under the speech on their own stem, never ducked.
 - Never more than two and a half competing streams: within 12 dB of the loudest stream, more than about two-and-a-half active streams for 1.5 s or more turns into noise. A third stream must sit well under as a bed.
-- For designed effects and sync windows, see `motion-video-studio`'s sound reference.
+- For designed effects, sync windows and where to find licensed recordings (Openverse, Mixkit), see `motion-video-studio`'s sound reference.
 
 ## Loudness
 

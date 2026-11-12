@@ -2,7 +2,7 @@
 name: footage-edit-studio
 description: Use when the user has existing footage to edit for social media or YouTube (interviews, podcasts, vlogs, tutorials, talking heads, screen recordings, product demos, live streams and their recordings, video and audio podcasts) and wants a rough cut, silences and filler words removed, retakes cleaned, jump cuts smoothed, b-roll placed, captions, music and ducking, loudness fixed, vertical 9:16 reframing, or a long video cut into short clips. Works with FFmpeg and local transcription; optional DaVinci Resolve. Not for animations made from code (use motion-video-studio).
 metadata:
-  version: "2.2.0"
+  version: "2.3.0"
 ---
 
 # Footage Edit Studio
