@@ -1,4 +1,12 @@
-# Social Content Studio
+<p align="center">
+  <img src="assets/banner.svg" alt="Social Content Studio: five agent skills, one request, every format, checked on the exported file" width="100%">
+</p>
+
+<p align="center">
+  <a href="LICENSE"><img alt="MIT licence" src="https://img.shields.io/badge/licence-MIT-161616?style=flat-square"></a>
+  <a href="https://github.com/Pacheche/social-content-studio/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/Pacheche/social-content-studio?style=flat-square&color=FF5A36&label=release"></a>
+  <img alt="Claude Code, Codex, Gemini CLI, OpenCode" src="https://img.shields.io/badge/works%20with-Claude%20Code%20%C2%B7%20Codex%20%C2%B7%20Gemini%20CLI%20%C2%B7%20OpenCode-2C46F0?style=flat-square">
+</p>
 
 A package of five agent skills that covers every way of making content: posts, carousels, thumbnails, memes, GIFs, LinkedIn documents, slides, threads and newsletters; videos made from code; edited footage, clips, podcasts, screen recordings and live streams; and AI-generated images, video, avatars, voice and music through any route (vendor APIs, fal, Replicate, OpenRouter, Hugging Face, ComfyUI or local models). Each skill makes the agent decide the message first, build with real assets, and check the exported file before calling it done.
 
@@ -11,6 +19,15 @@ Works with Claude Code, Codex, Gemini CLI, OpenCode and any agent that loads `SK
 | [`motion-video-studio`](skills/motion-video-studio/SKILL.md) | Videos made from code: product launches, ads, explainers, UI animations, kinetic type, data stories, logo reveals, 3D shots, campaign variants. Remotion, HyperFrames, a `seek(t)` renderer or three.js | Video QA (specs, loudness, black and frozen stretches), contact sheets, seam strips, P0-P2 review |
 | [`footage-edit-studio`](skills/footage-edit-studio/SKILL.md) | Editing real footage: rough cuts, silences and fillers, retakes, jump cuts, b-roll, captions, music and ducking, vertical reframing, long videos into short clips, podcasts and audiograms, screen recordings and demos, live streams | The same video QA, every cut listened to or re-transcribed, captions checked against the final file |
 | [`generative-media-studio`](skills/generative-media-studio/SKILL.md) | AI images and edits, background removal, upscaling, vectors, video clips, avatars and lip-sync, dubbing, voice-over and cloning, music, sound effects, stems, transcription, two-voice podcasts | Cost estimate before paid runs, a provenance and spend ledger, licence and consent checks, AI labels, artifact review |
+
+```mermaid
+flowchart LR
+  R([Your request]) --> C[content-studio<br/>routes and plans]
+  C --> S[social-content-studio<br/>statics and text]
+  C --> M[motion-video-studio<br/>video from code]
+  C --> F[footage-edit-studio<br/>real footage]
+  C --> G[generative-media-studio<br/>AI media]
+```
 
 ## Install
 

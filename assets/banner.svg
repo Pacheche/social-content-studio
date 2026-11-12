@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="420" viewBox="0 0 1280 420" role="img" aria-label="Social Content Studio: five agent skills, one request, every format">
+  <rect width="1280" height="420" fill="#F3EFE7"/>
+
+  <!-- Title block -->
+  <g>
+    <circle cx="80" cy="111" r="8" fill="#FF5A36"/>
+    <circle cx="104" cy="111" r="8" fill="#FFD23F"/>
+    <circle cx="128" cy="111" r="8" fill="#2C46F0"/>
+    <circle cx="152" cy="111" r="8" fill="#161616"/>
+    <circle cx="176" cy="111" r="8" fill="#8a857c"/>
+    <text x="200" y="118" fill="#8a857c" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="20" letter-spacing="2">FIVE AGENT SKILLS</text>
+  </g>
+  <text x="68" y="196" fill="#161616" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="70" font-weight="800" letter-spacing="-2">Social Content</text>
+  <text x="68" y="266" fill="#161616" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="70" font-weight="800" letter-spacing="-2">Studio</text>
+  <text x="72" y="320" fill="#3b3833" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="27">One request. Every format.</text>
+  <text x="72" y="356" fill="#3b3833" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="27">Checked on the exported file.</text>
+
+  <!-- Format tiles -->
+  <g font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-weight="700" font-size="22">
+    <!-- Carousel -->
+    <rect x="640" y="56" width="184" height="148" rx="14" fill="#FF5A36"/>
+    <rect x="664" y="80" width="64" height="80" rx="6" fill="#F3EFE7"/>
+    <rect x="740" y="80" width="64" height="80" rx="6" fill="#F3EFE7" opacity="0.55"/>
+    <text x="662" y="188" fill="#161616">Carousel</text>
+    <!-- Thumbnail -->
+    <rect x="836" y="56" width="184" height="148" rx="14" fill="#FFD23F"/>
+    <rect x="858" y="78" width="140" height="80" rx="6" fill="#161616"/>
+    <circle cx="928" cy="118" r="22" fill="none" stroke="#FF5A36" stroke-width="5"/>
+    <text x="858" y="188" fill="#161616">Thumbnail</text>
+    <!-- Reel -->
+    <rect x="1032" y="56" width="184" height="148" rx="14" fill="#2C46F0"/>
+    <rect x="1098" y="72" width="52" height="92" rx="8" fill="#F3EFE7"/>
+    <path d="M1116 104 L1136 118 L1116 132 Z" fill="#2C46F0"/>
+    <text x="1054" y="188" fill="#F3EFE7">Reel</text>
+    <!-- Podcast -->
+    <rect x="640" y="216" width="184" height="148" rx="14" fill="#161616"/>
+    <g fill="#FFD23F">
+      <rect x="664" y="262" width="8" height="40" rx="4"/><rect x="680" y="250" width="8" height="64" rx="4"/>
+      <rect x="696" y="270" width="8" height="24" rx="4"/><rect x="712" y="244" width="8" height="76" rx="4"/>
+      <rect x="728" y="258" width="8" height="48" rx="4"/><rect x="744" y="274" width="8" height="16" rx="4"/>
+      <rect x="760" y="254" width="8" height="56" rx="4"/><rect x="776" y="266" width="8" height="32" rx="4"/>
+    </g>
+    <text x="662" y="348" fill="#F3EFE7">Podcast</text>
+    <!-- Thread -->
+    <rect x="836" y="216" width="184" height="148" rx="14" fill="#ffffff" stroke="#d9d4ca" stroke-width="2"/>
+    <g fill="#d9d4ca">
+      <rect x="858" y="240" width="136" height="10" rx="5"/><rect x="858" y="258" width="104" height="10" rx="5"/>
+      <rect x="858" y="284" width="136" height="10" rx="5"/><rect x="858" y="302" width="82" height="10" rx="5"/>
+    </g>
+    <text x="858" y="348" fill="#161616">Thread</text>
+    <!-- AI image -->
+    <rect x="1032" y="216" width="184" height="148" rx="14" fill="#8EA0FF"/>
+    <circle cx="1170" cy="256" r="16" fill="#FFD23F"/>
+    <path d="M1054 320 L1100 268 L1134 302 L1156 282 L1196 320 Z" fill="#2C46F0"/>
+    <text x="1054" y="348" fill="#161616">AI image</text>
+  </g>
+</svg>
