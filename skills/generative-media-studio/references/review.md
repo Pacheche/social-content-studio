@@ -20,6 +20,8 @@ A model's output is a draft until someone looked at it. Review every asset at fu
 ## Audio
 
 - Listen, and measure: loudness and true peak (`ebur128`), clicks at the start and end, clipped words, breaths cut mid-way, robotic artifacts, wrong pronunciation of names and places, the accent the user asked for.
+- Script check without ears: transcribe each take back (Whisper) and diff it against the script. Missing, added or misheard words, and tags read aloud as words, fail the take.
+- Signal scan: empty audio, invalid samples (NaN or infinite), clipping, long silences and sudden level jumps. These are signal checks, not a verdict on naturalness or likeness.
 - Voice clones: compare with the reference by ear; do not ship a clone that sounds like someone else.
 - Music: no vocals unless asked, the right length, a clean ending on a bar, no recognizable melody from an existing song.
 

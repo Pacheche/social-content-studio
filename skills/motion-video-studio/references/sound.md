@@ -17,7 +17,7 @@ The numbers below come from measured professional launch films (a small, hand-pi
 - Effects: real recordings with clear licences (CC0, CC BY with credit, or a library licence that allows the use). NC, ND, SA and unverified sources are out. Log each source and licence in `CREDITS.md`, with paste-ready credit text for the post description when CC BY requires it. Some sites block scripted downloads; then ask the user.
 - Where to find real effects: the Openverse API (`https://api.openverse.org/v1/audio/?q=whoosh&license=cc0`), over five million sounds gathered from Freesound and others, no key needed but rate-limited. Search in English by the sound itself (whoosh, impact, mouse click, page turn) and filter only by licence: adding words like "sound effects" returns nothing. Check each result's licence field, not the search filter. Mixkit has free effects under its own licence (use in videos, no credit, no redistributing the files); read it before using them. Keep what you download in one `sounds/` folder per user so the next film reuses it.
 - Code-synthesized sounds are fine for UI-like or synth-brand films, but beeps, sine pings and plain noise sweeps are cheap tells. Prefer real recordings for "premium".
-- Voice: the user's own recording first. TTS options: ElevenLabs (paid API), Kokoro (small, open-weight, runs locally), CosyVoice (multilingual, open, local GPU). Write the script first. Ask before any paid or cloud call; keys come from the environment. A synthetic voice of a real person needs that person's consent.
+- Voice: the user's own recording first. TTS options: ElevenLabs (paid API), Kokoro (small, open-weight, runs locally), CosyVoice (multilingual, open, local GPU). Write the script first. Ask before any paid or cloud call; keys come from the environment. A synthetic voice of a real person needs that person's consent. To direct a synthetic read (pauses, emotion, breaths, pronunciation of names, clean joins), see `generative-media-studio`'s audio reference.
 
 ## Music edit
 
@@ -39,6 +39,24 @@ Derive every sound time from the animation code, never type it in: typed times l
 | Start | beds, ambiences | the beginning of the section |
 
 Place a sample at `cue − its measured peak offset`, so the transient lands on the frame. Move the picture to the beat, not the sound away from its cause.
+
+## Scoring a cut that is already approved
+
+When the picture is locked (a finished reel, a demo, an edit from `footage-edit-studio`) and there is no animation code to derive cues from, build the cue list from the file itself. This is the one exception to deriving times from code: measure each time on the frames, never estimate it.
+
+1. **Inventory.** Probe duration, frame rate and audio streams. With a variable frame rate, take times from the presentation timestamps (`ffprobe -show_frames`), not from frame count × 1/fps. Start from any timeline, edit markers or cue file that exists, then check each against the final MP4. Note what is already mixed in and which existing effects to keep or replace. If there is only one stereo mix, treat it as a single bed and say which fixes would need separate stems.
+2. **Cue sheet.** One row per cue: id, time in ms, frame, the visible action, sound family, rough length, priority (1 must sound, 2 nice to have). Step through doubtful cues frame by frame. Every sound needs a job: a short pop for something appearing, a quiet click for an interaction, a short whoosh for a move across the frame, a soft impact for an arrival with weight. Skip decorative moves the eye already reads, and merge actions that land close together when they would compete with the voice.
+3. **Candidates.** For each priority 1 cue, collect two or three recordings whose attack, texture and length fit the picture. Search with short words for the sound itself, in English and in the user's language, and try variants (soft mouth pop, paper swish, tactile button click, muted wood tap). Drop takes with voices, music, a loud noise floor, or a tail that runs into the next event.
+4. **Licence per file.** Open each result's source page and confirm the licence there: CC0 first; CC BY only when the credit can be published; nothing marked NC for an ad or a commercial reel, and nothing whose author or permission you cannot confirm. Record title, author, source URL, licence and licence URL. Download only through the provider's own route. Keep the originals untouched in `sounds/sources/`, cut and convert working copies, and prefer WAV or FLAC when offered.
+5. **Choose by measurement.** Compare candidates on character, clarity of attack, usable length, tail and level. In a file with several takes, find the best one. Find the audible onset of a pop or click (an onset detector, or the first sample above about -40 dBFS), and for a whoosh mark both its start and its peak, since the peak is what meets the move. Reject clipping, double hits and noise before the attack. Flag cues where the numbers cannot settle it for a human listen.
+6. **Generate only to fill a gap.** When no recording fits and the brief allows synthesis, generate a one-off variant (earshot below). Set its character, length and arrival time before generating, record the recipe or preset, and label the file as generated in the cue sheet. If the placement tool only takes recordings, keep generated sounds on their own stem and add them at the end at the same time and level.
+7. **Place.** Review the placement plan before rendering: each cue has the right file, position, sync anchor (attack, peak, end or start, as in the table above) and gain. Measure leading silence in each file and offset by the real onset. Short fades where a cut would click; keep the natural tail when there is room for it.
+8. **Do not double.** If the base mix already has an effect on that action, do not stack another. With separate stems, replace it on its stem. If an effect is baked into the mix and cannot be removed without hurting voice or music, keep the original and flag the cue.
+9. **Check the render** against the approved cut: same start, end, duration, framing and frame rate. Then mix and measure as below (Mix, Delivery targets, Audio QA), including loudness and true peak again on the encoded MP4.
+
+## Optional tool: Real SFX
+
+[Real SFX](https://clipwing.pro/skills/real-sfx) (Clipwing) is a free Claude Code skill that places recorded effects from your own library on exact frames of an MP4, using a cue list, a HyperFrames timeline or the picture. It ducks effects under voice-over, keeps the music and voice in the mix, removes synthesized effects it finds instead of doubling them, and returns the new MP4, the effects alone as a WAV and a placement report with five moments to check by ear. It never generates sounds; it ships with 78 CC0 UI sounds and needs Python 3.9 or newer and FFmpeg. Point it at the licensed `sounds/` folder above; the licence of each file is still yours to check.
 
 ## Sync windows
 
@@ -92,7 +110,7 @@ Starting values; verify each by measurement and a spectrogram.
 
 `earshot` (MIT) gives an agent ears: tag audio, compare it with a description, summarize a video minute by minute, generate sound effects from code (`sfx`, `kit`, no sample licences) and measure loudness (`measure`: LUFS, true peak). It runs on CPU; its model is about 1.1 GB from Hugging Face. Its optional `llm` tool uploads audio to Gemini, so keep it off without explicit consent. The `sfx`, `kit` and `measure` commands need no model; run them in a separate Python venv.
 
-It also has `critique`, which compares a finished film with a set of professional launch films and lists fixes by second, and `forge`, which generates a whoosh, click or impact and refines it by listening. Treat its grade as one more measurement, not a verdict. It needs Python 3.10 or newer. Connect it as an MCP server from its folder: `claude mcp add earshot --scope user -- <venv python> -m earshot mcp`, then restart the agent so the tools appear.
+It also has `critique`, which compares a finished film with a set of professional launch films and lists fixes by second, and `forge`, which generates a whoosh, click or impact and refines it by listening. Treat its grade as one more measurement, not a verdict. For single effects, `earshot sfx list` shows the available recipes and `earshot sfx check` measures a generated take; confirm the flags with `--help` on the installed version. It needs Python 3.10 or newer. Connect it as an MCP server from its folder: `claude mcp add earshot --scope user -- <venv python> -m earshot mcp`, then restart the agent so the tools appear.
 
 ## Measure with FFmpeg
 
@@ -111,7 +129,7 @@ ffmpeg -i film.mp4 -af silencedetect=noise=-50dB:d=0.04 -f null -
 
 ## Deliver the effects separately
 
-With the mixed film, hand over the effects alone as a WAV stem on the same timeline, so an editor can rebalance it, and a short placement list (time, cue id, file, level, licence). End it with the five or so seconds a person should listen to first: the hero hit, the logo, any effect over a voice and any spot a check flagged. Measuring is not hearing; ask the user to listen there before publishing.
+With the mixed film, hand over the effects alone as a WAV stem that starts at 00:00 and lasts exactly as long as the video, so an editor can drop it in and rebalance it; the voice and music stems too when you edited them; a cue sheet as CSV or JSON (time, cue id, anchor, file, gain, source, licence, recorded or generated); and `CREDITS.md`. Report the measured loudness and true peak and which cues were generated. If a tool, a file or a usage permission was missing, name the step it blocked and hand over what you could verify. End it with the five or so seconds a person should listen to first: the hero hit, the logo, any effect over a voice and any spot a check flagged. Measuring is not hearing; ask the user to listen there before publishing.
 
 ## Audio QA
 
@@ -119,5 +137,7 @@ With the mixed film, hand over the effects alone as a WAV stem on the same timel
 - No click at the head, the tail or any splice; no chopped decays (fade-outs under 30 ms on a sounding tail), no music chopped mid-note.
 - Cut alignment: as a starting check, at least about 30% of visual cuts land within 100 ms of a beat or sound onset; a lower share on a music-driven film means the picture and the track are working separately.
 - Every cue covered, every class sounded consistently, no machine-gun (the same sample four or more times with no variation).
-- Judge in context against the music and on small speakers, never solo only. After each change, re-render and re-run every check, and compare with the previous results so nothing that passed now fails.
+- Effects against words: where an effect lands on speech, check that the consonants still read. If an effect covers a word, lower that cue or change its timbre; do not raise the whole voice to beat it.
+- Listen first to the opening seconds, the fastest transitions, every effect over a word and the ending. Re-check sync of the main cues on the encoded file, not only on the mix.
+- Judge in context against the music and on small speakers, never solo only: headphones and a phone speaker when a person can listen. After each change, re-render and re-run every check, and compare with the previous results so nothing that passed now fails.
 - When several fixes conflict (a louder body and a softer 2-6 kHz), one editor merges them.

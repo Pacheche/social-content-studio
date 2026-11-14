@@ -5,10 +5,12 @@ Dialogue leads. Music and effects support it and never fight it. Every level bel
 ## Dialogue
 
 - Match takes to each other first: adjacent segments within 3 LU (boost a quiet take by at most about 12 dB; past that, the noise comes up with it).
-- Cleanup chain, lightest that works: high-pass at 80 Hz; a gentle compressor (threshold about -18 dB, ratio 2, attack 5 ms, release 80 ms); for harder cases a de-esser and light denoise (FFmpeg `deesser`, `afftdn`), ratio 3-4, a limiter at -1 dBFS.
+- Cleanup chain, lightest that works: high-pass at 80 Hz; a gentle compressor (threshold about -18 dB, ratio 2, attack 5 ms, release 80 ms); for harder cases a de-esser and light denoise (FFmpeg `deesser`, `afftdn`), ratio 3-4, a limiter at -1 dBFS. Compress only when the dynamics ask for it.
+- To even out quiet and loud passages of a whole read, change gain per phrase (constant gain per transcript segment, at most about +8 dB) rather than pushing a fast compressor harder: fast compression used for leveling flattens peaks and lifts breaths, pauses and room tails toward speech level. FFmpeg's `dynaudnorm` lifts pauses and room tone too, so do not use it on dialogue with silences. Finish with a true-peak limiter at -1 dBTP.
+- No reverb by default. Add it only when the user picks a sound that needs it (a "cinematic" read; VoiceStudio's Cinematic and Warm presets include reverb); a reverb hidden in a cleanup or mastering chain bakes echo into every take.
 - A muffled mic: cut about 3 dB around 250-300 Hz, add about 3-4 dB around 3-3.5 kHz, a small high shelf near 10 kHz. Diagnose first: if the band above 3 kHz sits more than about 22 dB under the total, the mic is muffled.
 - Voice isolation tools help on noisy dialogue only; never run them on music.
-- Lay room tone (about -37 LUFS) under edited gaps so the background never drops to digital silence between words.
+- Lay room tone (about -37 LUFS) under edited gaps so the background never drops to digital silence between words. Take it from the same recording's quietest stretch, and fade it in and out over about 40 ms into the words on each side.
 - When you replace dialogue with an enhanced version, place it against the original clip duration and keep the source sample rate, or sync drifts.
 
 ## Music
@@ -28,7 +30,8 @@ Dialogue leads. Music and effects support it and never fight it. Every level bel
 
 - On visual events only (a cut to a graphic, a pop for a number, a whoosh for a fast card), peaking on the visual frame, at least 2.5 s apart, 10-24 dB under the speech on their own stem, never ducked.
 - Never more than two and a half competing streams: within 12 dB of the loudest stream, more than about two-and-a-half active streams for 1.5 s or more turns into noise. A third stream must sit well under as a bed.
-- For designed effects, sync windows and where to find licensed recordings (Openverse, Mixkit), see `motion-video-studio`'s sound reference.
+- If an effect covers a word, lower that effect or change its timbre; do not raise the whole voice to beat it.
+- For a full effects pass on a finished cut (cue sheet, candidates and licences per file, placement, the effects stem and cue sheet to hand over), designed effects, sync windows and where to find licensed recordings (Openverse, Mixkit), see `motion-video-studio`'s sound reference.
 
 ## Loudness
 
@@ -48,4 +51,5 @@ Dialogue leads. Music and effects support it and never fight it. Every level bel
 - `scripts/video_qa.py` on the export: integrated loudness, true peak, silences inside the film.
 - Audio dropouts: very quiet stretches (under about -80 dBFS for 20 to 200 ms) surrounded by sound are dropped samples or bad cuts; longer gaps are pauses, checked as silences.
 - Muted or dead tracks: cross-correlate a quick render's audio against the source; a correlation far below about 0.9 means a track is missing.
+- Mono: fold the mix to mono and check the voice still reads; phones often play one speaker.
 - Listen to every join, or re-transcribe around each one; say what you could not listen to.
