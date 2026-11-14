@@ -37,7 +37,7 @@ ffmpeg -i in.mp4 -c:v libvpx-vp9 -an -b:v 0 -crf 40 -t 3 -r 30 -pix_fmt yuva420p
 
 ## LinkedIn documents, slides, decks
 
-- **LinkedIn document posts:** PDF (PPT, PPTX and DOC also accepted), at most 100 MB and 300 pages, every page the same size (the first page sets it). 1080x1350 or 1080x1080 read best on phones; 16:9 looks small. Embed fonts and keep it under about 10 MB. Set the document title. Caption up to 3,000 characters with the fold at about 200 characters.
+- **LinkedIn document posts:** PDF (PPT, PPTX and DOC also accepted), at most 100 MB and 300 pages, every page the same size (the first page sets it). 1080x1350 or 1080x1080 read best on phones; 16:9 looks small. Embed fonts and keep it under about 10 MB. Set the document title. Caption up to 3,000 characters with the fold at about 140 characters on mobile (about 200 on desktop).
 - **What works:** 6-12 pages; a cover that is a hook of 8 words or fewer; one idea per page; body text at least 28-32 px at 1080 wide; a last page with the call to action.
 - **Production:** render the HTML pages with Playwright `page.pdf({width: '1080px', height: '1350px', printBackground: true})`, or join PNGs with `img2pdf`. Check with `pdfinfo` and `pdffonts` (uniform size, embedded fonts) and look at each page at phone width.
 - **Decks:**

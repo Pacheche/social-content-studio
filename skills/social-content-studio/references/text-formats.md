@@ -8,7 +8,7 @@ Threads, long posts, LinkedIn posts and articles, Threads, Bluesky, newsletters 
 |---|---|---|
 | X, free account | 280 characters | CJK characters count double; a URL counts 23 |
 | X Premium | Longer posts; sources disagree between 4,000 and 25,000 by tier | Use 4,000 as the safe ceiling unless the account's tier is confirmed; the feed truncates with "Show more" |
-| LinkedIn post | 3,000 characters | Fold at about 200-210 characters; 3-5 hashtags at most |
+| LinkedIn post | 3,000 characters | Fold at about 140 characters on mobile, 200-210 on desktop; 3-5 hashtags at most |
 | LinkedIn article | Long-form | Title about 100-150 characters, verify |
 | Threads | 500 characters | Links do not count, verify |
 | Bluesky | 300 graphemes | Links as facets |
@@ -18,7 +18,7 @@ Count graphemes, not bytes: `Intl.Segmenter` in JavaScript, or `twitter-text` fo
 
 ## What performs
 
-- **The hook fits before the fold:** about 140 characters on X, about 210 on LinkedIn. A specific claim, a number or a tension; no throat-clearing.
+- **The hook fits before the fold:** about 140 characters on X and on LinkedIn mobile (about 210 on LinkedIn desktop). A specific claim, a number or a tension; no throat-clearing.
 - **X:** threads suit tutorials and stories, about 5-10 posts (drop-off grows past 15). Whether a thread or one long post performs better is contested; test on the account. Put external links in a reply, not in the main post. X published its ranking code; read it before trusting folklore.
 - **LinkedIn:** paragraphs of one or two lines, one story or one framework per post, a specific question at the end. No "humbled to announce".
 - **Threads and Bluesky:** short, conversational, led by a question.

@@ -22,7 +22,7 @@ Use these cases when changing the instructions. They evaluate expected decisions
 | A PDF has no extractable text | Review it visually/with OCR before adopting criteria. Declare it pending if it is not legible |
 | Fictional interface with gray text that looks like a client case | Add an explicit example label. Aesthetic dimming does not signal fiction |
 
-## Integration cases 1.3.0 (2026-10-21)
+## Integration cases (2026-10-21)
 
 | Request and context | Behavior to check |
 | --- | --- |

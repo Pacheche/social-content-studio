@@ -29,7 +29,7 @@ Other useful pieces, only when the film needs them: Motion Canvas (code-first an
 
 - Input: the product's site, real screenshots or recordings, logo files, brand tokens, approved claims, 2-4 features.
 - Structure: hook, tension, reveal, proof (one verb per scene), payoff on the drop, claim, end card with CTA (see `story-and-spec.md`).
-- Show the workspace, isolate the action at 1.6-2x (text at least 26 px after the push), return the result to its place. No camera move over a frozen screenshot pretending to be an action.
+- Show the workspace, isolate the action at 1.6-2x (text at least 28 px after the push), return the result to its place. No camera move over a frozen screenshot pretending to be an action.
 - 15-35 s for social; 9:16, 1:1 and 16:9 versions recomposed, not cropped.
 - Launch film: say what it is within 3 s ("[Product] is a [category] for [audience]" or "[Product] turns [input] into [output]"), then 3-5 capability beats with one concrete verb each, then the product name with one direct action (URL, repo or install command).
 - Release update film: product name and version by 3 s, one beat per change shown as a real UI moment, then an end card.

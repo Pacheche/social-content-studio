@@ -2,7 +2,7 @@
 name: social-content-studio
 description: "Use when planning, writing, designing, producing, adapting or fixing static and text content for any brand: single posts, carousels, stories or statuses, YouTube thumbnails and covers, memes, GIFs and stickers, LinkedIn document carousels, slides and decks, threads, long posts, LinkedIn articles, newsletters and blog posts, captions, hooks and brand voice. Works from loose ideas, briefs, references or existing pieces and turns them into clear, visually careful, verifiable content. Covers editorial review, art direction, editable sources, export QA and measurement of results. Not for general web development, and it never publishes automatically. For video, reels or motion, use the sibling skills."
 metadata:
-  version: "2.4.0"
+  version: "2.4.1"
 ---
 
 # Social Content Studio
@@ -59,7 +59,7 @@ When several skills, tools or new resources are in play, consult [choosing tools
 
 Read [review and delivery](references/review-and-delivery.md). Inspect each file enlarged and at phone width, then the full sequence. If the `unslop-anything` skill is installed, run its visual-design and writing checks on the exports and the caption before delivery.
 
-For PNG, [scripts/audit_exports.py](scripts/audit_exports.py) checks the exact file list, binary format, decoding, dimensions, aspect ratio and hashes against `export-contract.json`. It does not render or approve the design. Usage:
+For PNG, [scripts/audit_exports.py](scripts/audit_exports.py) checks the exact file list, binary format, decoding, dimensions, aspect ratio and hashes against `export-contract.json` (start from [the example](examples/export-contract.example.json)). It does not render or approve the design. Usage:
 
 ```text
 python <skill>/scripts/audit_exports.py <final-folder> --contract <export-contract.json> --report <technical-qa.json>

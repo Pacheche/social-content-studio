@@ -24,7 +24,7 @@ Use when the film benefits from React components, typed props, data, captions or
 - `interpolate()` does not clamp by default. Pass `extrapolateLeft: 'clamp', extrapolateRight: 'clamp'` on anything that must stop.
 - Easing goes in the `easing` option: `Easing.bezier(0.23, 1, 0.32, 1)`, or `Easing.spring({damping: 200})` for a smooth push without bounce. With N input points, pass N-1 easings.
 - For scale, use `output: 'perceptual-scale'` so large scales do not look slower.
-- `spring()` settles by physics; its length depends on fps. Measure it with `getDurationInFrames({fps})` when a scene must fit.
+- `spring()` settles by physics; its length depends on fps. Measure it with `measureSpring({fps, config})` when a scene must fit.
 - Prefer the individual CSS properties `scale`, `translate`, `rotate` over one `transform` string.
 
 ## Sequences, timing props, transitions

@@ -1,6 +1,6 @@
 # Sound
 
-You cannot hear the mix. So every claim about audio comes from a measurement or it is not made. Report numbers ("integrated -14.2 LUFS, true peak -1.3 dBTP, effects 4-9 dB over the bed"), and say what was measured and what was not heard.
+You cannot hear the mix. So every claim about audio comes from a measurement or it is not made. Report numbers ("integrated -14.2 LUFS, true peak -1.3 dBTP, effects 13-17 dB over the quiet bed"), and say what was measured and what was not heard.
 
 The numbers below come from measured professional launch films (a small, hand-picked set). They are starting values, not laws.
 
@@ -62,7 +62,7 @@ When the picture is locked (a finished reel, a demo, an edit from `footage-edit-
 
 - Viewers detect audio about 45 ms early or 125 ms late. Keep sound leading by at most about 45 ms; an impact peak at most +75 ms late; a whoosh apex within ±45 ms of its target; a riser ending 30-250 ms before the hit.
 - Clicks land 10-30 ms before the visible press; press and release 60-110 ms apart, the release 0-3 dB quieter. The click goes on the frame the cursor presses, not when the UI reacts.
-- When unsure, let sound lead by at most one frame; never lag two frames (a frame is 33 ms at 30 fps).
+- When unsure, let sound lead by at most one frame (33 ms at 30 fps) rather than lag; a sound more than about two frames late reads as late.
 - A whoosh starts 100-450 ms before the cut and peaks at 50-70% of its length. Pop-ins land 25-40 ms after the cut. The logo sound lands on the frame the wordmark becomes readable.
 
 ## What gets a sound
@@ -100,7 +100,7 @@ Starting values; verify each by measurement and a spectrogram.
 
 ## Delivery targets
 
-- Social and web: integrated about -14 LUFS, true peak at or under -1 dBTP on the lossless master, then measure again after AAC encoding (it can add up to about 1 dB). Some editors push punchy social cuts louder; keep the true peak limit.
+- Social and web: integrated about -14 LUFS, true peak at or under -1.5 dBTP on the lossless master (room for AAC, which can add up to about 1 dB), then measure again after encoding: the final file stays at or under -1 dBTP. Some editors push punchy social cuts louder; keep the true peak limit.
 - YouTube normalizes loud uploads down, not quiet ones up; some players (X, LinkedIn, site autoplay) do not normalize at all.
 - Loudness range 5-9 LU for a film with an arc. The loudest moment is the drop or hero at 30-60% of the runtime, not the logo and not the last 15%; the logo sits 8-20 dB under the film's peak.
 - Opening: sound from frame 0 (first sound within about 0.1-0.5 s), no fade over the first bar, the first 5 ms at or under -40 dBFS (no click on sample 0).
@@ -117,8 +117,8 @@ It also has `critique`, which compares a finished film with a set of professiona
 ```bash
 # Integrated loudness, loudness range, true peak
 ffmpeg -i film.mp4 -af ebur128=peak=true -f null - 2>&1 | tail -15
-# Two-pass normalization to -14 LUFS / -1 dBTP: first pass prints the measured values
-ffmpeg -i mix.wav -af loudnorm=I=-14:TP=-1:LRA=9:print_format=json -f null -
+# Two-pass normalization to -14 LUFS / -1.5 dBTP: first pass prints the measured values
+ffmpeg -i mix.wav -af loudnorm=I=-14:TP=-1.5:LRA=9:print_format=json -f null -
 # Spectrogram to look at
 ffmpeg -i film.mp4 -lavfi showspectrumpic=s=1600x600:legend=1 spectrum.png
 # Silences

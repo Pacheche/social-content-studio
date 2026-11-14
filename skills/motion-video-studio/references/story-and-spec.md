@@ -47,7 +47,7 @@ Plan in bars, not seconds, when there is music; for a silent film pick 120 BPM a
 | Hook | ~8% | Frame 0 is the thumbnail: a face, a result or a bold line, never black or a logo |
 | Tension | ~12% | The old way failing, on screen |
 | Reveal | ~8% | Product or title at about 20-30% of the runtime |
-| Proof | ~40% | 3-6 verbs, one per scene, real UI moving |
+| Proof | ~36% | 3-6 verbs, one per scene, real UI moving |
 | Payoff | ~20% | Lands once, at 60-80% of the runtime, on the music's drop |
 | Claim | ~8% | One line |
 | End card | ~8% | Holds 2-3 s; the logo lands here, performed, not faded in |

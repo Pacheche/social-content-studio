@@ -6,7 +6,7 @@ Limits change often and third-party sources disagree; check the platform's curre
 
 | Platform | Size | Frame rate | Video | Audio | Interface covers (top / bottom / left / right) |
 |---|---|---|---|---|---|
-| TikTok | 1080x1920 | 30 (24-60 fine) | H.264 High, yuv420p, CRF 20 | AAC 128-192 kb/s, 48 kHz | about 10% / 22% / 5% / 14% |
+| TikTok | 1080x1920 | 30 (24-60 fine) | H.264 High, yuv420p, CRF 20 | AAC 256-320 kb/s, 48 kHz | about 10% / 22% / 5% / 14% |
 | Instagram Reels | 1080x1920 | 30 | same | same | about 8% / 20% / 5% / 12% |
 | YouTube Shorts | 1080x1920 (up to 3 min) | 30-60 | same | same | about 6% / 18% / 5% / 12% |
 | YouTube | 1920x1080 or 3840x2160 | source, up to 60 | H.264 High, CRF 18, slow preset | AAC 192-320 kb/s | 5% all edges |

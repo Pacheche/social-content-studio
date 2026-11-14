@@ -22,7 +22,7 @@ For libass at `PlayResY=288`, convert the chosen safe-area position to script un
 | Conversational | 3-5 words, up to about 16 characters per line in heavy display type | |
 | Long-form, YouTube | one line of at most 42 characters (up to 50 to avoid stranding a last word) | |
 
-- Break at a sentence end, a pause of 0.6 s or more, or about 3.2-4 s of duration. Minimum duration about 0.9-1 s; hold 0.25 s past the last word.
+- Break at a sentence end, a pause of 0.6 s or more (this is for caption lines; animated word groups in a motion film break at 150 ms pauses, see `motion-video-studio`), or about 3.2-4 s of duration. Minimum duration about 0.9-1 s; hold 0.25 s past the last word.
 - Phrase-aware breaks: never split inside a word; never strand a number, a currency sign, a unit or final punctuation; keep articles, prepositions and conjunctions with the phrase they belong to (in English, Spanish, Portuguese, French, German, Italian); in Japanese, attach particles to the word before them and follow line-breaking rules (kinsoku).
 - For 9:16, one or two lines; for 16:9, one line.
 

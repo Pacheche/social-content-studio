@@ -60,7 +60,7 @@ python ~/.claude/skills/motion-video-studio/scripts/setup_deps.py --all
 | `footage-edit-studio` | FFmpeg, faster-whisper | Node.js, OpenCV, Demucs, yt-dlp |
 | `generative-media-studio` | FFmpeg | rembg, Demucs, faster-whisper |
 
-`--check` only reports, `--dry-run` prints the commands without running them. Downloads over 1 GB (Demucs with PyTorch) are asked first. On Linux the system packages need `sudo`.
+`--check` only reports, `--dry-run` prints the commands without running them. `--all` also installs Demucs with PyTorch (about 2 GB); the skills ask before that download, the script does not. On Linux the system packages need `sudo`.
 
 ## Use
 
@@ -95,7 +95,7 @@ Audit this carousel without changing the message
 | `skills/*/scripts/video_qa.py` | Python 3, FFmpeg | Duration, size, frame rate, pixel format and color tags against a spec; loudness and true peak; empty first frame, black, frozen and silent stretches, short audio dropouts and flash frames; contact, phone and seam sheets |
 | `skills/*/scripts/setup_deps.py` | Python 3 | Checks and installs each skill's tools with the system package manager and pip |
 
-Each script has its own tests (`python3 -I scripts/test_*.py` from the skill folder). A pass removes mechanical failures; it never approves the design.
+Each QA script has its own tests (`python3 -I scripts/test_*.py` from the skill folder). A pass removes mechanical failures; it never approves the design.
 
 ## Nothing is published for you
 

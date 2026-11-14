@@ -15,7 +15,7 @@ Specs observed on 2026-11-04 from third-party summaries; verify host and platfor
 
 ## Screen recordings and product demos
 
-- **Capture:** at twice the delivery size (2560x1440 or 3840x2160 for a 1080p cut) so zooms stay sharp; 30 or 60 fps; record cursor, clicks and keys as separate events. Deliver 1920x1080 H.264 at 8-12 Mb/s, or 1080x1920 after reframing.
+- **Capture:** above the delivery size (2560x1440, or 3840x2160 for twice a 1080p cut) so zooms stay sharp; 30 or 60 fps; record cursor, clicks and keys as separate events. Deliver 1920x1080 H.264 at 8-12 Mb/s, or 1080x1920 after reframing.
 - **What works:** 30-90 s per feature; the result first, then how; one task per clip; a smooth cursor, hidden when idle; zoom of 1.5-2.5x onto the clicked area (see the click zoom in `cutting.md`); speed up loading; burned captions; a clean desktop with seeded demo data; an end card.
 - **Scripted demos (repeatable when the UI changes):** drive the product with Playwright (`recordVideo`, or a CDP screencast), draw a cursor in the page, log click coordinates, times and element boxes, then add zooms and the cursor afterwards with FFmpeg (`crop`, `scale`, `zoompan`) or as keyframes in `motion-video-studio`.
 - **Desktop apps:** OBS, controlled through obs-websocket (built into OBS 28 and later, port 4455) to start and stop recording and switch scenes; `ffmpeg -f gdigrab` on Windows. Screen Studio and similar apps add auto-zoom on macOS; open alternatives exist.
