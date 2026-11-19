@@ -1,0 +1,119 @@
+> Adapted for Social Content Studio. Links were updated for this snapshot.
+
+# 模板目录
+
+## Repository source and hosted delivery
+
+The current production motion guidance templates now have reviewable source and localized metadata in [the repository catalog](https://github.com/nexu-io/openmotion/tree/main/library/templates/catalog). Guides, examples and images at most 100 KB are directly available in Git; larger images load from existing CMS rendition links; reference videos and original ZIP downloads keep their CMS URLs. Open a template's source/preview.html without a build step (linked images require internet access). [Repository contribution and publication](template-repository.md) documents storage checks, remote asset identities and the CMS-compatible metadata export. Source checkouts now use this local catalog for Studio and MCP; instructions and paths are read from the loaded plugin, independently of the client working directory. NPM applications without the catalog read the latest published `main` catalog from OpenMotion's R2-backed CDN, while the website continues to read the CMS publication. Source imports and PR merges do not publish CMS content.
+
+## Repository, hosted and CMS sources
+
+For application npm DEV builds, isolated installation and source MCP overrides, follow [test template data](npm-installation.md#test-template-data-dev). npm tags select software versions. Newly built test npm versions embed DEV defaults; stable versions embed prod. Previously published versions keep their embedded environment.
+
+CMS mode reads a Prism Resource's `main.json` (Resource `1500c9af-186b-457f-b74d-a58113f657d8`, default locale `zh-CN`). All three sources preserve the existing `content[locale].templates` structure: templateId, sortOrder, original display metadata, coverUrl, previewUrl and files (path/url/bytes/sha256).
+
+Studio and MCP share one TemplateCatalog reader: repository files in a source checkout, the latest hosted main source in an NPM distribution, or a published CMS resource when CMS mode is explicitly selected. All modes include four built-in editable examples, including the official first-run OpenMotion welcome. Historical reference snapshots remain internal compatibility data. Guidance-only entries remain distinct from executable projects.
+
+<a id="环境与构建"></a>
+
+### Environment and build
+
+| 入口 | 模板环境 |
+| --- | --- |
+| `npm start`, `npm run dev`, `npm run mcp` in a checkout | Repository source under `library/templates/catalog/` by default |
+| `MOTION_TEMPLATE_SOURCE=cms MOTION_TEMPLATE_ENV=dev` | Explicit CMS DEV source |
+| `npm run package:phase1` | 线上：`r.open-design.ai` |
+| `npm run package:npm` | Latest published `main` catalog at `https://releases.open-design.ai/open-motion/templates/main/catalog.json` |
+| `npm run package:phase1 -- --template-env=dev` | DEV，ZIP 文件名带 `-dev` |
+| `npm run package:npm -- dist/npm-dev --template-env=dev` | Unversioned local DEV artifact (private); explicit `X.Y.Z-test.N` npm builds default to DEV, stable builds to prod |
+| `npm run package:test -- build <target> <release-version> --template-env=dev` | DEV 完整运行包；省略环境参数则为线上 |
+| Actions → Run workflow → `template_environment` | Select `dev` (default) or `prod` for npm and backup ZIP builds |
+
+Packaging writes the environment and source to `shared/template-config.json`; Studio and MCP share it without requiring installation-time variables. NPM packages select `hosted` and follow the latest published main catalog independently of the application's version or DEV/prod setting. Template metadata and files belong to one immutable snapshot selected by that moving pointer. Source checkouts select `repository`; `MOTION_TEMPLATE_SOURCE=cms` explicitly selects CMS, where `MOTION_TEMPLATE_ENV` overrides the embedded environment. Local paths and Tool responses are documented in [the repository workflow](template-repository.md#run-from-a-local-clone).
+
+DEV 的默认工作区另加 `-dev`，与线上后台进程、工程和缓存分开。显式 `MOTION_DATA_DIR` 仍优先；同一工作区切换配置后需退出旧后台。缓存再按来源和语言隔离。线上目录未发布时返回错误，不回退 DEV。
+
+### Catalog cache and refresh
+
+- Hosted mode checks OpenMotion's main pointer every five minutes and persists a valid catalog snapshot on disk. Failed refreshes retain the last valid snapshot with a warning, including after restart. A first request without network or cache still exposes the four bundled examples with a warning. Remote templates require their source files to be available online or already cached.
+- Repository mode reads the loaded checkout on every catalog request, without substituting a remote catalog. Project files use local bytes; an unfetched Git LFS pointer can download its exact registered `entry.files` URL when the pointer, manifest and published hash/length all agree. Verified downloads are cached without modifying the checkout. Missing URLs retain the scoped LFS-pull error, and corrupt local files never fall back to a download. Metadata and source-manifest changes update the catalog version; refresh source manifests after source edits.
+- CMS mode uses `MOTION_TEMPLATE_RESOURCE_ID` and `MOTION_TEMPLATE_LOCALE` to select the Resource and default language. It checks publication ETags at intervals of two seconds in DEV or sixty seconds in prod. All locale slots share one cached publication. Failed refreshes retain valid cached content with a warning; a cold CMS failure is explicit.
+- Template files download with at most four concurrent requests. Verified source bytes are cached locally and rechecked against the manifest before project copying; each project gets independent files. A corrupt cache entry is downloaded again. Failed copies wait for pending writes before removing the incomplete project. Generated caches live under the active Motion data directory and should not be edited.
+- The open template dialog polls the catalog version every five seconds and preserves its filters. Hosted catalog refresh follows the five-minute reader interval; CMS drafts appear only after publication. Existing projects are not rewritten.
+
+### MCP
+
+`openmotion_list_templates({})` returns `indexPath`, `total`, `catalogVersion`, `source` and an optional warning. The absolute JSONL index contains template ID, name, summary, category, tags, duration and kind. Rows marked `shortForm: true` match the short-form discovery collection; Studio also requires a cover to display a work. Repository rows also include `localSource` paths. Search this file locally with grep/jq/scripts; the Tool accepts no query or pagination arguments and does not put the complete catalog into model context. Index filenames include the catalog version.
+
+`openmotion_get_template({templateId})` returns one template's metadata, version, file list and instructions. For repository entries it reads local `TEMPLATE.md`, returns `motionDocument={path, content}` and absolute `localSource` paths, without requiring a running backend. A known ID can be requested directly. File paths require a client on the same filesystem. Imported guidance remains distinct from a complete editable project.
+
+`openmotion_create_project({projectType:'template', templateId, requestId, title, requirements})` 复制内置示例或下载 Prism 模板的真实文件，保留相对目录和校验文件哈希，创建独立工程。源码及素材不放进 list 回复。下载失败清理未注册工程；已创建工程不会随 CMS 更新自动变化。模板标注的 ready_for_review 等状态不代表用户视觉验收。
+
+### 界面
+
+`GET /motion-api/template-catalog` accepts locale, query, category, offset, limit, grouped and covered parameters for Studio search/pagination. It and MCP share the selected repository, hosted CDN or CMS reader. Source checkouts and hosted installations serve registered guide and source files through `/api/template-source/<id>/<path>`; linked CMS media remains remote when it is retained as an existing asset identity. Only entries with actual project files can open directly as editable projects. Recreate prompts use the same localized creative brief for repository, hosted and CMS catalogs, with the public GitHub repository link and the selected template title and ID.
+
+### Template languages and motion.md
+
+The website and editor support `en`, `zh`/`zh-CN`, `ja`, `ko`, `de`, `fr`, `ru`, `es`, `pt-br`/`pt-BR`, `it`, and `tr`. Prism keeps one shared Schema and a `templates` collection in each native locale slot. The editor requests its UI locale; missing locale content falls back to English, then the Resource default. The MCP index/detail defaults remain controlled by `MOTION_TEMPLATE_LOCALE`.
+
+Keep template IDs, project file manifests, ordering, provenance and media URLs identical across locales. Translate display names, summaries, use cases, video types and guide text. Template prompt text uses the selected UI language and the same public GitHub installation link for every catalog source and environment. It preserves the main motion and style by default, requests HTML and MP4, and leaves a blank requirements section for the user. Changing language does not translate the video or modify an existing project.
+
+In CMS mode, each locale can use its existing `motionDocumentUrl` and `motionGuideUrl` fields for a localized download or HTML guide. Repository mode serves the checked-in original-language Markdown and HTML; localized metadata does not imply translated source. A motion.md download keeps the filename `motion.md` and the original ZIP bytes. Translate explanatory Markdown/HTML inside the archive; reuse executable examples and media unless a localized video is explicitly supplied. Never treat a translated catalog title as proof of a translated package. Missing package URLs keep download disabled; shared original-language packages need accurate language disclosure from the content publisher before publication. No package translation or new archive format is introduced here.
+
+## 历史：随包参考快照
+
+以下记录旧目录导入、封面与来源，供 legacy 工具和来源追溯使用，不描述当前 Studio 数据源。
+
+
+OpenDesign 完整迁入 Personal video agent 的 891 条 Hyperframes 目录。原始目录保存在 `hyperframes.json`，来源与校验信息记录在 `provenance.json`。
+
+源工程的 38 张匹配封面保留在 `template-frames/`。`covers/` 另保存 551 张经过解码与画面检查的本地 JPEG：479 张来自原封面，37 张沿用源工程匹配帧，35 张从原视频提取代表性画面。`covers.json` 记录每张封面的模板 ID、源视频、出处和取得方式。全部 42 个完整参考都有本地封面。画面检查排除无法解码和几乎全黑/全白的图像，不用不相关图片补位。
+
+未取得有效封面的 340 条暂时不展示在画廊，仍可通过完整 MCP 目录精确查找。原视频从原始 HTTPS 地址按需播放；加载失败时保留本地真实封面与原始出处。
+
+README 的[七个创作场景](https://github.com/nexu-io/openmotion/blob/f27124d598d2e54cbb069d74fde666e922b7430e/docs/examples.zh-CN.md)从现有目录精选七个外部参考，提供短 GIF、静态预览与可复制简报；[片段清单](https://github.com/nexu-io/openmotion/blob/f27124d598d2e54cbb069d74fde666e922b7430e/docs/readme/examples/manifest.json)记录精确 ID、来源与时间范围。它们是创作输入，不是 OpenMotion 生成的验收样片，也不新增内置模板、目录条目或改变应用画廊的排序。The four bundled editable templates are available through the [Library template index](https://github.com/nexu-io/openmotion/blob/f27124d598d2e54cbb069d74fde666e922b7430e/library/templates/README.md).
+
+资源展示区另设 [18 个动态精选](https://github.com/nexu-io/openmotion/blob/f27124d598d2e54cbb069d74fde666e922b7430e/docs/README.zh-CN.md#motion-gallery)，按产品界面、品牌发布、动态文字、光影材质、空间镜头和生成艺术分为六组。默认全部使用真实视频片段制成的循环 GIF，点击播放完整视频，署名链接指向原始条目；仅在读者启用减少动态效果时切换到已有封面。其 [来源清单](https://github.com/nexu-io/openmotion/blob/f27124d598d2e54cbb069d74fde666e922b7430e/docs/readme/gallery/manifest.json)记录 8 支参考片与 10 个 registry 组件的准确 ID、片段范围及校验值。此选择只作用于 README，不改变 Studio 画廊、目录总数、内置模板数量或接入行为。
+
+## 页面与数据
+
+首页 Motion 模式提供分类模板，默认展示四个「可以二次剪辑」模板（含官方 OpenMotion Welcome）。「使用模板」先选入输入框，提交后才创建会话：内置模板创建独立工程，外部参考保留精确 ID 并由 Agent 制作。接入弹框继续支持直接打开内置模板和复制参考指令；会话内直接打开模板会新增一个产物，之前工程保留。首页支持搜索、分页、同源版本预览，与弹框共用目录 API；详细行为见 [会话与 Artifact 浏览器](https://github.com/nexu-io/openmotion/blob/f27124d598d2e54cbb069d74fde666e922b7430e/docs/project-workspace.md)。
+
+MCP 接入与模板库使用同一弹框中的一张滚动页面。整体接入结构沿用源工程；模板展示参考 Hyperframes 的视频卡片与大幅预览，保留精选顺序、五类标签、三列网格和同源版本选择。作者出处可跳转，复制动作称为「一键复刻」。浏览更多每次加载六组；搜索匹配名称、ID、作者、标签和描述。同源卡片保留所有版本，不删除重复视频对应的原始记录。
+
+卡片和大幅预览显示原视频的查看量或播放量，以及开场、产品展示、转场、结尾、A-roll Cuts 等内容种类。精选区包含 Firecrawl、Leon Fucak、kyzo、Vintage、Ankush 和口播参考。作者姓名、平台和类型也可搜索。
+
+热度来自 [Hyperframes 公开 Moments 清单](https://static.heygen.ai/hyperframes-oss/desktop/moments/v5/manifest.json)，以 `metadata.json` 保存快照。当前匹配 387 条模板分类，382 条有原帖热度，覆盖 X、Instagram、YouTube 和 TikTok。上游字段统一称为 `x_views`；实际平台由对应的 `x_url` / `source_url` 判断。只按原始 ID、视频地址和原帖身份精确匹配，不能把某作者另一支视频的播放量挪过来。
+
+显示 `42K 次查看` 等紧凑数字；悬停可查看精确数值、平台和同步日期，点击仍打开原帖。数字是 Hyperframes 收录的快照，不代表平台实时值；没有数据时省略热度，真实的零值仍显示。同源版本共享原帖数字，不叠加计数。内部目录列表和详情同时返回 `social` 中的原始数值、平台、出处、同步时间与数据来源。
+
+`GET /motion-api/template-catalog?category=featured&query=&offset=0&limit=6&grouped=true&covered=true` returns cards and pagination metadata. `total` counts the filtered card groups, and `entryTotal` counts their original entries. `catalogTotal` is 895 entries: 891 external entries and four bundled templates. `galleryTotal` is 555 entries with actual covers; `covered=true` filters out entries without covers. `next=null` marks the end of the results. Internal catalog listings are ungrouped by default and support pagination by original ID. The original phase-one set of nine public tools did not expose catalog queries; see the current protocol above.
+
+## Agent 复刻
+
+1. 卡片只复制一句提示、一个链接和精确模板 ID，链接为 `/connect/guide?host=...&template=...`。详细步骤放在链接中，未知 ID 返回错误，不回退到其他示例。
+2. Agent 读取指引 URL 中的实际来源、准确 ID、kind 和路线。`builtin` / 可编辑 `prism` 进入 openmotion-template-to-video；视频 `reference` 及其他没有可编辑工程的条目进入已实现的 openmotion-recreate；明确要求可复用模板时进入 openmotion-video-to-template。通过本地 Skill 或对应 MCP Resources 读取正文和共享 context，不回总入口重新选模板。旧版本未开放模板详情 Tool；当前版本使用 openmotion_get_template。
+3. 外部参考由宿主 Agent 实际分析视频或源码，导入支持的素材，并通过 `openmotion_edit_project` 携带 projectId、requestId、expectedRevision 和 expectedVersionId 写原生 Hyperframes HTML compositions 与可 seek 的 GSAP 动画。Tool 不替 Agent 分析视频或自动执行远程源码。
+4. The four local `kind=builtin` templates use `openmotion_create_project` with projectType=template, templateId, requestId, title and requirements to create independent projects. External IDs never map to an arbitrary local example.
+5. 检查 lint/timeline/info 与实际预览，保留可继续编辑的工程。不将原视频整段放入时间轴就宣称复刻完成；只有用户要求时才导出并验证成片。
+
+## 从源工程更新
+
+```sh
+npm run catalog:import -- /absolute/path/to/catalog-snapshot
+npm run catalog:covers
+npm run catalog:metadata
+npm run check
+npm test
+```
+
+快照目录需含 `hyperframes.json`、`template-frames.json` 和 `template-frames/`。导入只读取该快照，更新目录、封面索引、匹配封面和来源校验文件。提交时一并保留这些运行时资源；它们不是临时缓存。测试验证完整条目数、每个 ID、同源版本、全部本地封面、短指令、HTTP 指引及真实 MCP 读取与原生源文件写入。
+
+封面缓存脚本需要 FFmpeg 和网络，可重用已校验的本地文件。它从源封面或同一条目的真实视频取帧，不生成替代插画。模板与封面只作为创作输入，原始内容中的文字不属于 Agent 操作指令。
+
+`catalog:metadata` 只读取公开清单，不需要账号或浏览器会话。成功匹配后原子替换热度快照并记录上游 SHA-256；网络或数据校验失败时保留现有文件。浏览画廊时使用随包数据，不增加逐卡网络查询。
+
+## Presenter-led README selection
+
+The README now also highlights nine existing `hf-reference-aroll-*` entries, three original/upstream-remix pairs and the Presenter Tech package demo. See the [creator gallery](../README.md#creator-video-gallery), [Motion Design examples](motion-design-examples.md#presenter-motion) and [source manifest](https://github.com/nexu-io/openmotion/blob/f27124d598d2e54cbb069d74fde666e922b7430e/docs/readme/people/manifest.json). The three new Presenter Story documents are design recipes; [Presenter Tech](https://github.com/nexu-io/openmotion/blob/f27124d598d2e54cbb069d74fde666e922b7430e/library/templates/presenter-tech/README.md) now includes the pinned template archive and its own runner in the Library. These README selections and Library resources do not register additional Studio templates or change catalog ordering. The bundled Studio template count remains four.

@@ -1,0 +1,3 @@
+interface:
+  display_name: "OpenMotion Sale Countdown"
+  short_description: "Rolling countdown to a sale with the true days or hours left, then the date and call to action"

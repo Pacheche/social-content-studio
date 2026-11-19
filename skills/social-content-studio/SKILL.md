@@ -2,7 +2,7 @@
 name: social-content-studio
 description: "Use when planning, writing, designing, producing, adapting or fixing static and text content for any brand: single posts, carousels, stories or statuses, YouTube thumbnails and covers, memes, GIFs and stickers, LinkedIn document carousels, slides and decks, threads, long posts, LinkedIn articles, newsletters and blog posts, captions, hooks and brand voice. Works from loose ideas, briefs, references or existing pieces and turns them into clear, visually careful, verifiable content. Covers editorial review, art direction, editable sources, export QA and measurement of results. Not for general web development, and it never publishes automatically. For video, reels or motion, use the sibling skills."
 metadata:
-  version: "2.4.1"
+  version: "2.5.0"
 ---
 
 # Social Content Studio
@@ -16,6 +16,8 @@ For reels, motion graphics or code-made video, use the `motion-video-studio` ski
 On first use, run `python <skill>/scripts/setup_deps.py` (`python3` on macOS and Linux). It installs what this skill needs and is missing (Pillow, Playwright with headless Chromium, and Poppler for PDF checks) with the system package manager (winget, Chocolatey or Scoop; Homebrew; apt, dnf, pacman or zypper) and pip, then reports what is present. Optional tools install only when a task needs them, with `--with <name>`: FFmpeg, gifski. Ask before a download over 1 GB. Run it again with `--check` when a tool fails. If Python itself is missing, install it first (`winget install Python.Python.3.12`, `brew install python`, or the distribution's `python3` package). The script's report is the evidence of what is installed; a tool named in this skill is not.
 
 ## Scope and context
+
+When a brief calls for a visual reference, the optional library at `motion-video-studio/references/openmotion/catalog.md` includes brand-kit, editorial poster, content-cover, product-image and carousel recipes. Adapt their composition to the approved brief and run this skill's static export and review workflow.
 
 - Read the project's instructions and assets first. A recent user correction outranks a forwarded brief. Do not turn a one-off correction into a universal prohibition.
 - Analysis request: deliver a diagnosis. Copy request: finish at copy. Production request: reach the reviewed export. Fix request: preserve content and approved decisions outside the change.

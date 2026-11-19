@@ -72,6 +72,7 @@ Plan the launch: a film, a carousel, a thread, five clips and a thumbnail from o
 Cut this 40-minute podcast into five vertical clips with captions
 Remove the silences and filler words from this tutorial and add music under it
 Audit this carousel without changing the message
+Study this reference video and build a reusable branded motion template
 ```
 
 ## What makes the output better
@@ -85,6 +86,10 @@ Audit this carousel without changing the message
 - **The file is reviewed, not the code.** Scripts check the export; contact sheets and seam strips show what the frames really look like; findings come with the exact change.
 - **Any model, any route, with the bill in view.** The generative skill picks the model by need (cheap, best, local, free), reads live ids and prices before spending, asks before paid runs, and logs every asset with its licence.
 - **Your brand stays yours.** Brand rules live in a profile next to your project, not inside the shared skills.
+
+## OpenMotion
+
+The [OpenMotion integration](skills/motion-video-studio/references/openmotion.md) adds reference reconstruction, editable template workflows, 104 recipes and 302 motion specifications. The local OpenMotion runtime is optional.
 
 ## Scripts
 
@@ -103,4 +108,4 @@ The skills create local files and review them. Publishing, scheduling, uploading
 
 ## License
 
-MIT
+MIT. Bundled OpenMotion material retains its [Apache-2.0 license](skills/motion-video-studio/references/openmotion/LICENSE) and the asset-specific notices included with it.

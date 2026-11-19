@@ -1,0 +1,2 @@
+# Keep the bundled template source bytes stable for upstream preset hashes.
+* -text

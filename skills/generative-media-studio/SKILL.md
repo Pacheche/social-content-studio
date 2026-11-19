@@ -2,7 +2,7 @@
 name: generative-media-studio
 description: "Use when content needs media generated or edited by AI models: images (photoreal, illustration, product shots, text graphics, logos and vectors, consistent characters), image editing (instruction edits, inpainting, background removal, upscaling, relighting), video clips (text or image to video, multi-shot sequences, restyle, extend, upscale, frame interpolation), talking avatars and lip-sync, dubbing, voice-over and voice cloning, music, sound effects, stem separation, audio cleanup, transcription, or two-voice podcasts. Works through any route (vendor APIs, aggregators (fal, Replicate, OpenRouter), Hugging Face Inference Providers and Spaces, ComfyUI, or local open models), with cost control, licence and consent checks, and provenance. Pairs with social-content-studio, motion-video-studio and footage-edit-studio."
 metadata:
-  version: "2.4.1"
+  version: "2.5.0"
 ---
 
 # Generative Media Studio
@@ -16,6 +16,8 @@ The model landscape changes every month. The references hold a dated snapshot (2
 On first use, run `python <skill>/scripts/setup_deps.py` (`python3` on macOS and Linux). It installs what this skill needs and is missing (FFmpeg) with the system package manager (winget, Chocolatey or Scoop; Homebrew; apt, dnf, pacman or zypper) and pip, then reports what is present. Optional tools install only when a task needs them, with `--with <name>`: rembg, Demucs (~2 GB with PyTorch), faster-whisper. Ask before a download over 1 GB. Run it again with `--check` when a tool fails. If Python itself is missing, install it first (`winget install Python.Python.3.12`, `brew install python`, or the distribution's `python3` package). The script's report is the evidence of what is installed; a tool named in this skill is not.
 
 ## How to use this skill
+
+When using an existing OpenMotion connection, follow the Media entry and provider references linked from `motion-video-studio/references/openmotion.md` when installed. Apply this skill's approval, ledger and review workflow to the generated assets.
 
 | Need | Read |
 |---|---|

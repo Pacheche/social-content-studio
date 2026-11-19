@@ -13,6 +13,8 @@ All three paths work the same way underneath: a real browser opens the compositi
 
 ## Choosing the engine
 
+**OpenMotion Studio** manages editable HTML motion projects, their timeline, templates and exports. Its creative specs and reference-analysis methods also work with the existing engines. See [OpenMotion workflows](openmotion.md).
+
 - **Remotion** (React): typed props and Zod schemas, `calculateMetadata`, data-driven series, many formats from one component, a mature render API and Lambda. Licence: free for individuals and small teams (up to three people at the time of writing); larger teams need a paid licence. Check https://www.remotion.dev/license before commercial use. Rules in `remotion.md`.
 - **HyperFrames** (HTML + GSAP, Apache 2.0): the brand already lives in HTML/CSS (for example the static pipeline of `social-content-studio`), website capture, transparent overlays, no React or `node_modules`, a built-in checker. It breaks quietly when its contract is broken. Rules in `hyperframes.md`.
 - **Plain `seek(t)` renderer** (one HTML file, canvas, SVG or DOM): UI-morph films, kinetic type, abstract and generative pieces, anything where you want full control with no framework.

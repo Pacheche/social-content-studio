@@ -2,7 +2,7 @@
 name: footage-edit-studio
 description: Use when the user has existing footage to edit for social media or YouTube (interviews, podcasts, vlogs, tutorials, talking heads, screen recordings, product demos, live streams and their recordings, video and audio podcasts) and wants a rough cut, silences and filler words removed, retakes cleaned, jump cuts smoothed, b-roll placed, captions, music and ducking, loudness fixed, vertical 9:16 reframing, or a long video cut into short clips. Works with FFmpeg and local transcription; optional DaVinci Resolve. Not for animations made from code (use motion-video-studio).
 metadata:
-  version: "2.4.1"
+  version: "2.5.0"
 ---
 
 # Footage Edit Studio
@@ -18,6 +18,8 @@ On first use, run `python <skill>/scripts/setup_deps.py` (`python3` on macOS and
 ## How to use this skill
 
 Paths are relative to this skill's folder. Load references on demand.
+
+For presenter-led edits, montage, multicam, bilingual captions or inserts, consult the relevant recipe in `motion-video-studio/references/openmotion/catalog.md` when installed. For an existing OpenMotion project or a reusable template, use the motion skill's `references/openmotion.md`.
 
 | Need | Read |
 |---|---|
