@@ -2,7 +2,7 @@
 name: social-content-studio
 description: "Use when planning, writing, designing, producing, adapting or fixing static and text content for any brand: single posts, carousels, stories or statuses, YouTube thumbnails and covers, memes, GIFs and stickers, LinkedIn document carousels, slides and decks, threads, long posts, LinkedIn articles, newsletters and blog posts, captions, hooks and brand voice. Works from loose ideas, briefs, references or existing pieces and turns them into clear, visually careful, verifiable content. Covers editorial review, art direction, editable sources, export QA and measurement of results. Not for general web development, and it never publishes automatically. For video, reels or motion, use the sibling skills."
 metadata:
-  version: "2.5.0"
+  version: "2.6.0"
 ---
 
 # Social Content Studio
@@ -28,6 +28,8 @@ When a brief calls for a visual reference, the optional library at `motion-video
 ## Gate A: resolve the content
 
 Read [strategy and copy](references/strategy-and-copy.md) for a new piece or a message change.
+
+For founder-led LinkedIn planning, lead magnets or campaign diagnosis through qualified conversations, use [B2B content](references/b2b-content.md).
 
 Extract goal, reader, situation, idea, evidence, expected action, channel and format. Pick the arc that delivers the promise: demonstration, explanation, case, comparison, tutorial, reflection or announcement. Do not impose a slide count, a closed taxonomy or artificial urgency.
 

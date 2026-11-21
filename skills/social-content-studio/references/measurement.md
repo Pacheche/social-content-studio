@@ -58,4 +58,6 @@ A dashboard is justified when it helps decide what to repeat, fix or test, and i
 
 ## From data to the next piece
 
+For a B2B campaign that aims to start qualified conversations, use [B2B campaign diagnosis](b2b-content.md#diagnose-the-first-weak-step) to trace the earliest weak stage before changing the copy or CTA.
+
 The analysis result feeds Gate A of the next piece: the brief states the hypothesis to test and the success metric. Record the learning as a rule only when it repeats or has a clear cause. Preferences from a single piece stay in its contract.

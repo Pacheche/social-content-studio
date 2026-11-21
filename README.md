@@ -91,6 +91,11 @@ Study this reference video and build a reusable branded motion template
 
 The [OpenMotion integration](skills/motion-video-studio/references/openmotion.md) adds reference reconstruction, editable template workflows, 104 recipes and 302 motion specifications. The local OpenMotion runtime is optional.
 
+## Film planning and B2B content
+
+- [Film planning and review](skills/motion-video-studio/references/cinecode.md) applies CineCode's production card, animatic, song-led timing and timecoded review to the Studio's existing engines.
+- [B2B content](skills/social-content-studio/references/b2b-content.md) applies Outbound Skills' editorial angles, evidence-led LinkedIn posts, lead magnets and campaign diagnosis.
+
 ## Scripts
 
 | Script | Needs | Does |

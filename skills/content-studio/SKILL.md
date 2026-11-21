@@ -2,7 +2,7 @@
 name: content-studio
 description: "Use for any content creation request when it is not obvious which skill applies, or when one idea must become several formats: posts, carousels, stories, thumbnails, memes, GIFs, LinkedIn documents, slides, threads, long posts, newsletters, reels, launch videos, explainers, animations, edited footage, clips, podcasts, screen recordings, live streams, AI images, AI video, voice, music. Routes each part to social-content-studio, motion-video-studio, footage-edit-studio or generative-media-studio, and plans a campaign across formats from one story."
 metadata:
-  version: "2.5.0"
+  version: "2.6.0"
 ---
 
 # Content Studio
@@ -22,6 +22,8 @@ This skill needs no tools. Each skill it routes to runs its own `scripts/setup_d
 | A meme, reaction image, sticker, GIF | `social-content-studio` (static), `motion-video-studio` (animated GIF from code) | `references/formats.md` |
 | A LinkedIn document carousel (PDF), slides, a deck | `social-content-studio` | `references/formats.md` |
 | A thread, a long post, a LinkedIn article, a newsletter, a blog post, captions and comments | `social-content-studio` | `references/text-formats.md`, `references/voice-and-hooks.md` |
+| Founder-led LinkedIn strategy, a B2B lead magnet or qualified-conversation diagnosis for a content campaign | `social-content-studio` | `references/b2b-content.md` |
+| A scripted short film, a chaptered film or a music video built around a supplied track | `motion-video-studio` | `references/cinecode.md`, `references/story-and-spec.md` |
 | A reel, ad, launch film, explainer, UI animation, kinetic type, data story, logo reveal, animated captions or lower thirds, made from code | `motion-video-studio` | `references/story-and-spec.md` |
 | An editable video/template, a branded film from a reference, or work on an OpenMotion project | `motion-video-studio` | `references/openmotion.md` |
 | Editing real footage: rough cut, silences, captions, music, reframing, clips from a long video | `footage-edit-studio` | `references/cutting.md` |

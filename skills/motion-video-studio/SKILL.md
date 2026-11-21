@@ -2,7 +2,7 @@
 name: motion-video-studio
 description: Use when the user wants a video made from code for social media or a website (reels, launch films, ads, explainers, UI animations, kinetic typography, data stories, logo reveals, captions or 3D shots), a reference-led reconstruction, an editable video template or work in OpenMotion. Covers Motion.md, story, spec, motion craft, sound, variants, rendering and frame-by-frame review with Remotion, HyperFrames, OpenMotion, HTML/canvas or three.js. For cutting existing footage use footage-edit-studio. For static posts use social-content-studio.
 metadata:
-  version: "2.5.0"
+  version: "2.6.0"
 ---
 
 # Motion Video Studio
@@ -22,6 +22,7 @@ Paths are relative to this skill's folder. Load references on demand.
 | Step | Read |
 |---|---|
 | Story, spec, banned defaults, beat grid, studying a reference video | `references/story-and-spec.md` |
+| Scripted shorts, chaptered films, animatics, music videos or a focused timecoded draft review | `references/cinecode.md` |
 | OpenMotion, Motion.md, recreating a reference, adapting templates or delivering a reusable project | `references/openmotion.md` |
 | What works for each video type, and which tool | `references/playbook-by-type.md` |
 | Easing, durations, choreography, text, transitions, cursor, captions, vertical | `references/motion-craft.md` |

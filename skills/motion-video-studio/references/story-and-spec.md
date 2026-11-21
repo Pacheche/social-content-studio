@@ -36,6 +36,8 @@ Write down what you can measure: shots per 10 s, the median shot length, how lon
 
 ## Structures by length
 
+For scripted shorts, chaptered films or a song that sets the structure, use [film planning and review](cinecode.md) to choose the level of preproduction and test the sequence in an animatic.
+
 Plan in bars, not seconds, when there is music; for a silent film pick 120 BPM anyway (beat 0.5 s, bar 2 s). Film length is a whole number of bars; scene boundaries land on bars.
 
 **6-15 s (feed ad, hook clip):** hook with the payoff visible, one proof, CTA. Something moves in the first frame.
