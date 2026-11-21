@@ -122,6 +122,7 @@ Starting values for interface moves inside a film: a modal arrives from scale 0.
 - A label that changes and keeps letters ("Copy code" to "Copied", "Save" to "Saved"): diff the strings, keep the shared prefix and suffix still, and cross-blur only the differing middle (about 180 ms, 2 px) in one grid cell while the width eases over about 240 ms.
 - A number that changes ("1,290" to "1,295"): only the changed digits move, with distance and blur set in em so they scale with the type, staggered about 40 ms. Unchanged digits stay still.
 - A disclosure panel can open by animating `grid-template-rows` from 0fr to 1fr, and a ring chart can morph by interpolating its segment angles. Use both only when the real product does it.
+- Preserve spatial continuity between states: give each transition a clear origin from the trigger or previous surface, and remove or shorten moves that add delay without clarifying what changed (adapted from [Emil Kowalski's motion skills](https://github.com/emilkowalski/skills/tree/64eb3deb9a5fbfa041faf783e0bc3fd635872e9c/skills)).
 
 ## Fast motion and blur
 

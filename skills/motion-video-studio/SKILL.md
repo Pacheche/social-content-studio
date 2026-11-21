@@ -2,7 +2,7 @@
 name: motion-video-studio
 description: Use when the user wants a video made from code for social media or a website (reels, launch films, ads, explainers, UI animations, kinetic typography, data stories, logo reveals, captions or 3D shots), a reference-led reconstruction, an editable video template or work in OpenMotion. Covers Motion.md, story, spec, motion craft, sound, variants, rendering and frame-by-frame review with Remotion, HyperFrames, OpenMotion, HTML/canvas or three.js. For cutting existing footage use footage-edit-studio. For static posts use social-content-studio.
 metadata:
-  version: "2.6.0"
+  version: "2.7.0"
 ---
 
 # Motion Video Studio
@@ -28,6 +28,7 @@ Paths are relative to this skill's folder. Load references on demand.
 | Easing, durations, choreography, text, transitions, cursor, captions, vertical | `references/motion-craft.md` |
 | A named visual style as numbers (swiss, keynote, whiteboard, captions), motion brief shape | `references/style-grammars.md` |
 | Determinism and the engine you picked | `references/engines.md`, plus `references/remotion.md` or `references/hyperframes.md` |
+| Parametrized series of variants from an approved component catalog (json-render + Remotion) | `references/parametrized-series.md`, `references/remotion.md` |
 | Music, sound effects, voice, loudness | `references/sound.md` |
 | Checks, review, render settings, platform specs, variants | `references/review-and-delivery.md` |
 

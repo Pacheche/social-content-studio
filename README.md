@@ -95,6 +95,7 @@ The [OpenMotion integration](skills/motion-video-studio/references/openmotion.md
 
 - [Film planning and review](skills/motion-video-studio/references/cinecode.md) applies CineCode's production card, animatic, song-led timing and timecoded review to the Studio's existing engines.
 - [B2B content](skills/social-content-studio/references/b2b-content.md) applies Outbound Skills' editorial angles, evidence-led LinkedIn posts, lead magnets and campaign diagnosis.
+- [Parametrized series](skills/motion-video-studio/references/parametrized-series.md) documents catalog-backed JSON-to-Remotion variant generation (adapted from `json-render`) for repeatable multi-piece series.
 
 ## Scripts
 
