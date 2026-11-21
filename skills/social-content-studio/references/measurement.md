@@ -56,6 +56,14 @@ A dashboard is justified when it helps decide what to repeat, fix or test, and i
 - An explicit empty state for each section without enough data
 - Brand context replaced before using any external prompt. Otherwise the analysis judges the content against someone else's goals
 
+## Competitive and campaign teardowns
+
+When auditing another brand's campaign or reverse-engineering public content before planning your own, keep the analysis tool-agnostic and grounded in public evidence:
+
+- **SEEN vs INFERRED:** Label every claim as `SEEN` (backed by a direct link, export or screenshot, dated) or `INFERRED` (reasoned from what was seen, stating the basis). Causal claims — that a specific ad, post or collab drove a spike or sale — are always `INFERRED`. Missing data is written as `not seen` or `not pulled`, never guessed or shown as zero.
+- **Count what was pulled; never extrapolate counts:** Count ads, posts and moves from the actual rows collected. If a source truncates early, report `pulled N of M` instead of scaling it up. Reserve `low / mid / high` ranges (with the assumed rate stated) strictly for non-public financial estimates such as spend or sales.
+- **Viral teardown and offer match:** For top-performing pieces, inspect the actual creative (not just metrics) and break down `hook → body → CTA`, format, length and `views ÷ followers`. Keep owned posts, paid/creator collabs and unrelated third-party or dupe posts in separate buckets, and check whether the offer pushed on social actually matches the landing page and live pricing.
+
 ## From data to the next piece
 
 For a B2B campaign that aims to start qualified conversations, use [B2B campaign diagnosis](b2b-content.md#diagnose-the-first-weak-step) to trace the earliest weak stage before changing the copy or CTA.

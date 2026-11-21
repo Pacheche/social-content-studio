@@ -2,7 +2,7 @@
 name: motion-video-studio
 description: Use when the user wants a video made from code for social media or a website (reels, launch films, ads, explainers, UI animations, kinetic typography, data stories, logo reveals, captions or 3D shots), a reference-led reconstruction, an editable video template or work in OpenMotion. Covers Motion.md, story, spec, motion craft, sound, variants, rendering and frame-by-frame review with Remotion, HyperFrames, OpenMotion, HTML/canvas or three.js. For cutting existing footage use footage-edit-studio. For static posts use social-content-studio.
 metadata:
-  version: "2.7.0"
+  version: "2.7.1"
 ---
 
 # Motion Video Studio
