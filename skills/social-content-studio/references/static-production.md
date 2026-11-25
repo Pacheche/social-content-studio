@@ -28,6 +28,14 @@ Render traps: a PNG freshly written into a synced folder (OneDrive, Dropbox, Dri
 
 Keep render evidence: resource errors, computed dimensions, warnings, files and hashes. Screenshots of error pages can have correct dimensions. Only opening them rules them out safely.
 
+## Evidence-led editorial carousel (optional recipe)
+
+Use when a brief has real proof and fits a structured narrative arc (not a fixed slide count): hook → visual proof → before/after contrast → concrete steps → verifiable reason to act now (omit urgency when none exists) → closing CTA with its real destination confirmed in the brief.
+
+- Before building HTML, specify per slide: the single claim it makes, the real proof visible on screen (with its source stored next to it), and what changes as the reader moves to the next slide.
+- Reach for reusable blocks (before/after, numbered steps, metric or quote card) only when the story asks for them. Keep the project's own brand profile and tokens — never copy external palettes, fonts, simulator chrome, unbacked claims or comment-automation promises.
+- Keep the deterministic exporter above (real font/image readiness, contract dimensions and full-size plus phone-width visual checks) instead of fixed timeouts, arbitrary scale multipliers or hardcoded slide counts.
+
 ## Stories/statuses
 
 Recompose vertically: less text per screen, a large object and a visible CTA. Use a safe zone verified for the channel. If sharing across channels, meet the intersection. Backgrounds can bleed.

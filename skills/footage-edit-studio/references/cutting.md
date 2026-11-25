@@ -8,6 +8,8 @@ The edit decision list holds, per segment: source file, in, out, the sentence or
 
 Keep the last complete, fluent take of a repeated sentence after checking its meaning. Protect sentence-initial vowels such as "And" and "In". After the final cut, re-transcribe and compare every word with the script.
 
+Before assembling the timeline, lock an approved phrase list ordered by timecode and check subtitle and insert framing on the rendered cut. Aggressive pacing values from a single viral example (such as cutting every 2–3 s or using a 0.12 s silence threshold) belong to that piece, not as universal rules. Any external or mobile-editor automation adapter (such as Edits) is optional, platform- and version-dependent (verify real capabilities on your OS before relying on it), and keeps publishing human-approved.
+
 ## Silence gate
 
 Fixed thresholds fail: a noise-floor reading shifts by up to 19 dB depending on how much silence the clip holds, and the mean level sits inside speech. Calibrate per clip:

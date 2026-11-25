@@ -18,6 +18,16 @@ Add these to the existing spec. Keep a single copy of decisions shared with the 
 | Music and voice | Source and rights, intended role, timing grid, and a short audition when the choice is material |
 | Finish | Any justified grade, motion blur or texture. Apply after checking its effect on legibility, brand colors and adjacent shots |
 
+## Scene contract for narrated motion
+
+When a piece is driven by voice-over or spoken narration, lock the timing from a timecoded transcript before splitting visual work across layers (type, UI/character, audio, motion):
+
+| Start–End | Spoken line | Visual / layer | Action & emphasis | Sound cue | Review check |
+|---|---|---|---|---|---|
+| `00:00.0–00:02.8` | Approved opening line | Lead visual or real UI state | One clear focal move on key phrase | Hit or bed entry on downbeat | Readable at phone width; audio clear |
+
+Freeze the scene timings before parallel work starts, scale roles to the project size with one person integrating the scenes from a single timing source, and verify intelligible voice plus cue alignment on the exported file (not just the script).
+
 ## Write and build the cut
 
 1. Start with the ending and work back to the question the first beat opens. Compare the obvious approach with a genuinely different visual device and choose based on the brief. Give every chapter a purpose and a handoff to the next. Use narration for what the image cannot convey.
